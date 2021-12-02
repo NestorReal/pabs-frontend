@@ -17,6 +17,7 @@ import LoginAdmin from 'containers/LoginAdmin';
 import HomeAdmin from 'containers/HomeAdmin';
 import Home from 'containers/Home';
 import Login from 'containers/Login';
+import Plan from 'containers/Plan';
 
 import GlobalStyle from '../../global-styles';
 
@@ -29,6 +30,7 @@ export default function App() {
         <Route exact path="/crear-cuenta" component={CreateUser} />
         <Route exact path="/auth-admin" component={LoginAdmin} />
         <Route exact path="/HomeAdmin" component={HomeAdmin} />
+        <Route exact path="/plan" component={Plan} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
