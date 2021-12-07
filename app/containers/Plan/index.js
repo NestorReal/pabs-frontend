@@ -14,6 +14,7 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import TiposPlan from 'components/TiposPlan/';
 import FormularioDatos from 'components/FormularioDatos/';
+import Pago from 'components/Pago';
 import makeSelectPlan from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -49,7 +50,7 @@ const ContainerFormulario = props => {
         <FormularioDatos getStepFormulario={step => getStepFormulario(step)} />
       );
     case 3:
-      return 'Pagar';
+      return <Pago />;
     default:
       return (
         <TiposPlan
@@ -67,8 +68,11 @@ export function Plan() {
   const user = '[Nombre del cliente]';
   return (
     <Container>
-      <div className="portada" />
-      <div className="containerPlan">
+      {menu === 3 ? null : <div className="portada" />}
+      <div
+        style={menu === 3 ? { left: '0px', width: '100%' } : null}
+        className="containerPlan"
+      >
         <div className="titulo">
           {/* eslint-disable-next-line no-nested-ternary */}
           {menu === 1 ? (
