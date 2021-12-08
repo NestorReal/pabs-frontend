@@ -89,7 +89,7 @@ export function Home() {
           <button
             className="secondary"
             type="button"
-            style={{ height: '80px', height: '80px' }}
+            style={{ height: '80px' }}
           >
             Ver estado de cuenta
           </button>
@@ -147,7 +147,7 @@ export function Home() {
               modal.current.style.display = 'flex';
             }}
           >
-            <img src={zelle} width="128px" height="38.23px" />
+            <img src={zelle} width="128px" height="38.23px" alt="zelle" />
           </button>
         </div>
       </div>

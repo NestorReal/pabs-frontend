@@ -15,6 +15,7 @@ import { Container } from './styles';
 function FormularioDatos(props) {
   const [passShow, setPassShow] = useState(false);
   const password = useRef(null);
+  const [check, setCheck] = useState(false);
   const getStep = step => {
     // eslint-disable-next-line react/prop-types
     props.getStepFormulario(step);
@@ -28,6 +29,10 @@ function FormularioDatos(props) {
       setPassShow(false);
     }
   };
+  const createUser = event => {
+    setCheck(event.target.checked);
+  };
+
   return (
     <Container>
       <div className="tituloDos">Datos del responsable de pago</div>
@@ -103,38 +108,42 @@ function FormularioDatos(props) {
               />
             </div>
           </div>
-          <label className="label" htmlFor="password">
-            Contraseña
-          </label>
-          <div className="input" style={{ marginBottom: '21px' }}>
-            <input
-              ref={password}
-              id="password"
-              type="password"
-              placeholder="Contraseña"
-            />
-            <div className="icon">
-              <button type="button" onClick={show}>
-                {passShow ? (
-                  <BsEye
-                    style={{
-                      height: '25px',
-                      width: '25px',
-                      color: '#113255',
-                    }}
-                  />
-                ) : (
-                  <BsEyeSlash
-                    style={{
-                      height: '25px',
-                      width: '25px',
-                      color: '#113255',
-                    }}
-                  />
-                )}
-              </button>
+          {check ? (
+            <div>
+              <label className="label" htmlFor="password">
+                Contraseña
+              </label>
+              <div className="input" style={{ marginBottom: '21px' }}>
+                <input
+                  ref={password}
+                  id="password"
+                  type="password"
+                  placeholder="Contraseña"
+                />
+                <div className="icon">
+                  <button type="button" onClick={show}>
+                    {passShow ? (
+                      <BsEye
+                        style={{
+                          height: '25px',
+                          width: '25px',
+                          color: '#113255',
+                        }}
+                      />
+                    ) : (
+                      <BsEyeSlash
+                        style={{
+                          height: '25px',
+                          width: '25px',
+                          color: '#113255',
+                        }}
+                      />
+                    )}
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
+          ) : null}
           <div>
             <label className="check">
               Acepto los términos y condiciones
@@ -206,42 +215,46 @@ function FormularioDatos(props) {
           <div className="containerTerminos">
             <label className="check">
               Crear cuenta
-              <input type="checkbox" />
+              <input onChange={createUser} type="checkbox" />
               <span className="checkmark" />
             </label>
           </div>
-          <label className="label" htmlFor="password">
-            Contraseña
-          </label>
-          <div className="input" style={{ marginBottom: '21px' }}>
-            <input
-              ref={password}
-              id="password"
-              type="password"
-              placeholder="Contraseña"
-            />
-            <div className="icon">
-              <button type="button" onClick={show}>
-                {passShow ? (
-                  <BsEye
-                    style={{
-                      height: '25px',
-                      width: '25px',
-                      color: '#113255',
-                    }}
-                  />
-                ) : (
-                  <BsEyeSlash
-                    style={{
-                      height: '25px',
-                      width: '25px',
-                      color: '#113255',
-                    }}
-                  />
-                )}
-              </button>
+          {check ? (
+            <div>
+              <label className="label" htmlFor="password">
+                Contraseña
+              </label>
+              <div className="input" style={{ marginBottom: '21px' }}>
+                <input
+                  ref={password}
+                  id="password"
+                  type="password"
+                  placeholder="Contraseña"
+                />
+                <div className="icon">
+                  <button type="button" onClick={show}>
+                    {passShow ? (
+                      <BsEye
+                        style={{
+                          height: '25px',
+                          width: '25px',
+                          color: '#113255',
+                        }}
+                      />
+                    ) : (
+                      <BsEyeSlash
+                        style={{
+                          height: '25px',
+                          width: '25px',
+                          color: '#113255',
+                        }}
+                      />
+                    )}
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
+          ) : null}
         </div>
       </div>
       <div className="tituloDos" style={{ marginTop: '60px' }}>

@@ -18,6 +18,7 @@ import HomeAdmin from 'containers/HomeAdmin';
 import Home from 'containers/Home';
 import Login from 'containers/Login';
 import Plan from 'containers/Plan';
+import Bienvenida from 'containers/Bienvenida';
 
 import GlobalStyle from '../../global-styles';
 
@@ -31,6 +32,7 @@ export default function App() {
         <Route exact path="/auth-admin" component={LoginAdmin} />
         <Route exact path="/HomeAdmin" component={HomeAdmin} />
         <Route exact path="/plan" component={Plan} />
+        <Route exact path="/b" component={Bienvenida} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

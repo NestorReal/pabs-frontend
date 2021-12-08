@@ -14,6 +14,7 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import TiposPlan from 'components/TiposPlan/';
 import FormularioDatos from 'components/FormularioDatos/';
+import Pago from 'components/Pago';
 import makeSelectPlan from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -49,7 +50,8 @@ const ContainerFormulario = props => {
         <FormularioDatos getStepFormulario={step => getStepFormulario(step)} />
       );
     case 3:
-      return 'Pagar';
+      // eslint-disable-next-line react/prop-types
+      return <Pago history={props.history} />;
     default:
       return (
         <TiposPlan
@@ -60,15 +62,18 @@ const ContainerFormulario = props => {
   }
 };
 
-export function Plan() {
+export function Plan(props) {
   useInjectReducer({ key: 'plan', reducer });
   useInjectSaga({ key: 'plan', saga });
-  const [menu, setMenu] = useState(1);
+  const [menu, setMenu] = useState(3);
   const user = '[Nombre del cliente]';
   return (
     <Container>
-      <div className="portada" />
-      <div className="containerPlan">
+      {menu === 3 ? null : <div className="portada" />}
+      <div
+        style={menu === 3 ? { left: '0px', width: '100%' } : null}
+        className="containerPlan"
+      >
         <div className="titulo">
           {/* eslint-disable-next-line no-nested-ternary */}
           {menu === 1 ? (
@@ -123,6 +128,8 @@ export function Plan() {
               // eslint-disable-next-line no-console
               getTipoPlan={value => console.log(value)}
               getStepFormulario={step => setMenu(step)}
+              // eslint-disable-next-line react/prop-types
+              history={props.history}
             />
           </div>
         </div>
