@@ -12,8 +12,17 @@ import zelle from '../../images/zelle.png';
 // eslint-disable-next-line import/no-unresolved
 import { Container } from './styles';
 
-function Pago() {
+function Pago(props) {
   const modal = useRef(null);
+  const show = () => {
+    modal.current.style.display = 'flex';
+    // eslint-disable-next-line func-names
+    setTimeout(function() {
+      // eslint-disable-next-line react/prop-types
+      props.history.push('/b');
+    }, 3000);
+  };
+
   /* const hidden = () => {
     modal.current.style.display = 'none';
   }; */
@@ -42,7 +51,7 @@ function Pago() {
           </button>
         </div>
       </div>
-      <div className="containerPlan">
+      <div className="containerPlans">
         <div className="containerCodigo">
           <div>Ingresa código de descuento:</div>
           <div>
@@ -67,26 +76,15 @@ function Pago() {
         </table>
         <div className="containerMetodo">
           <div>Elige método de pago</div>
-          <button
-            type="button"
-            className="paypal"
-            onClick={() => {
-              modal.current.style.display = 'flex';
-            }}
-          >
+          <button type="button" className="paypal" onClick={show}>
             <img src={paypal} width="128px" height="38.23px" alt="paypal" />
           </button>
-          <button
-            type="button"
-            className="zelle"
-            onClick={() => {
-              modal.current.style.display = 'flex';
-            }}
-          >
+          <button type="button" className="zelle" onClick={show}>
             <img src={zelle} width="128px" height="38.23px" alt="zelle" />
           </button>
         </div>
       </div>
+      <div className="footer" />
     </Container>
   );
 }

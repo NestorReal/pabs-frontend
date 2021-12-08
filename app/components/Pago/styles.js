@@ -5,7 +5,7 @@ export const Container = styled.div`
   position: absolute;
   background: #fff;
   .containerModal {
-    height: 656px;
+    height: 670px;
     width: 1354px;
     top: -259px;
     left: -63px;
@@ -219,7 +219,7 @@ export const Container = styled.div`
       color: #00539c;
     }
   }
-  .containerPlan {
+  .containerPlans {
     position: absolute;
     width: 447px;
     left: 667px;
@@ -319,10 +319,10 @@ export const Container = styled.div`
   }
   .footer {
     position: absolute;
-    width: 100%;
+    width: 1354px;
     height: 90px;
-    left: 0px;
-    top: 630px;
+    left: -63px;
+    top: 410px;
     background: #005c9e;
   }
 

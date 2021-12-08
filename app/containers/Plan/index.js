@@ -50,7 +50,8 @@ const ContainerFormulario = props => {
         <FormularioDatos getStepFormulario={step => getStepFormulario(step)} />
       );
     case 3:
-      return <Pago />;
+      // eslint-disable-next-line react/prop-types
+      return <Pago history={props.history} />;
     default:
       return (
         <TiposPlan
@@ -61,10 +62,10 @@ const ContainerFormulario = props => {
   }
 };
 
-export function Plan() {
+export function Plan(props) {
   useInjectReducer({ key: 'plan', reducer });
   useInjectSaga({ key: 'plan', saga });
-  const [menu, setMenu] = useState(1);
+  const [menu, setMenu] = useState(3);
   const user = '[Nombre del cliente]';
   return (
     <Container>
@@ -127,6 +128,8 @@ export function Plan() {
               // eslint-disable-next-line no-console
               getTipoPlan={value => console.log(value)}
               getStepFormulario={step => setMenu(step)}
+              // eslint-disable-next-line react/prop-types
+              history={props.history}
             />
           </div>
         </div>
