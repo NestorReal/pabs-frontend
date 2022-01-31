@@ -55,21 +55,10 @@ function CreateUser() {
             </div>
           </div>
           <label htmlFor="nombre" className="label">
-            Empresa:
+            Teléfono:
           </label>
           <div className="input" style={{ marginBottom: '21px' }}>
-            <input id="nombre" type="text" placeholder="Empresa" />
-            <div className="icon">
-              <AiOutlineUser
-                style={{ height: '25px', width: '25px', color: '#113255' }}
-              />
-            </div>
-          </div>
-          <label htmlFor="nombre" className="label">
-            Teléfono
-          </label>
-          <div className="input" style={{ marginBottom: '21px' }}>
-            <input id="nombre" type="text" placeholder="Teléfono" />
+            <input id="nombre" type="text" placeholder="Ej. 1234567890" />
             <div className="icon">
               <BsTelephone
                 style={{ height: '25px', width: '25px', color: '#113255' }}
@@ -79,10 +68,21 @@ function CreateUser() {
         </div>
         <div className="right">
           <label className="label" htmlFor="email">
-            Correo de usuario
+            Tipo de usuario:
           </label>
           <div className="input" style={{ marginBottom: '21px' }}>
-            <input type="text" id="email" placeholder="ejemplo@ejemplo.com" />
+            <input type="text" id="email" placeholder="Ventas" />
+          </div>
+          <label className="label" htmlFor="password">
+            Correo:
+          </label>
+          <div className="input" style={{ marginBottom: '21px' }}>
+            <input
+              ref={password}
+              id="email"
+              type="email"
+              placeholder="ejemplo@ejemplo.com"
+            />
             <div className="icon">
               <MdOutlineEmail
                 style={{ height: '25px', width: '25px', color: '#113255' }}
@@ -90,7 +90,7 @@ function CreateUser() {
             </div>
           </div>
           <label className="label" htmlFor="password">
-            Contraseña
+            Contraseña:
           </label>
           <div className="input" style={{ marginBottom: '21px' }}>
             <input
@@ -98,38 +98,6 @@ function CreateUser() {
               id="password"
               type="password"
               placeholder="Contraseña"
-            />
-            <div className="icon">
-              <button type="button" onClick={show}>
-                {passShow ? (
-                  <BsEye
-                    style={{
-                      height: '25px',
-                      width: '25px',
-                      color: '#113255',
-                    }}
-                  />
-                ) : (
-                  <BsEyeSlash
-                    style={{
-                      height: '25px',
-                      width: '25px',
-                      color: '#113255',
-                    }}
-                  />
-                )}
-              </button>
-            </div>
-          </div>
-          <label className="label" htmlFor="password">
-            Confirmar contraseña
-          </label>
-          <div className="input" style={{ marginBottom: '21px' }}>
-            <input
-              ref={password}
-              id="password"
-              type="password"
-              placeholder="Confirmar contraseña"
             />
             <div className="icon">
               <button type="button" onClick={show}>

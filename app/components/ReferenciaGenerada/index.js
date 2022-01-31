@@ -26,15 +26,36 @@ function ReferenciaGenerada(props) {
               }}
             />
           </div>
-          <button type="button" className="buttonBuscar">
+          <button
+            type="button"
+            className="buttonBuscar"
+            style={{ marginTop: '9px' }}
+          >
             Buscar
           </button>
         </div>
       </div>
-      <div className="filtreNumber">
-        Mostrar
-        <input type="number" defaultValue="10" />
-        Registros
+      <div className="filters">
+        <div className="filtreNumber">
+          Mostrar
+          <input type="number" defaultValue="10" />
+          Registros
+        </div>
+        {/* eslint-disable-next-line react/prop-types */}
+        {props.down ? (
+          <div>
+            <button type="button" className="buttonBuscar">
+              PDF
+            </button>
+            <button
+              type="button"
+              className="buttonBuscar"
+              style={{ marginLeft: '23px' }}
+            >
+              EXCEL
+            </button>
+          </div>
+        ) : null}
       </div>
       <div className="containerTable">
         <table className="table">
@@ -51,6 +72,17 @@ function ReferenciaGenerada(props) {
                 {item.map(td => (
                   <td>{td}</td>
                 ))}
+                {/* eslint-disable-next-line react/prop-types */}
+                {props.actions ? (
+                  <td>
+                    <button type="button" className="editar">
+                      Editar
+                    </button>
+                    <button type="button" className="eliminar">
+                      Eliminar
+                    </button>
+                  </td>
+                ) : null}
               </tr>
             ))}
           </tbody>

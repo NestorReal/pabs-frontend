@@ -16,11 +16,11 @@ import { AiOutlineProfile, AiOutlineUser } from 'react-icons/ai';
 import { BsArrowLeftCircle } from 'react-icons/bs';
 import { MdOutlineEmail } from 'react-icons/md';
 import GenerarRecompensa from 'components/GenerarRecompensa';
-import ConsultarContrato from 'components/ConsultarContrato';
+// import ConsultarContrato from 'components/ConsultarContrato';
 import ReferenciaGenerada from 'components/ReferenciaGenerada';
 import UserAdmin from 'components/UserAdmin';
 import CreateUser from 'components/CreateUser';
-import AgregarGrupo from 'components/AgregarGrupo';
+// import AgregarGrupo from 'components/AgregarGrupo';
 import { Container } from './styles';
 import makeSelectHomeAdmin from './selectors';
 import reducer from './reducer';
@@ -42,19 +42,27 @@ const ContainerChildren = props => {
     case 0:
       return <GenerarRecompensa />;
     case 1:
-      return <ConsultarContrato />;
+      return (
+        <ReferenciaGenerada
+          data={dataAdminUser}
+          header={headerAdminUser}
+          actions
+        />
+      );
     case 2:
       return (
-        <ReferenciaGenerada data={dataReferencia} header={headerReferencia} />
+        <ReferenciaGenerada
+          data={dataReferencia}
+          header={headerReferencia}
+          down
+        />
       );
     case 3:
-      return <ReferenciaGenerada data={dataPago} header={headerPago} />;
+      return <ReferenciaGenerada data={dataPago} header={headerPago} down />;
     case 4:
       return <UserAdmin data={dataAdminUser} header={headerAdminUser} />;
     case 5:
       return <CreateUser />;
-    case 6:
-      return <AgregarGrupo />;
     default:
       return <GenerarRecompensa />;
   }
@@ -68,10 +76,10 @@ export function HomeAdmin() {
     divcontratos.current.style.display = 'block';
   }, []);
   const title = [
+    'Crear plan',
     'Pagos USA',
-    'Pagos USA',
-    'Referencias generadas',
-    'Pagos recibidos',
+    'Consulta de contratos',
+    'Prospectos',
     'Usuarios',
     'Crear usuarios',
     'Crear usuarios',
@@ -126,7 +134,7 @@ export function HomeAdmin() {
             onClick={contrato}
           >
             <AiOutlineProfile style={{ marginRight: '13px' }} />
-            Contratos
+            Planes
           </button>
           <div ref={divcontratos} className="containerOptions">
             <button
@@ -134,14 +142,14 @@ export function HomeAdmin() {
               type="button"
               onClick={() => setOption(0)}
             >
-              Generar referencia
+              Crear plan
             </button>
             <button
               className={option === 1 ? 'activateOption' : ''}
               type="button"
               onClick={() => setOption(1)}
             >
-              Consultar contrato
+              Consultar plan
             </button>
           </div>
           <button
@@ -158,14 +166,14 @@ export function HomeAdmin() {
               type="button"
               onClick={() => setOption(2)}
             >
-              Referencia Generada
+              Consulta de contrato
             </button>
             <button
               className={option === 3 ? 'activateOption' : ''}
               type="button"
               onClick={() => setOption(3)}
             >
-              Pagos recibidos
+              Prospectos
             </button>
           </div>
           <button
@@ -190,13 +198,6 @@ export function HomeAdmin() {
               onClick={() => setOption(5)}
             >
               Crear usuarios
-            </button>
-            <button
-              className={option === 6 ? 'activateOption' : ''}
-              type="button"
-              onClick={() => setOption(6)}
-            >
-              Agregar a grupos
             </button>
           </div>
         </div>

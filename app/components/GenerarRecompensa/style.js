@@ -8,48 +8,33 @@ export const Container = styled.div`
 
   .formulario {
     width: 604px;
-    height: 565px;
+    height: 570px;
+    margin-left: 174px;
     background: #ffffff;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
-    padding: 15px 26px;
-    .buscar {
-      display: flex;
-      justify-content: space-between;
-      align-content: center;
-      width: 484px;
-    }
-    .buttonBuscar {
-      height: 36px;
-      width: 110px;
-      border-radius: 5px;
-      background: #034681;
-      border: none;
-      color: #fff;
-      margin-top: 9px;
-    }
-    input {
-      background: #ffffff;
-      border: 1px solid #113255;
-      box-sizing: border-box;
-      border-radius: 10px;
-      height: 55px;
-      width: 360px;
-      padding: 15px 56px 14px 10px;
-    }
+    display: flex;
+    justify-content: center;
+    padding-top: 4px;
     .form {
-      padding: 24px 0px 0px 10px;
       .input {
-        width: 414px;
-        display: flex;
-        justify-content: space-between;
-        align-content: center;
+        width: 315px;
         input {
           height: 30px;
-          width: 315px;
+          width: 100%;
           border-radius: 3px;
           border: 1px solid #113255;
           box-sizing: border-box;
+        }
+        textarea {
+          width: 100%;
+          height: 180px;
+          padding: 10px;
+          border-radius: 3px;
+          border: 1px solid #113255;
+        }
+        textarea:focus {
+          outline: none;
         }
         label {
           font-family: Arial;
@@ -62,7 +47,7 @@ export const Container = styled.div`
         }
       }
       .select {
-        margin-left: 100px;
+        margin-bottom: 16px;
         label {
           font-family: Arial;
           font-style: normal;
@@ -84,7 +69,8 @@ export const Container = styled.div`
       }
       .containerButton {
         margin-top: 23px;
-        margin-left: 135px;
+        display: flex;
+        justify-content: center;
         button {
           height: 36px;
           width: 110px;
@@ -101,19 +87,5 @@ export const Container = styled.div`
         }
       }
     }
-  }
-  .notificacion {
-    position: absolute;
-    top: 160px;
-    right: 0px;
-    width: 577px;
-    height: 110px;
-    font-family: Arial;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 48px;
-    line-height: 55px;
-    color: #005c9e;
-    text-align: center;
   }
 `;
