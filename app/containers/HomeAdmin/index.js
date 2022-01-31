@@ -9,7 +9,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-
+import Notifications from 'containers/Notifications';
+import {
+  addErrorMessage,
+  addSuccessMessage,
+} from 'containers/Notifications/actions';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import { AiOutlineProfile, AiOutlineUser } from 'react-icons/ai';
@@ -36,44 +40,19 @@ import {
   // eslint-disable-next-line import/extensions
 } from './data.js';
 
-const ContainerChildren = props => {
-  // eslint-disable-next-line react/prop-types
-  switch (props.option) {
-    case 0:
-      return <GenerarRecompensa />;
-    case 1:
-      return (
-        <ReferenciaGenerada
-          data={dataAdminUser}
-          header={headerAdminUser}
-          actions
-        />
-      );
-    case 2:
-      return (
-        <ReferenciaGenerada
-          data={dataReferencia}
-          header={headerReferencia}
-          down
-        />
-      );
-    case 3:
-      return <ReferenciaGenerada data={dataPago} header={headerPago} down />;
-    case 4:
-      return <UserAdmin data={dataAdminUser} header={headerAdminUser} />;
-    case 5:
-      return <CreateUser />;
-    default:
-      return <GenerarRecompensa />;
-  }
-};
+import { getUsers, getUser, deleteUser, createUserAction } from './actions';
 
-export function HomeAdmin() {
+export function HomeAdmin(props) {
   useInjectReducer({ key: 'HomeAdmin', reducer });
   useInjectSaga({ key: 'HomeAdmin', saga });
 
   useEffect(() => {
     divcontratos.current.style.display = 'block';
+  }, []);
+
+  useEffect(() => {
+    props.dispatch(getUsers());
+    props.dispatch(getUser());
   }, []);
   const title = [
     'Crear plan',
@@ -93,6 +72,64 @@ export function HomeAdmin() {
     usuario: false,
   });
   const [option, setOption] = useState(0);
+
+  const ContainerChildren = optionJson => {
+    // eslint-disable-next-line react/prop-types
+    switch (optionJson.option) {
+      case 0:
+        return <GenerarRecompensa />;
+      case 1:
+        return (
+          <ReferenciaGenerada
+            data={dataAdminUser}
+            header={headerAdminUser}
+            actions
+          />
+        );
+      case 2:
+        return (
+          <ReferenciaGenerada
+            data={dataReferencia}
+            header={headerReferencia}
+            down
+          />
+        );
+      case 3:
+        return <ReferenciaGenerada data={dataPago} header={headerPago} down />;
+      case 4:
+        return (
+          <UserAdmin
+            data={props.HomeAdmin.users.filter(
+              user => !user.roles.includes('user'),
+            )}
+            header={headerAdminUser}
+            user={props.HomeAdmin.user}
+            deleteUser={id => props.dispatch(deleteUser(id))}
+          />
+        );
+      case 5:
+        return (
+          <CreateUser
+            createUser={payload =>
+              props.dispatch(
+                createUserAction(
+                  payload.userName,
+                  payload.number,
+                  payload.email,
+                  payload.password,
+                  payload.role,
+                ),
+              )
+            }
+            sendError={() =>
+              props.dispatch(addErrorMessage(`Error en los datos`))
+            }
+          />
+        );
+      default:
+        return <GenerarRecompensa />;
+    }
+  };
 
   const contrato = () => {
     if (divcontratos.current.style.display === 'none') {
@@ -126,6 +163,7 @@ export function HomeAdmin() {
   return (
     <Container>
       <div className="containerMenu">
+        <Notifications />
         <img className="logo" src={logo} alt="log" />
         <div className="menu">
           <button
@@ -236,8 +274,9 @@ export function HomeAdmin() {
 }
 
 HomeAdmin.propTypes = {
-  // eslint-disable-next-line react/no-unused-prop-types
   dispatch: PropTypes.func.isRequired,
+  HomeAdmin: PropTypes.object,
+  history: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({

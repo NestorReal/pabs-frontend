@@ -1,6 +1,8 @@
 import { call, put, takeLatest, all } from 'redux-saga/effects';
 import request from 'utils/request';
 import auth from 'utils/auth';
+import { addErrorMessage } from 'containers/Notifications/actions';
+
 import * as constants from './constants';
 export default function* defaultSaga() {
   yield takeLatest(constants.LOGIN_INIT, loginSaga);
@@ -24,6 +26,7 @@ export function* loginSaga(action) {
       yield call(login, response.access_token, action.history);
     }
   } catch (error) {
+    yield put(addErrorMessage(`Error en credenciales, intentalo de nuevo`));
     yield put({
       type: constants.LOGIN_FAILED,
     });
@@ -33,7 +36,7 @@ export function* loginSaga(action) {
 function* login(token, history) {
   // TODO: Implement remember me
   yield all([call(auth.setToken, token, true)]);
-  yield call(history.push, '/plan');
+  yield call(history.push, '/HomeAdmin');
 }
 
 export function* passreset(action) {

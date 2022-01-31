@@ -4,10 +4,40 @@
  *
  */
 
-import { DEFAULT_ACTION } from './constants';
+import * as constants from './constants';
 
 export function defaultAction() {
   return {
-    type: DEFAULT_ACTION,
+    type: constants.DEFAULT_ACTION,
+  };
+}
+
+export function getUsers() {
+  return {
+    type: constants.GET_USERS_INIT,
+  };
+}
+
+export function getUser() {
+  return {
+    type: constants.GET_USER_INIT,
+  };
+}
+
+export function deleteUser(id) {
+  return {
+    type: constants.DELETE_USER_INIT,
+    id,
+  };
+}
+
+export function createUserAction(user, number, email, password, role) {
+  return {
+    type: constants.CREATE_USER_INIT,
+    user,
+    number,
+    email,
+    password,
+    role,
   };
 }
