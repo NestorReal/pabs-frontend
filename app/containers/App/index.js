@@ -13,7 +13,7 @@ import { Switch, Route } from 'react-router-dom';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import CreateUser from 'containers/CreateUser/';
 import ProtectedRoute from 'components/ProtectedRoute';
-import LoginAdmin from 'containers/LoginAdmin';
+import LoginAdmin from 'containers/LoginAdmincopy';
 import HomeAdmin from 'containers/HomeAdmin';
 import Home from 'containers/Home';
 import Login from 'containers/Login';
@@ -30,7 +30,7 @@ export default function App() {
         <Route exact path="/auth" component={Login} />
         <Route exact path="/crear-cuenta" component={CreateUser} />
         <Route exact path="/auth-admin" component={LoginAdmin} />
-        <Route exact path="/HomeAdmin" component={HomeAdmin} />
+        <ProtectedRoute exact path="/HomeAdmin" component={HomeAdmin} />
         <Route exact path="/plan" component={Plan} />
         <Route exact path="/b" component={Bienvenida} />
         <Route component={NotFoundPage} />

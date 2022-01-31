@@ -65,7 +65,7 @@ const ContainerFormulario = props => {
 export function Plan(props) {
   useInjectReducer({ key: 'plan', reducer });
   useInjectSaga({ key: 'plan', saga });
-  const [menu, setMenu] = useState(3);
+  const [menu, setMenu] = useState(1);
   const user = '[Nombre del cliente]';
   return (
     <Container>
