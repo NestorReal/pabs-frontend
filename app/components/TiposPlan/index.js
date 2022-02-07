@@ -6,9 +6,8 @@
 
 import React from 'react';
 // import PropTypes from 'prop-types';
-// import styled from 'styled-components';
-import { CgLoadbarDoc } from 'react-icons/cg';
 import { Container } from './styles';
+import Card from '../Card';
 
 function TiposPlan(props) {
   const getTipoPlan = tipo => {
@@ -20,152 +19,39 @@ function TiposPlan(props) {
 
   return (
     <Container>
-      <div className="cardContainer">
-        <div className="tag tagRed">
-          <div className="title">$ 10,000 MNX</div>
-          <div className="subTitle">Planes</div>
-        </div>
-        <div className="triangulo trianguloRed" />
-        <div className="card cardRed">
-          <div className="titleCard">Cremación directa</div>
-          <div className="containerText" style={{ marginTop: '31px' }}>
-            <div className="center">
-              <div className="icon">
-                <CgLoadbarDoc />
-              </div>
-              <div className="text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </div>
-            </div>
-            <div className="center" style={{ marginTop: '10px' }}>
-              <div className="icon">
-                <CgLoadbarDoc />
-              </div>
-              <div className="text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </div>
-            </div>
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignContent: 'center',
-            }}
-          >
-            <div className="containerButton">
-              <button type="button" className="primary">
-                Detalles
-              </button>
-              <button
-                type="button"
-                className="secondary"
-                onClick={() => getTipoPlan('Cremación directa')}
-              >
-                Comprar
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="cardContainer">
-        <div className="tag tagYellow">
-          <div className="title">$ 20,000 MNX</div>
-          <div className="subTitle">Planes</div>
-        </div>
-        <div className="triangulo trianguloYellow" />
-        <div className="card cardYellow">
-          <div className="titleCard">Estándar</div>
-          <div className="containerText">
-            <div className="center">
-              <div className="icon">
-                <CgLoadbarDoc />
-              </div>
-              <div className="text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </div>
-            </div>
-            <div className="center" style={{ marginTop: '10px' }}>
-              <div className="icon">
-                <CgLoadbarDoc />
-              </div>
-              <div className="text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </div>
-            </div>
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignContent: 'center',
-            }}
-          >
-            <div className="containerButton">
-              <button type="button" className="primary">
-                Detalles
-              </button>
-              <button
-                type="button"
-                className="secondary"
-                onClick={() => getTipoPlan('Estándar')}
-              >
-                Comprar
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="cardContainer">
-        <div className="tag tagBlue">
-          <div className="title">$ 30,000 MNX</div>
-          <div className="subTitle">Planes</div>
-        </div>
-        <div className="triangulo trianguloBlue" />
-        <div className="card cardBlue">
-          <div className="titleCard">Premium</div>
-          <div className="containerText">
-            <div className="center">
-              <div className="icon">
-                <CgLoadbarDoc />
-              </div>
-              <div className="text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </div>
-            </div>
-            <div className="center" style={{ marginTop: '10px' }}>
-              <div className="icon">
-                <CgLoadbarDoc />
-              </div>
-              <div className="text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </div>
-            </div>
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignContent: 'center',
-            }}
-          >
-            <div className="containerButton">
-              <button type="button" className="primary">
-                Detalles
-              </button>
-              <button
-                type="button"
-                className="secondary"
-                onClick={() => getTipoPlan('Premium')}
-              >
-                Comprar
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Card
+        color="Red"
+        title="$ 10,000 MNX"
+        subTitle="Planes"
+        titleCard="Cremación directa"
+        text={[
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        ]}
+        onClick={() => getTipoPlan('Cremación directa')}
+      />
+      <Card
+        color="Yellow"
+        title="$ 20,000 MNX"
+        subTitle="Planes"
+        titleCard="Estándar"
+        text={[
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        ]}
+        onClick={() => getTipoPlan('Estándar')}
+      />
+      <Card
+        color="Blue"
+        title="$ 30,000 MNX"
+        subTitle="Planes"
+        titleCard="Premium"
+        text={[
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        ]}
+        onClick={() => getTipoPlan('Premium')}
+      />
     </Container>
   );
 }

@@ -9,15 +9,15 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const StyleButton = styled.button`
-  width: 220px;
-  height: 50px;
+  width: ${props => props.width};
+  height: ${props => props.height};
   background: ${props => (props.primary ? '#00539C' : '#fff')};
   color: ${props => (props.primary ? '#fff' : '#00539C')};
   font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 15px;
+  border-radius: ${props => props.borderRadius}px;
   border: 1px solid #00539c;
   @media only screen and (max-width: 360px) {
     width: 155px;
@@ -64,9 +64,22 @@ const StyleButton = styled.button`
   }
 `;
 
-function Button({ children, onClick, primary }) {
+function Button({
+  children,
+  onClick,
+  primary,
+  width = '220px',
+  height = '50px',
+  borderRadius = 15,
+}) {
   return (
-    <StyleButton primary={primary} onClick={onClick}>
+    <StyleButton
+      primary={primary}
+      onClick={onClick}
+      width={width}
+      height={height}
+      borderRadius={borderRadius}
+    >
       {children}
     </StyleButton>
   );
@@ -76,6 +89,9 @@ Button.propTypes = {
   children: PropTypes.element,
   onClick: PropTypes.func,
   primary: PropTypes.bool,
+  width: PropTypes.string,
+  height: PropTypes.string,
+  borderRadius: PropTypes.number,
 };
 
 export default Button;

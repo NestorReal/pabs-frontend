@@ -4,30 +4,47 @@
  *
  */
 
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 import { AiOutlineUser, AiOutlineEnvironment } from 'react-icons/ai';
 import { BsEye, BsEyeSlash, BsTelephone } from 'react-icons/bs';
 import { MdOutlineEmail } from 'react-icons/md';
 import { Container } from './styles';
+import Input from '../components/Input';
+import Check from '../components/Check';
+import Button from '../components/Button';
 
 function FormularioDatos(props) {
-  const [passShow, setPassShow] = useState(false);
-  const password = useRef(null);
+  const [user, setUser] = useState({
+    email: '',
+    password: '',
+    confipassword: '',
+    userName: '',
+    number: '',
+  });
+  const [passShow, setPassShow] = useState({
+    password: false,
+    confipassword: false,
+  });
+  const show = () => {
+    if (!passShow.password) {
+      setPassShow({ ...passShow, password: true });
+    } else {
+      setPassShow({ ...passShow, password: false });
+    }
+  };
+  const showConfi = () => {
+    if (!passShow.confipassword) {
+      setPassShow({ ...passShow, confipassword: true });
+    } else {
+      setPassShow({ ...passShow, confipassword: false });
+    }
+  };
   const [check, setCheck] = useState(false);
   const getStep = step => {
     // eslint-disable-next-line react/prop-types
     props.getStepFormulario(step);
-  };
-  const show = () => {
-    if (password.current.type === 'password') {
-      password.current.type = 'text';
-      setPassShow(true);
-    } else {
-      password.current.type = 'password';
-      setPassShow(false);
-    }
   };
   const createUser = event => {
     setCheck(event.target.checked);
@@ -35,304 +52,176 @@ function FormularioDatos(props) {
 
   return (
     <Container>
-      <div className="tituloDos">Datos del responsable de pago</div>
+      <div className="tituloDos">
+        <h2>Datos del responsable de pago</h2>
+      </div>
       <div className="responsable">
         <div className="left">
-          <label htmlFor="nombre" className="label">
-            Nombre(s) del reponsable de pago:
-          </label>
-          <div className="input" style={{ marginBottom: '21px' }}>
-            <input id="nombre" type="text" placeholder="Nombre de ejemplo" />
-            <div className="icon">
-              <AiOutlineUser
-                style={{ height: '25px', width: '25px', color: '#113255' }}
-              />
-            </div>
-          </div>
-          <label htmlFor="segundoApellido" className="label">
-            Segundo apellido:
-          </label>
-          <div className="input" style={{ marginBottom: '21px' }}>
-            <input
-              id="segundoApellido"
-              type="text"
-              placeholder="Apellido de ejemplo"
-            />
-            <div className="icon">
-              <AiOutlineUser
-                style={{ height: '25px', width: '25px', color: '#113255' }}
-              />
-            </div>
-          </div>
-          <label htmlFor="tel" className="label">
-            Teléfono:
-          </label>
-          <div className="input" style={{ marginBottom: '21px' }}>
-            <input id="tel" type="text" placeholder="Ej. 1234567890" />
-            <div className="icon">
-              <BsTelephone
-                style={{ height: '25px', width: '25px', color: '#113255' }}
-              />
-            </div>
-          </div>
-          <label htmlFor="calle" className="label">
-            Calle:
-          </label>
-          <div className="input" style={{ marginBottom: '21px' }}>
-            <input id="calle" type="text" placeholder="Calle de ejemplo" />
-            <div className="icon">
-              <AiOutlineEnvironment
-                style={{ height: '25px', width: '25px', color: '#113255' }}
-              />
-            </div>
-          </div>
-          <label htmlFor="noInterno" className="label">
-            No. interior:
-          </label>
-          <div className="input" style={{ marginBottom: '21px' }}>
-            <input id="noInterno" type="text" placeholder="Ej. 1234567890" />
-            <div className="icon">
-              <AiOutlineEnvironment
-                style={{ height: '25px', width: '25px', color: '#113255' }}
-              />
-            </div>
-          </div>
-          <label htmlFor="municipio" className="label">
-            Municipio:
-          </label>
-          <div className="input" style={{ marginBottom: '21px' }}>
-            <input id="municipio" type="text" placeholder="municipio" />
-            <div className="icon">
-              <AiOutlineUser
-                style={{ height: '25px', width: '25px', color: '#113255' }}
-              />
-            </div>
-          </div>
-          {check ? (
+          <Input
+            label="Nombre(s) del reponsable de pago:"
+            placeholder="Nombre de ejemplo"
+            onChange={() => {}}
+          >
+            <AiOutlineUser />
+          </Input>
+          <Input
+            label="Segundo apellido:"
+            placeholder="Apellido de ejemplo"
+            onChange={() => {}}
+          >
+            <AiOutlineUser />
+          </Input>
+          <Input
+            label="Teléfono:"
+            placeholder="Ej. 1234567890"
+            onChange={() => {}}
+          >
+            <BsTelephone />
+          </Input>
+          <Input
+            label="Calle:"
+            placeholder="Calle de ejemplo"
+            onChange={() => {}}
+          >
+            <AiOutlineEnvironment />
+          </Input>
+          <Input
+            label="No. interior:"
+            placeholder="Ej. 1234567890"
+            onChange={() => {}}
+          >
+            <AiOutlineEnvironment />
+          </Input>
+          <Input label="Municipio:" placeholder="municipio" onChange={() => {}}>
+            <AiOutlineUser />
+          </Input>
+          {check && (
             <div>
-              <label className="label" htmlFor="password">
-                Contraseña
-              </label>
-              <div className="input" style={{ marginBottom: '21px' }}>
-                <input
-                  ref={password}
-                  id="password"
-                  type="password"
-                  placeholder="Contraseña"
-                />
-                <div className="icon">
-                  <button type="button" onClick={show}>
-                    {passShow ? (
-                      <BsEye
-                        style={{
-                          height: '25px',
-                          width: '25px',
-                          color: '#113255',
-                        }}
-                      />
-                    ) : (
-                      <BsEyeSlash
-                        style={{
-                          height: '25px',
-                          width: '25px',
-                          color: '#113255',
-                        }}
-                      />
-                    )}
-                  </button>
-                </div>
-              </div>
+              <Input
+                className={user.password !== '' ? 'fontFontello' : ''}
+                label="Contraseña"
+                placeholder="Contraseña"
+                type={passShow.password ? 'text' : 'password'}
+                onChange={event =>
+                  setUser({ ...user, password: event.target.value })
+                }
+              >
+                <button type="button" onClick={show}>
+                  {passShow.password ? <BsEye /> : <BsEyeSlash />}
+                </button>
+              </Input>
             </div>
-          ) : null}
+          )}
           <div>
-            <label className="check">
-              Acepto los términos y condiciones
-              <input type="checkbox" />
-              <span className="checkmark" />
-            </label>
+            <Check label="Acepto los términos y condiciones" />
           </div>
         </div>
         <div className="right">
-          <label htmlFor="primerApellido" className="label">
-            Primer apellido:
-          </label>
-          <div className="input" style={{ marginBottom: '21px' }}>
-            <input
-              id="primerApellido"
-              type="text"
-              placeholder="Apellido de ejemplo"
-            />
-            <div className="icon">
-              <AiOutlineUser
-                style={{ height: '25px', width: '25px', color: '#113255' }}
-              />
-            </div>
-          </div>
-          <label htmlFor="nacimiento" className="label">
-            Fecha de nacimiento:
-          </label>
-          <div className="input" style={{ marginBottom: '21px' }}>
-            <input id="nacimiento" type="date" placeholder="dd/mm/aaaa" />
-            <div className="icon">
-              <AiOutlineUser
-                style={{ height: '25px', width: '25px', color: '#113255' }}
-              />
-            </div>
-          </div>
-          <label htmlFor="correo" className="label">
-            Correo:
-          </label>
-          <div className="input" style={{ marginBottom: '21px' }}>
-            <input id="correo" type="text" placeholder="ejemplo@ejemplo.com" />
-            <div className="icon">
-              <MdOutlineEmail
-                style={{ height: '25px', width: '25px', color: '#113255' }}
-              />
-            </div>
-          </div>
-          <label htmlFor="noExterior" className="label">
-            No. exterior:
-          </label>
-          <div className="input" style={{ marginBottom: '21px' }}>
-            <input id="noExterior" type="text" placeholder="Ej. 1234567890" />
-            <div className="icon">
-              <AiOutlineEnvironment
-                style={{ height: '25px', width: '25px', color: '#113255' }}
-              />
-            </div>
-          </div>
-          <label htmlFor="colonia" className="label">
-            Colonia:
-          </label>
-          <div className="input" style={{ marginBottom: '21px' }}>
-            <input id="colonia" type="text" placeholder="Colonia de ejemplo" />
-            <div className="icon">
-              <AiOutlineEnvironment
-                style={{ height: '25px', width: '25px', color: '#113255' }}
-              />
-            </div>
-          </div>
+          <Input
+            label="Primer apellido:"
+            placeholder="Apellido de ejemplo"
+            onChange={() => {}}
+          >
+            <AiOutlineUser />
+          </Input>
+          <Input
+            label="Fecha de nacimiento:"
+            placeholder="dd/mm/aaaa"
+            onChange={() => {}}
+          >
+            <AiOutlineUser />
+          </Input>
+          <Input
+            label="Correo:"
+            placeholder="ejemplo@ejemplo.com"
+            onChange={() => {}}
+          >
+            <MdOutlineEmail />
+          </Input>
+          <Input
+            label="No. exterior:"
+            placeholder="Ej. 1234567890"
+            onChange={() => {}}
+          >
+            <AiOutlineEnvironment />
+          </Input>
+          <Input
+            label="Colonia:"
+            placeholder="Colonia de ejemplo"
+            onChange={() => {}}
+          >
+            <AiOutlineEnvironment />
+          </Input>
           <div className="containerTerminos">
-            <label className="check">
-              Crear cuenta
-              <input onChange={createUser} type="checkbox" />
-              <span className="checkmark" />
-            </label>
+            <Check label="Crear cuenta" onChange={createUser} />
           </div>
-          {check ? (
+          {check && (
             <div>
-              <label className="label" htmlFor="password">
-                Contraseña
-              </label>
-              <div className="input" style={{ marginBottom: '21px' }}>
-                <input
-                  ref={password}
-                  id="password"
-                  type="password"
-                  placeholder="Contraseña"
-                />
-                <div className="icon">
-                  <button type="button" onClick={show}>
-                    {passShow ? (
-                      <BsEye
-                        style={{
-                          height: '25px',
-                          width: '25px',
-                          color: '#113255',
-                        }}
-                      />
-                    ) : (
-                      <BsEyeSlash
-                        style={{
-                          height: '25px',
-                          width: '25px',
-                          color: '#113255',
-                        }}
-                      />
-                    )}
-                  </button>
-                </div>
-              </div>
+              <Input
+                className={user.confipassword !== '' ? 'fontFontello' : ''}
+                label="Confirmar contraseña"
+                placeholder="Confirmar contraseña"
+                type={passShow.confipassword ? 'text' : 'password'}
+                onChange={event =>
+                  setUser({ ...user, confipassword: event.target.value })
+                }
+              >
+                <button type="button" onClick={showConfi}>
+                  {passShow.confipassword ? <BsEye /> : <BsEyeSlash />}
+                </button>
+              </Input>
             </div>
-          ) : null}
+          )}
         </div>
       </div>
-      <div className="tituloDos" style={{ marginTop: '60px' }}>
-        Datos del titular del contrato
+      <div className="tituloDos" style={{ marginTop: '8.333%' }}>
+        <h2>Datos del titular del contrato</h2>
       </div>
       <div className="titular">
         <div className="left">
-          <label htmlFor="nombre" className="label">
-            Nombre(s) del reponsable de pago:
-          </label>
-          <div className="input" style={{ marginBottom: '21px' }}>
-            <input id="nombre" type="text" placeholder="Nombre de ejemplo" />
-            <div className="icon">
-              <AiOutlineUser
-                style={{ height: '25px', width: '25px', color: '#113255' }}
-              />
-            </div>
-          </div>
-          <label htmlFor="segundoApellido" className="label">
-            Segundo apellido:
-          </label>
-          <div className="input" style={{ marginBottom: '21px' }}>
-            <input
-              id="segundoApellido"
-              type="text"
-              placeholder="Apellido de ejemplo"
-            />
-            <div className="icon">
-              <AiOutlineUser
-                style={{ height: '25px', width: '25px', color: '#113255' }}
-              />
-            </div>
-          </div>
-          <label htmlFor="tel" className="label">
-            Teléfono:
-          </label>
-          <div className="input" style={{ marginBottom: '21px' }}>
-            <input id="tel" type="text" placeholder="Ej. 1234567890" />
-            <div className="icon">
-              <BsTelephone
-                style={{ height: '25px', width: '25px', color: '#113255' }}
-              />
-            </div>
-          </div>
+          <Input
+            label="Nombre(s) del reponsable de pago:"
+            placeholder="Nombre de ejemplo"
+            onChange={() => {}}
+          >
+            <AiOutlineUser />
+          </Input>
+          <Input
+            label="Segundo apellido:"
+            placeholder="Apellido de ejemplo"
+            onChange={() => {}}
+          >
+            <AiOutlineUser />
+          </Input>
+          <Input
+            label="Teléfono:"
+            placeholder="Ej. 1234567890"
+            onChange={() => {}}
+          >
+            <BsTelephone />
+          </Input>
         </div>
         <div className="right">
-          <label htmlFor="primerApellido" className="label">
-            Primer apellido:
-          </label>
-          <div className="input" style={{ marginBottom: '21px' }}>
-            <input
-              id="primerApellido"
-              type="text"
-              placeholder="Apellido de ejemplo"
-            />
-            <div className="icon">
-              <AiOutlineUser
-                style={{ height: '25px', width: '25px', color: '#113255' }}
-              />
-            </div>
-          </div>
-          <label htmlFor="correo" className="label">
-            Correo:
-          </label>
-          <div className="input" style={{ marginBottom: '21px' }}>
-            <input id="correo" type="text" placeholder="ejemplo@ejemplo.com" />
-            <div className="icon">
-              <MdOutlineEmail
-                style={{ height: '25px', width: '25px', color: '#113255' }}
-              />
-            </div>
-          </div>
+          <Input
+            label="Primer apellido:"
+            placeholder="Apellido de ejemplo"
+            onChange={() => {}}
+          >
+            <AiOutlineUser />
+          </Input>
+          <Input
+            label="Correo:"
+            placeholder="ejemplo@ejemplo.com"
+            onChange={() => {}}
+          >
+            <MdOutlineEmail />
+          </Input>
         </div>
       </div>
-      <div className="containerButton">
-        <button type="button" className="button" onClick={() => getStep(3)}>
+      <div className="center" style={{ marginTop: '6.389%' }}>
+        <Button onClick={() => getStep(3)} primary>
           Ir a pagar
-        </button>
+        </Button>
       </div>
     </Container>
   );

@@ -5,7 +5,7 @@
  *
  */
 
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -20,120 +20,94 @@ import makeSelectCreateUser from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import { Container } from './styles';
-import portada from '../../images/portada1.jpg';
-// import logo from '../../images/logo2.svg';
+import Portada from '../../components/Portada';
+import ContainerForm from '../../components/ContainerForm';
+import Input from '../../components/components/Input';
+import Button from '../../components/components/Button';
+import Check from '../../components/components/Check';
 
 export function CreateUser() {
   useInjectReducer({ key: 'createUser', reducer });
   useInjectSaga({ key: 'createUser', saga });
+  const [user, setUser] = useState({
+    email: '',
+    password: '',
+    userName: '',
+    number: '',
+  });
   const [passShow, setPassShow] = useState(false);
-  const password = useRef(null);
   const show = () => {
-    if (password.current.type === 'password') {
-      password.current.type = 'text';
+    if (!passShow) {
       setPassShow(true);
     } else {
-      password.current.type = 'password';
       setPassShow(false);
     }
   };
 
   return (
     <Container>
-      <img className="portada" src={portada} alt="portada" />
-      {/* <img className="logo" src={logo}/> */}
-      <div className="formularioContainer">
-        <div className="title">Crear cuenta</div>
-        <div className="formulario">
-          <div>
-            <div
-              className="respons"
-              style={{ display: 'block', marginRight: '35px' }}
-            >
-              <label className="label">Nombre completo</label>
-              <div className="input">
-                <input type="text" placeholder="Nombre de ejemplo" />
-                <div className="icon">
-                  <AiOutlineUser
-                    style={{ height: '25px', width: '25px', color: '#113255' }}
-                  />
-                </div>
-              </div>
+      <Portada />
+      <ContainerForm>
+        <div className="center">
+          <h1>Crear cuenta</h1>
+        </div>
+        <div className="center">
+          <div className="formulario">
+            <div className="between">
+              <Input
+                label="Nombre completo"
+                placeholder="Nombre de ejemplo"
+                onChange={event =>
+                  setUser({ ...user, userName: event.target.value })
+                }
+              >
+                <AiOutlineUser />
+              </Input>
+              <Input
+                label="Teléfono"
+                placeholder="Ej. 1234567890"
+                onChange={event =>
+                  setUser({ ...user, number: event.target.value })
+                }
+              >
+                <BsTelephone />
+              </Input>
             </div>
-            <div style={{ display: 'block' }}>
-              <label className="label">Teléfono</label>
-              <div className="input">
-                <input type="text" placeholder="Ej. 1234567890" />
-                <div className="icon">
-                  <BsTelephone
-                    style={{ height: '25px', width: '25px', color: '#113255' }}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="respons2" style={{ marginTop: '56px' }}>
-            <div
-              className="respons"
-              style={{ display: 'block', marginRight: '35px' }}
-            >
-              <label className="label">Correo de usuario</label>
-              <div className="input">
-                <input type="text" placeholder="ejemplo@ejemplo.com" />
-                <div className="icon">
-                  <MdOutlineEmail
-                    style={{ height: '25px', width: '25px', color: '#113255' }}
-                  />
-                </div>
-              </div>
-            </div>
-            <div style={{ display: 'block' }}>
-              <label className="label">Contraseña</label>
-              <div className="input">
-                <input
-                  ref={password}
-                  type="password"
-                  placeholder="Contraseña"
-                />
-                <div className="icon">
-                  <button type="button" onClick={show}>
-                    {passShow ? (
-                      <BsEye
-                        style={{
-                          height: '25px',
-                          width: '25px',
-                          color: '#113255',
-                        }}
-                      />
-                    ) : (
-                      <BsEyeSlash
-                        style={{
-                          height: '25px',
-                          width: '25px',
-                          color: '#113255',
-                        }}
-                      />
-                    )}
-                  </button>
-                </div>
-              </div>
+            <div className="between">
+              <Input
+                label="Correo de usuario"
+                placeholder="ejemplo@ejemplo.com"
+                onChange={event =>
+                  setUser({ ...user, email: event.target.value })
+                }
+              >
+                <MdOutlineEmail />
+              </Input>
+              <Input
+                className={user.password !== '' ? 'fontFontello' : ''}
+                label="Contraseña"
+                placeholder="Contraseña"
+                type={passShow ? 'text' : 'password'}
+                onChange={event =>
+                  setUser({ ...user, password: event.target.value })
+                }
+              >
+                <button type="button" onClick={show}>
+                  {passShow ? <BsEye /> : <BsEyeSlash />}
+                </button>
+              </Input>
             </div>
           </div>
         </div>
         <div className="containerTerminos">
-          <label className="check">
-            Aceptar términos
-            <input type="checkbox" />
-            <span className="checkmark" />
-          </label>
+          <Check label="Aceptar términos" />
         </div>
-        <div className="containerButton">
-          <button className="primary" type="button">
-            Crear cuenta
-          </button>
+        <div className="center">
+          <div className="containerButton">
+            <Button primary>Crear cuenta</Button>
+          </div>
         </div>
-        <div className="footer" />
-      </div>
+      </ContainerForm>
     </Container>
   );
 }
