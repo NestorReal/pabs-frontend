@@ -32,7 +32,7 @@ export default function App() {
         <Route exact path="/auth-admin" component={LoginAdmin} />
         <ProtectedRoute exact path="/HomeAdmin" component={HomeAdmin} />
         <Route exact path="/plan" component={Plan} />
-        <Route exact path="/b" component={Bienvenida} />
+        <Route exact path="/bienvenida" component={Bienvenida} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
