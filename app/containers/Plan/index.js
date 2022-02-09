@@ -19,6 +19,9 @@ import makeSelectPlan from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import { Container } from './styles';
+import Portada from '../../components/Portada';
+import ContainerForm from '../../components/ContainerForm';
+import Steppers from '../../components/Steppers';
 
 const ContainerFormulario = props => {
   const getStep = step => {
@@ -43,6 +46,7 @@ const ContainerFormulario = props => {
         <TiposPlan
           getStep={step => getStep(step)}
           getTipoPlan={value => getTipoPlan(value)}
+          top
         />
       );
     case 2:
@@ -65,75 +69,41 @@ const ContainerFormulario = props => {
 export function Plan(props) {
   useInjectReducer({ key: 'plan', reducer });
   useInjectSaga({ key: 'plan', saga });
-  const [menu, setMenu] = useState(1);
+  const [menu, setMenu] = useState(3);
   const user = '[Nombre del cliente]';
   return (
     <Container>
-      {menu === 3 ? null : <div className="portada" />}
-      <div
-        style={menu === 3 ? { left: '0px', width: '100%' } : null}
-        className="containerPlan"
+      {menu < 3 && <Portada />}
+      <ContainerForm
+        footer={false}
+        left={menu === 3 ? '0px' : '31.641%'}
+        width={menu === 3 ? '100%' : '68.359%'}
       >
-        <div className="titulo">
+        <h1>
           {/* eslint-disable-next-line no-nested-ternary */}
           {menu === 1 ? (
             'Selecciona tu plan'
           ) : menu === 2 ? (
             'Coloca tus datos'
           ) : (
-            <div>
+            <>
               Bienvenido <b>{user}</b>
-            </div>
+            </>
           )}
+        </h1>
+        <Steppers top={menu > 1 ? '15.139%' : '17.917%'} option={menu} />
+        <div className="containerFormulario">
+          <ContainerFormulario
+            menu={menu}
+            getStep={step => setMenu(step)}
+            // eslint-disable-next-line no-console
+            getTipoPlan={value => console.log(value)}
+            getStepFormulario={step => setMenu(step)}
+            // eslint-disable-next-line react/prop-types
+            history={props.history}
+          />
         </div>
-        <div className="containerSteppers">
-          <div className="steppers">
-            <div
-              className="circle"
-              style={menu === 1 ? { background: '#00539C' } : null}
-            >
-              1
-            </div>
-            <div className="line" />
-            <div
-              className="circle"
-              style={menu === 2 ? { background: '#00539C' } : null}
-            >
-              2
-            </div>
-            <div className="line" />
-            <div
-              className="circle"
-              style={menu === 3 ? { background: '#00539C' } : null}
-            >
-              3
-            </div>
-          </div>
-        </div>
-        <div className="containerSteppers" style={{ width: '97%' }}>
-          <div
-            className="steppers"
-            style={{ width: '686px', marginTop: '10px' }}
-          >
-            <div>Tipos de plan</div>
-            <div style={{ marginLeft: '-28px' }}>Datos</div>
-            <div>Pagar</div>
-          </div>
-        </div>
-        <div>
-          <div className="containerFormulario">
-            <ContainerFormulario
-              menu={menu}
-              getStep={step => setMenu(step)}
-              // eslint-disable-next-line no-console
-              getTipoPlan={value => console.log(value)}
-              getStepFormulario={step => setMenu(step)}
-              // eslint-disable-next-line react/prop-types
-              history={props.history}
-            />
-          </div>
-        </div>
-      </div>
+      </ContainerForm>
     </Container>
   );
 }

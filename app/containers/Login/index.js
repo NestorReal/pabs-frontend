@@ -5,7 +5,7 @@
  *
  */
 
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -18,98 +18,80 @@ import { MdOutlineEmail } from 'react-icons/md';
 import makeSelectLogin from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import portada from '../../images/portada1.jpg';
 import { login } from './actions';
-// import logo from '../../images/logo.png';
-// import logo from '../../images/logo2.svg';
 import { Container } from './styles';
+import Portada from '../../components/Portada';
+import ContainerForm from '../../components/ContainerForm';
+import Input from '../../components/components/Input';
+import Button from '../../components/components/Button';
 
 export function Login(props) {
   useInjectReducer({ key: 'login', reducer });
   useInjectSaga({ key: 'login', saga });
   const [passShow, setPassShow] = useState(false);
-  const password = useRef(null);
   const [user, setUser] = useState({
     email: '',
     password: '',
   });
   const show = () => {
-    if (password.current.type === 'password') {
-      password.current.type = 'text';
+    if (!passShow) {
       setPassShow(true);
     } else {
-      password.current.type = 'password';
       setPassShow(false);
     }
   };
   return (
     <Container>
-      <img className="portada" src={portada} alt="portada" />
-      {/* <img className="logo" src={logo}/> */}
-      <div className="formularioContainer">
-        <div className="title">Iniciar sesión</div>
-        <div className="formulario">
-          <label className="label">Correo de usuario</label>
-          <div className="input">
-            <input
-              type="text"
+      <Portada />
+      <ContainerForm>
+        <div className="center">
+          <h1>Iniciar sesión</h1>
+        </div>
+        <div className="center">
+          <div className="formulario">
+            <Input
+              label="Correo de usuario"
               placeholder="ejemplo@ejemplo.com"
-              onChange={() => setUser({ ...user, email: event.target.value })}
-            />
-            <div className="icon">
-              <MdOutlineEmail
-                style={{ height: '25px', width: '25px', color: '#113255' }}
-              />
-            </div>
-          </div>
-          <label className="label">Contraseña</label>
-          <div className="input">
-            <input
-              ref={password}
-              type="password"
+              onChange={event =>
+                setUser({ ...user, email: event.target.value })
+              }
+            >
+              <MdOutlineEmail />
+            </Input>
+            <Input
+              className={
+                user.password !== '' && !passShow ? 'fontFontello' : 'Arial'
+              }
+              label="Contraseña"
               placeholder="Contraseña"
-              onChange={() =>
+              type={passShow ? 'text' : 'password'}
+              onChange={event =>
                 setUser({ ...user, password: event.target.value })
               }
-            />
-            <div className="icon">
+            >
               <button type="button" onClick={show}>
-                {passShow ? (
-                  <BsEye
-                    style={{ height: '25px', width: '25px', color: '#113255' }}
-                  />
-                ) : (
-                  <BsEyeSlash
-                    style={{ height: '25px', width: '25px', color: '#113255' }}
-                  />
-                )}
+                {passShow ? <BsEye /> : <BsEyeSlash />}
               </button>
-            </div>
+            </Input>
           </div>
         </div>
-        <p>Si no tienes una cuenta</p>
-        <div className="containerButton">
-          <button
-            className="primary"
-            type="button"
-            style={{ marginRight: '6px' }}
-            onClick={() =>
-              props.dispatch(login(user.email, user.password, props.history))
-            }
-          >
-            Ingresar
-          </button>
-          <button
-            className="secondary"
-            type="button"
-            // eslint-disable-next-line react/prop-types
-            onClick={() => props.history.push('/crear-cuenta')}
-          >
-            Crear cuenta
-          </button>
+        <div className="center">
+          <p>¿Aún no tienes cuenta?</p>
+          <div className="containerButton">
+            <Button
+              primary
+              onClick={() =>
+                props.dispatch(login(user.email, user.password, props.history))
+              }
+            >
+              Ingresar
+            </Button>
+            <Button onClick={() => props.history.push('/crear-cuenta')}>
+              Crear cuenta
+            </Button>
+          </div>
         </div>
-        <div className="footer" />
-      </div>
+      </ContainerForm>
     </Container>
   );
 }

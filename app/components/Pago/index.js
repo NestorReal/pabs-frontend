@@ -6,11 +6,11 @@
 
 import React, { useRef } from 'react';
 // import PropTypes from 'prop-types';
-// import styled from 'styled-components';
 import paypal from '../../images/paypal.png';
 import zelle from '../../images/zelle.png';
 // eslint-disable-next-line import/no-unresolved
 import { Container } from './styles';
+import Button from '../components/Button';
 
 function Pago(props) {
   const modal = useRef(null);
@@ -39,52 +39,57 @@ function Pago(props) {
           <div className="texTansaccion">No. transacción</div>
         </div>
       </div>
-      <div className="referencia">
-        <p>Nombre del representante de pago</p>
-        <br />
-        <p>Nombre del titular</p>
-        <p>Ciudad ejemplo</p>
-        <p>Dirección ejemplo</p>
-        <div className="containerButton">
-          <button className="primary" type="button">
-            Ingresar
-          </button>
-        </div>
-      </div>
-      <div className="containerPlans">
-        <div className="containerCodigo">
-          <div>Ingresa código de descuento:</div>
-          <div>
-            <input type="text" placeholder="Ej.1234567890" />
-            <button className="primary" type="button">
-              Ingresar
-            </button>
+      <div className="spaceBetween">
+        <div className="referencia">
+          <label htmlFor="NombreRepresentante">
+            Nombre del representante de pago
+          </label>
+          <br />
+          <br />
+          <br />
+          <label htmlFor="NombreTitular">Nombre del titular</label>
+          <br />
+          <br />
+          <label htmlFor="Ciudad">Ciudad ejemplo</label>
+          <br />
+          <br />
+          <label htmlFor="Direccion">Dirección ejemplo</label>
+          <div className="containerButton">
+            <Button primary>Ingresar</Button>
           </div>
         </div>
-        <div className="titlePlan">Nombre del plan</div>
-        <table>
-          <tr>
-            <td>
-              Monto total
-              <div style={{ height: '10px', width: '1px' }} />
-            </td>
-            <th>
-              $ 0.00 USD
-              <div style={{ height: '10px', width: '1px' }} />
-            </th>
-          </tr>
-        </table>
-        <div className="containerMetodo">
-          <div>Elige método de pago</div>
-          <button type="button" className="paypal" onClick={show}>
-            <img src={paypal} width="128px" height="38.23px" alt="paypal" />
-          </button>
-          <button type="button" className="zelle" onClick={show}>
-            <img src={zelle} width="128px" height="38.23px" alt="zelle" />
-          </button>
+        <div className="containerPlans">
+          <div className="containerCodigo">
+            <label htmlFor="codigo">Ingresa código de descuento:</label>
+            <div className="spaceBetween" style={{ width: '100%' }}>
+              <input id="codigo" type="text" placeholder="Ej.1234567890" />
+              <Button primary>Ingresar</Button>
+            </div>
+          </div>
+          <div className="titlePlan">
+            <h5>Nombre del plan</h5>
+          </div>
+          <div className="spaceBetween monto">
+            <div>
+              <td>Monto total</td>
+            </div>
+            <div>
+              <th>
+                <b>$ 0.00 USD</b>
+              </th>
+            </div>
+          </div>
+          <h5>Elige método de pago</h5>
+          <div className="spaceBetween buttons">
+            <Button onClick={show}>
+              <img src={paypal} width="128px" height="38.23px" alt="paypal" />
+            </Button>
+            <Button onClick={show}>
+              <img src={zelle} width="128px" height="38.23px" alt="zelle" />
+            </Button>
+          </div>
         </div>
       </div>
-      <div className="footer" />
     </Container>
   );
 }

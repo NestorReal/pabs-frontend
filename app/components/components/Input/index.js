@@ -9,8 +9,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import './style.css';
 const StyleInput = styled.div`
-  width: 360px;
-  height: 93px;
+  width: ${props => props.width};
+  height: ${props => props.height};
   .fontFontello {
     font-family: 'fontello' !important;
   }
@@ -164,9 +164,11 @@ function Input({
   onChange,
   type = 'text',
   className,
+  width = '360px',
+  height = '93px',
 }) {
   return (
-    <StyleInput>
+    <StyleInput width={width} height={height}>
       <label>{label}</label>
       <div className="input">
         <input
@@ -190,6 +192,8 @@ Input.propTypes = {
   onChange: PropTypes.func,
   type: PropTypes.string,
   className: PropTypes.string,
+  width: PropTypes.string,
+  height: PropTypes.string,
 };
 
 export default Input;

@@ -1,223 +1,130 @@
 import styled from 'styled-components';
-
+// import asaterisco from '../../images/asterisk-svgrepo-com.svg';
 export const Container = styled.div`
   width: 100%;
   height: 100%;
-  position: absolute;
-  overflow: hidden;
-  .logo {
-    height: 67.28154754638672px;
-    width: 110px;
-    left: 280px;
-    top: 20px;
-    border-radius: 0px;
-    position: absolute;
+  h1 {
+    margin-top: 14.583%;
+    color: #00539c;
   }
-  .portada {
-    height: 730px;
-    width: 507px;
-    left: 0px;
-    top: 0px;
-    border-radius: 0px;
+  .reset {
+    border: none;
+    background: transparent;
     position: absolute;
-  }
-  .formularioContainer {
-    position: relative;
-    width: 853px;
-    height: 100%;
-    float: right;
-    background: #fff;
-
-    p {
-      position: absolute;
-      top: 440px;
-      right: 225px;
-      font-family: Arial;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 38px;
-      letter-spacing: 0.375px;
-      text-align: left;
-      color: #000000;
-      margin: 0px;
-    }
-  }
-  .title {
-    position: absolute;
-    width: 308px;
-    height: 55px;
-    left: 268.34px;
-    top: 105px;
+    width: auto;
+    height: 38px;
     font-family: Arial;
     font-style: normal;
-    font-weight: bold;
-    font-size: 48px;
-    line-height: 55px;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 38px;
+    letter-spacing: 0.375px;
     color: #00539c;
   }
   .formulario {
     position: absolute;
-    width: 360px;
-    left: 247.34px;
-    top: 205px;
-  }
-  .footer {
-    position: absolute;
-    height: 90px;
-    width: 853px;
-    left: 0px;
-    top: 630px;
-    border-radius: 0px;
-    background: #00539c;
-  }
-  .label {
-    font-family: Arial;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 38px;
-    color: #113255;
-    margin-left: 6px;
-  }
-  .input {
-    height: 55px;
-    width: 360px;
-    border-radius: 10px;
-    border: solid 1px #113255;
-    input {
-      border: none;
-      height: 32px;
-      width: 302px;
-      margin: 10px;
-    }
-    input:focus {
-      outline: none;
-    }
-    .icon {
-      width: 25px;
-      height: 25px;
-      float: right;
-      margin-top: 15px;
-      margin-right: 9px;
-      button {
-        background: transparent;
-        border: none;
-        padding: 0px;
-      }
-    }
+    top: 28%;
   }
   .containerButton {
     position: absolute;
-    top: 475px;
-    right: 203px;
-    button {
-      height: 50px;
-      width: 220px;
-      border-radius: 15px;
-      border: 1px solid #00539c;
-      font-family: Arial;
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 38px;
-      letter-spacing: 0.375px;
-      text-align: center;
-    }
-    .primary {
-      background: #00539c;
-      color: #ffffff;
-    }
-    .secondary {
-      background: #ffffff;
-      color: #00539c;
+    top: 65.972%;
+    width: 55%;
+    height: 8.1%;
+    display: flex;
+    justify-content: space-between;
+  }
+  p {
+    position: absolute;
+    top: 60%;
+    left: 55%;
+    color: #113255;
+  }
+  /* Movil */
+  @media only screen and (max-width: 600px) {
+    .containerButton {
+      width: 100%;
     }
   }
-  @media only screen and (max-width: 600px) {
-    overflow: visible;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    .portada {
-      height: 0px;
-      width: 0px;
-      diplay: none;
-    }
-    .formularioContainer {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      float: none;
-      p {
-        position: absolute;
-        width: 100%;
-        top: 440px;
-        right: 0px;
-        text-align: right;
-        padding-right: 17px;
-      }
-    }
-    .title {
-      position: absolute;
-      width: 100%;
-      height: 55px;
-      left: 0px;
-      font-size: 43px;
-      line-height: 50px;
-      text-align: center;
+  @media only screen and (min-width: 601px) and (max-width: 700px) {
+    overflow: hidden;
+    h1 {
+      margin-top: 10%;
     }
     .formulario {
-      position: absolute;
-      width: 100%;
-      left: 0px;
-      top: 205px;
-    }
-    .footer {
-      position: absolute;
-      height: 90px;
-      width: 100%;
-      left: 0px;
-      top: 630px;
-      border-radius: 0px;
-      background: #00539c;
-    }
-    .input {
-      height: 48pxpx;
-      width: 90%;
-      margin-left: 5%;
-      input {
-        border: none;
-        height: 32px;
-        width: auto;
-        margin: 10px;
-      }
-      input:focus {
-        outline: none;
-      }
-      .icon {
-        width: 25px;
-        height: 25px;
-        float: right;
-        margin-top: 15px;
-        margin-right: 9px;
-        button {
-          background: transparent;
-          border: none;
-          padding: 0px;
-        }
-      }
+      top: 20%;
     }
     .containerButton {
-      position: absolute;
-      top: 475px;
-      display: flex;
-      left: 0px;
-      width: 100%;
-      justify-content: center;
-      button {
-        height: 50px;
-        width: 160px;
-      }
+      width: 65%;
+    }
+  }
+  @media only screen and (min-width: 701px) and (max-width: 800px) {
+    overflow: hidden;
+    h1 {
+      margin-top: 10%;
+    }
+    .formulario {
+      top: 20%;
+    }
+    .reset {
+      top: 93%;
+      font-size: 20px;
+    }
+    p {
+      top: 55%;
+    }
+    .containerButton {
+      width: 88%;
+      top: 60%;
+    }
+  }
+  @media only screen and (min-width: 960px) and (max-width: 1279px) {
+    p {
+      top: 61%;
+      left: 55.5%;
+    }
+    .reset {
+      font-size: 12px;
+    }
+    .containerButton {
+      width: 55%;
+    }
+  }
+  @media only screen and (min-width: 1920px) and (max-width: 2559px) {
+    .reset {
+      font-size: 20px;
+    }
+    p {
+      font-size: 25px;
+      left: 53%;
+    }
+  }
+  @media only screen and (min-width: 2560px) and (max-width: 3839px) {
+    .reset {
+      font-size: 30px;
+    }
+    p {
+      font-size: 35px;
+      left: 53%;
+    }
+  }
+  @media only screen and (min-width: 3840px) and (max-width: 7679px) {
+    .reset {
+      font-size: 50px;
+      line-height: 90px;
+    }
+    p {
+      font-size: 60px;
+      left: 51.5%;
+    }
+  }
+  @media only screen and (min-width: 7680px) {
+    .reset {
+      font-size: 100px;
+      line-height: 150px;
+    }
+    p {
+      font-size: 130px;
+      left: 50.4%;
     }
   }
 `;
