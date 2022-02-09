@@ -22,6 +22,7 @@ import { Container } from './styles';
 import Portada from '../../components/Portada';
 import ContainerForm from '../../components/ContainerForm';
 import Steppers from '../../components/Steppers';
+import Modal from '../../components/Modal';
 
 const ContainerFormulario = props => {
   const getStep = step => {
@@ -55,7 +56,14 @@ const ContainerFormulario = props => {
       );
     case 3:
       // eslint-disable-next-line react/prop-types
-      return <Pago history={props.history} />;
+      return (
+        <Pago
+          // eslint-disable-next-line react/prop-types
+          onClickPaypal={props.onClickPaypal}
+          // eslint-disable-next-line react/prop-types
+          onClickNetPay={props.onClickNetPay}
+        />
+      );
     default:
       return (
         <TiposPlan
@@ -69,10 +77,25 @@ const ContainerFormulario = props => {
 export function Plan(props) {
   useInjectReducer({ key: 'plan', reducer });
   useInjectSaga({ key: 'plan', saga });
-  const [menu, setMenu] = useState(3);
+  const [menu, setMenu] = useState(1);
+  const [modal, setModal] = useState(false);
   const user = '[Nombre del cliente]';
+  const show = () => {
+    setModal(true);
+    // eslint-disable-next-line func-names
+    setTimeout(function() {
+      // eslint-disable-next-line react/prop-types
+      props.history.push('/bienvenida');
+    }, 3000);
+  };
   return (
     <Container>
+      <Modal
+        display={modal}
+        title="PAGO EXITOSO"
+        subtitle="No. transacción"
+        text="Le recordamos que el contrato ha sido enviado a su correo"
+      />
       {menu < 3 && <Portada />}
       <ContainerForm
         footer={false}
@@ -100,7 +123,8 @@ export function Plan(props) {
             getTipoPlan={value => console.log(value)}
             getStepFormulario={step => setMenu(step)}
             // eslint-disable-next-line react/prop-types
-            history={props.history}
+            onClickPaypal={show}
+            onClickNetPay={show}
           />
         </div>
       </ContainerForm>

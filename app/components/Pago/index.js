@@ -4,41 +4,17 @@
  *
  */
 
-import React, { useRef } from 'react';
-// import PropTypes from 'prop-types';
+import React from 'react';
+import PropTypes from 'prop-types';
 import paypal from '../../images/paypal.png';
 import zelle from '../../images/zelle.png';
 // eslint-disable-next-line import/no-unresolved
 import { Container } from './styles';
 import Button from '../components/Button';
 
-function Pago(props) {
-  const modal = useRef(null);
-  const show = () => {
-    modal.current.style.display = 'flex';
-    // eslint-disable-next-line func-names
-    setTimeout(function() {
-      // eslint-disable-next-line react/prop-types
-      props.history.push('/b');
-    }, 3000);
-  };
-
-  /* const hidden = () => {
-    modal.current.style.display = 'none';
-  }; */
+function Pago({ onClickPaypal, onClickNetPay }) {
   return (
     <Container>
-      <div ref={modal} className="containerModal" style={{ display: 'none' }}>
-        <div className="modal">
-          <div className="texModal">PAGO EXITOSO</div>
-          <div className="center">
-            <div className="textInfo">
-              Le recordamos que el contrato ha sido enviado a su correo
-            </div>
-          </div>
-          <div className="texTansaccion">No. transacción</div>
-        </div>
-      </div>
       <div className="spaceBetween">
         <div className="referencia">
           <label htmlFor="NombreRepresentante">
@@ -81,11 +57,11 @@ function Pago(props) {
           </div>
           <h5>Elige método de pago</h5>
           <div className="spaceBetween buttons">
-            <Button onClick={show}>
-              <img src={paypal} width="128px" height="38.23px" alt="paypal" />
+            <Button onClick={onClickPaypal}>
+              <img src={paypal} alt="paypal" />
             </Button>
-            <Button onClick={show}>
-              <img src={zelle} width="128px" height="38.23px" alt="zelle" />
+            <Button onClick={onClickNetPay}>
+              <img src={zelle} alt="zelle" />
             </Button>
           </div>
         </div>
@@ -94,6 +70,9 @@ function Pago(props) {
   );
 }
 
-Pago.propTypes = {};
+Pago.propTypes = {
+  onClickPaypal: PropTypes.func,
+  onClickNetPay: PropTypes.func,
+};
 
 export default Pago;

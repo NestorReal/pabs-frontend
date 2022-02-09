@@ -5,116 +5,114 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
   .logo {
-    height: 66.7021255493164px;
-    width: 110px;
-    left: 30px;
-    top: 20px;
-    border-radius: 0px;
+    height: 9.167%;
+    width: 8.594%;
+    left: 2.344%;
+    top: 2.778%;
     position: absolute;
   }
   .title {
-    position: absolute;
-    width: 950px;
-    height: 110px;
-    left: 212px;
-    top: 30px;
-    font-family: Arial;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 48px;
-    line-height: 55px;
+    width: 74.219%;
+    height: 15.278%;
+    margin-left: 16.563%;
+    margin-bottom: 2.5%;
     text-align: center;
     color: #005c9e;
   }
-  .containerPaper {
-    position: absolute;
-    left: 92px;
-    top: 158px;
-  }
+
   .paper {
-    width: 1095px;
-    height: 234px;
+    margin-left: 7.188%;
+    margin-bottom: 3.194%;
+    padding: 0.56% 2.031% 1.222% 1.328%;
+    width: 85.547%;
+    height: 32.5%;
     background: #ffffff;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
-
     .text {
-      font-family: Arial;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 38px;
-      letter-spacing: 0.375px;
-      text-align: left;
+      height: 15%;
+      margin-bottom: 0.3%;
+    }
+    h5 {
+      margin: 0px;
+      margin-bottom: 1%;
+    }
+    h2 {
+      font-weight: normal;
+      margin: 0px;
+    }
+    label {
       color: #113255;
-      margin-left: 17px;
+      font-weight: bold;
+      margin-bottom: 15%;
     }
   }
   .titulo1 {
     width: 100%;
-    margin-top: 7px;
     text-align: center;
-    font-family: Arial;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 38px;
-    letter-spacing: 0.375px;
     color: #00539c;
   }
   .titulo2 {
-    font-family: Arial;
-    font-size: 36px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 41px;
-    letter-spacing: 0em;
     text-align: center;
     color: #00539c;
-    margin-bottom: 10px;
-  }
-  .containerInfo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .subtitulo {
-    text-align: center;
-    font-family: Arial;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 38px;
-    letter-spacing: 0.375px;
-    color: #113255;
-    margin-bottom: 15px;
+    margin-bottom: 1%;
   }
   .footer {
-    width: 1354px;
-    height: 90px;
+    width: 100%;
+    height: 12.5%;
     background: #005c9e;
-    margin-top: 23px;
-    position: absolute;
-    left: 0px;
-    top: 670px;
   }
-  .button {
-    font-family: Arial;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-    text-align: center;
-    letter-spacing: 0.375px;
-    color: #ffffff;
-    background: #034681;
-    border: none;
-    height: 36px;
-    width: 110px;
-    left: 0px;
-    top: 0px;
-    border-radius: 5px;
+  button {
     float: right;
-    margin-right: 26px;
-    margin-top: -27px;
+    margin-top: -3%;
+    width: 110px;
+    height: 36px;
+    border-radius: 5px;
+  }
+  @media only screen and (min-width: 960px) and (max-width: 1279px) {
+    min-width: 945px;
+    min-height: 540px;
+    button {
+      width: 90px;
+      height: 30px;
+      border-radius: 5px;
+    }
+  }
+  @media only screen and (min-width: 1920px) and (max-width: 2559px) {
+    min-width: 1920px;
+    min-height: 1080px;
+    button {
+      width: 150px;
+      height: 50px;
+      border-radius: 5px;
+      font-size: 30px;
+    }
+  }
+  @media only screen and (min-width: 2560px) and (max-width: 3839px) {
+    min-width: 2560px;
+    min-height: 1440px;
+    button {
+      width: 220px;
+      height: 65px;
+      border-radius: 10px;
+    }
+  }
+  @media only screen and (min-width: 3840px) and (max-width: 7679px) {
+    min-width: 3840px;
+    min-height: 2160px;
+    button {
+      width: 330px;
+      height: 100px;
+      border-radius: 20px;
+    }
+  }
+  @media only screen and (min-width: 7680px) {
+    min-width: 7680px;
+    min-height: 4320px;
+    button {
+      width: 700px;
+      height: 200px;
+      border-radius: 40px;
+    }
   }
 `;

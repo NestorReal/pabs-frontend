@@ -23,17 +23,20 @@ const StyleButton = styled.button`
     width: 155px;
     height: 40px;
     font-size: 16px;
+    border-radius: 10px;
   }
   @media only screen and (min-width: 700px) and (max-width: 800px) {
     width: 300px;
     height: 77px;
     font-size: 36px;
     border: 2px solid #00539c;
+    border-radius: 10px;
   }
   @media only screen and (min-width: 960px) and (max-width: 1279px) {
     width: 165px;
     height: 39px;
     font-size: 17px;
+    border-radius: 10px;
   }
   @media only screen and (min-width: 1920px) and (max-width: 2559px) {
     width: 330px;
