@@ -13,7 +13,7 @@ import { Switch, Route } from 'react-router-dom';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import CreateUser from 'containers/CreateUser/';
 import ProtectedRoute from 'components/ProtectedRoute';
-import LoginAdmin from 'containers/LoginAdmincopy';
+import LoginAdmin from 'containers/LoginAdmin';
 import HomeAdmin from 'containers/HomeAdmin';
 import Home from 'containers/Home';
 import Login from 'containers/Login';

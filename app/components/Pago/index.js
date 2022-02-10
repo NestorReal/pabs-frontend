@@ -31,7 +31,9 @@ function Pago({ onClickPaypal, onClickNetPay }) {
           <br />
           <label htmlFor="Direccion">Dirección ejemplo</label>
           <div className="containerButton">
-            <Button primary>Ingresar</Button>
+            <Button variant="primary" size="medium">
+              Ingresar
+            </Button>
           </div>
         </div>
         <div className="containerPlans">
@@ -39,7 +41,9 @@ function Pago({ onClickPaypal, onClickNetPay }) {
             <label htmlFor="codigo">Ingresa código de descuento:</label>
             <div className="spaceBetween" style={{ width: '100%' }}>
               <input id="codigo" type="text" placeholder="Ej.1234567890" />
-              <Button primary>Ingresar</Button>
+              <Button variant="primary" size="medium">
+                Ingresar
+              </Button>
             </div>
           </div>
           <div className="titlePlan">

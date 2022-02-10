@@ -22,9 +22,6 @@ export const Container = styled.div`
     button {
       float: right;
       margin-top: 75px;
-      width: 110px;
-      height: 36px;
-      border-radius: 5px;
     }
   }
   .containerPlans {
@@ -40,11 +37,6 @@ export const Container = styled.div`
     }
   }
   .containerCodigo {
-    button {
-      width: 110px;
-      height: 36px;
-      border-radius: 5px;
-    }
     input {
       border: 1px solid #113255;
       height: 30px;
@@ -79,9 +71,6 @@ export const Container = styled.div`
       border-radius: 10px;
       button {
         margin-top: 37px;
-        width: 90px;
-        height: 30px;
-        border-radius: 5px;
       }
     }
     .containerPlans {
@@ -90,11 +79,6 @@ export const Container = styled.div`
       margin-bottom: 0px;
     }
     .containerCodigo {
-      button {
-        width: 90px;
-        height: 30px;
-        border-radius: 5px;
-      }
       input {
         border: 1px solid #113255;
         height: 25px;
@@ -130,9 +114,6 @@ export const Container = styled.div`
       border-radius: 25px;
       button {
         margin-top: 175px;
-        width: 150px;
-        height: 50px;
-        border-radius: 5px;
         font-size: 30px;
       }
     }
@@ -143,9 +124,6 @@ export const Container = styled.div`
     }
     .containerCodigo {
       button {
-        width: 150px;
-        height: 50px;
-        border-radius: 5px;
         font-size: 30px;
       }
       input {
@@ -183,9 +161,6 @@ export const Container = styled.div`
       border-radius: 35px;
       button {
         margin-top: 233px;
-        width: 220px;
-        height: 65px;
-        border-radius: 10px;
       }
     }
     .containerPlans {
@@ -194,11 +169,6 @@ export const Container = styled.div`
       margin-bottom: 0px;
     }
     .containerCodigo {
-      button {
-        width: 220px;
-        height: 65px;
-        border-radius: 10px;
-      }
       input {
         border: 3px solid #113255;
         height: 55px;
@@ -233,9 +203,6 @@ export const Container = styled.div`
       border-radius: 35px;
       button {
         margin-top: 380px;
-        width: 330px;
-        height: 100px;
-        border-radius: 20px;
       }
     }
     .containerPlans {
@@ -244,11 +211,6 @@ export const Container = styled.div`
       margin-bottom: 0px;
     }
     .containerCodigo {
-      button {
-        width: 330px;
-        height: 100px;
-        border-radius: 20px;
-      }
       input {
         border: 4px solid #113255;
         height: 80px;
@@ -283,9 +245,6 @@ export const Container = styled.div`
       border-radius: 120px;
       button {
         margin-top: 920px;
-        width: 700px;
-        height: 200px;
-        border-radius: 40px;
       }
     }
     .containerPlans {
@@ -294,11 +253,6 @@ export const Container = styled.div`
       margin-bottom: 0px;
     }
     .containerCodigo {
-      button {
-        width: 700px;
-        height: 200px;
-        border-radius: 40px;
-      }
       input {
         border: 10px solid #113255;
         height: 180px;

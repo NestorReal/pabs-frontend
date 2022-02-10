@@ -219,7 +219,7 @@ function FormularioDatos(props) {
         </div>
       </div>
       <div className="center" style={{ marginTop: '6.389%' }}>
-        <Button onClick={() => getStep(3)} primary>
+        <Button onClick={() => getStep(3)} variant="primary">
           Ir a pagar
         </Button>
       </div>

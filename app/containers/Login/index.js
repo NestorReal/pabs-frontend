@@ -79,14 +79,17 @@ export function Login(props) {
           <p>¿Aún no tienes cuenta?</p>
           <div className="containerButton">
             <Button
-              primary
+              variant="primary"
               onClick={() =>
                 props.dispatch(login(user.email, user.password, props.history))
               }
             >
               Ingresar
             </Button>
-            <Button onClick={() => props.history.push('/crear-cuenta')}>
+            <Button
+              variant="secondary"
+              onClick={() => props.history.push('/crear-cuenta')}
+            >
               Crear cuenta
             </Button>
           </div>

@@ -4,94 +4,74 @@
  *
  */
 
-import React from 'react';
-// import PropTypes from 'prop-types';
-// import styled from 'styled-components';
-import { VscSearch } from 'react-icons/vsc';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Container } from './style';
+import FormAdd from '../components/FormAdd';
+import Table from '../components/Table';
+import Historico from '../components/Historico';
+import FilterNumber from '../components/FilterNumber';
 
-function ReferenciaGenerada(props) {
+function ReferenciaGenerada({
+  textForm,
+  textButton,
+  placeholder,
+  header,
+  data,
+  Fundelete,
+  createValue,
+  keyData,
+  actions,
+  historical,
+  historicalValue,
+  historicalText,
+  filterNumber,
+}) {
+  const [value, setValue] = useState('');
   return (
     <Container>
-      <div className="formulario">
-        <div className="text">Selecciona rango de fechas</div>
-        <div className="buscar">
-          <div>
-            <input placeholder="21/10/2021 - 21/10/2021 " />
-            <VscSearch
-              style={{
-                color: '#113255',
-                fontSize: '25px',
-                marginLeft: '-35px',
-              }}
-            />
-          </div>
-          <button
-            type="button"
-            className="buttonBuscar"
-            style={{ marginTop: '9px' }}
-          >
-            Buscar
-          </button>
-        </div>
+      <FormAdd
+        text={textForm}
+        placeholder={placeholder}
+        onChange={event => setValue(event.target.value)}
+        onClick={() => createValue(value)}
+        textButton={textButton}
+      />
+      {historical && (
+        <Historico value={historicalValue} text={historicalText} />
+      )}
+      <div style={!filterNumber ? { visibility: 'hidden' } : null}>
+        <FilterNumber />
       </div>
-      <div className="filters">
-        <div className="filtreNumber">
-          Mostrar
-          <input type="number" defaultValue="10" />
-          Registros
-        </div>
-        {/* eslint-disable-next-line react/prop-types */}
-        {props.down ? (
-          <div>
-            <button type="button" className="buttonBuscar">
-              PDF
-            </button>
-            <button
-              type="button"
-              className="buttonBuscar"
-              style={{ marginLeft: '23px' }}
-            >
-              EXCEL
-            </button>
-          </div>
-        ) : null}
-      </div>
-      <div className="containerTable">
-        <table className="table">
-          <tr className="headerTable">
-            {/* eslint-disable-next-line react/prop-types */}
-            {props.header.map(item => (
-              <th>{item}</th>
-            ))}
-          </tr>
-          <tbody>
-            {/* eslint-disable-next-line react/prop-types */}
-            {props.data.map(item => (
-              <tr>
-                {item.map(td => (
-                  <td>{td}</td>
-                ))}
-                {/* eslint-disable-next-line react/prop-types */}
-                {props.actions ? (
-                  <td>
-                    <button type="button" className="editar">
-                      Editar
-                    </button>
-                    <button type="button" className="eliminar">
-                      Eliminar
-                    </button>
-                  </td>
-                ) : null}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {data && (
+        <Table
+          height="324px"
+          top="40%"
+          tHeader={header}
+          data={data}
+          keyData={keyData}
+          actions={actions}
+          FuncRemove={id => Fundelete(id)}
+        />
+      )}
     </Container>
   );
 }
 
-ReferenciaGenerada.propTypes = {};
+ReferenciaGenerada.propTypes = {
+  textForm: PropTypes.string,
+  textButton: PropTypes.string,
+  placeholder: PropTypes.string,
+  header: PropTypes.array,
+  data: PropTypes.array,
+  Fundelete: PropTypes.func,
+  createValue: PropTypes.func,
+  keyData: PropTypes.array.isRequired,
+  actions: PropTypes.bool,
+  historical: PropTypes.bool,
+  historicalValue: PropTypes.number,
+  historicalText: PropTypes.string,
+  filterNumber: PropTypes.bool,
+};
 
 export default ReferenciaGenerada;
