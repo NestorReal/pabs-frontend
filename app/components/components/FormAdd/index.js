@@ -42,13 +42,7 @@ function FormAdd({ text, placeholder, onChange, onClick, textButton }) {
             <VscSearch />
           </i>
         </Input>
-        <Button
-          primary
-          width="110px"
-          height="36px"
-          borderRadius={6}
-          onClick={onClick}
-        >
+        <Button variant="primary" onClick={onClick} size="medium">
           {textButton}
         </Button>
       </div>

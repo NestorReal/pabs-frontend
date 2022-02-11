@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 import { BsEye, BsEyeSlash, BsTelephone } from 'react-icons/bs';
@@ -12,190 +12,109 @@ import { AiOutlineUser } from 'react-icons/ai';
 import { MdOutlineEmail } from 'react-icons/md';
 // eslint-disable-next-line import/no-unresolved
 import { Container } from './style';
+import Input from '../components/Input';
+import Button from '../components/Button';
 
-function CreateUser(props) {
+function CreateUser({ createUser }) {
   const [user, setUser] = useState({
-    email: '',
-    password: '',
-    confirmPassword: '',
     userName: '',
-    number: '',
     lastName: '',
-    bussiness: 'PABS',
-    role: '',
+    typeUser: '',
+    email: '',
+    phone: '',
+    password: '',
   });
   const [passShow, setPassShow] = useState(false);
-  const [passShowConf, setPassShowConf] = useState(false);
-
-  const password = useRef(null);
-  const confirmPassword = useRef(null);
   const show = () => {
-    if (password.current.type === 'password') {
-      password.current.type = 'text';
+    if (!passShow) {
       setPassShow(true);
     } else {
-      password.current.type = 'password';
       setPassShow(false);
     }
   };
-  const showConf = () => {
-    if (confirmPassword.current.type === 'password') {
-      confirmPassword.current.type = 'text';
-      setPassShowConf(true);
-    } else {
-      confirmPassword.current.type = 'password';
-      setPassShowConf(false);
-    }
-  };
+
   return (
     <Container>
       <div className="subtext">
         Ingrese a información del usuario a continuación
       </div>
       <div className="containerFormulario">
-        <div className="left">
-          <label htmlFor="nombre" className="label">
-            Nombre(s):
-          </label>
-          <div className="input">
-            <input
-              id="nombre"
-              type="text"
+        <div className="spaceBetween">
+          <div>
+            <Input
+              label="Nombre(s):"
               placeholder="Nombre"
               onChange={event =>
                 setUser({ ...user, userName: event.target.value })
               }
-            />
-            <div className="icon">
+            >
               <AiOutlineUser />
-            </div>
-          </div>
-          <label htmlFor="nombre" className="label">
-            Apellidos:
-          </label>
-          <div className="input">
-            <input
-              id="nombre"
-              type="text"
-              placeholder="Apellidos"
+            </Input>
+            <Input
+              label="Apellidos:"
+              placeholder="Apellidos de ejemplo"
               onChange={event =>
-                setUser({ ...user, lastName: event.target.value })
+                setUser({ ...user, userName: event.target.value })
               }
-            />
-            <div className="icon">
+            >
               <AiOutlineUser />
-            </div>
-          </div>
-          {/* <label htmlFor="nombre" className="label">
-            Empresa:
-          </label>
-          <div className="input">
-            <input
-              id="nombre"
-              type="text"
-              placeholder="Empresa"
+            </Input>
+            <Input
+              label="Teléfono:"
+              placeholder="Ej. 1234567890"
               onChange={event =>
-                setUser({ ...user, bussiness: event.target.value })
+                setUser({ ...user, userName: event.target.value })
               }
-            />
-            <div className="icon">
-              <AiOutlineUser />
-            </div>
-          </div> */}
-          <label htmlFor="nombre" className="label">
-            Teléfono
-          </label>
-          <div className="input">
-            <input
-              id="nombre"
-              type="text"
-              placeholder="Teléfono"
-              onChange={event =>
-                setUser({ ...user, number: event.target.value })
-              }
-            />
-            <div className="icon">
+            >
               <BsTelephone />
-            </div>
+            </Input>
           </div>
-        </div>
-        <div className="right">
-          <label className="label" htmlFor="role">
-            Role
-          </label>
-          <div className="input">
-            <input
-              type="text"
-              id="role"
-              placeholder="administrador"
-              onChange={event => setUser({ ...user, role: event.target.value })}
-            />
-            {/* <div className="icon">
-               
-             </div> */}
-          </div>
-          <label className="label" htmlFor="email">
-            Correo de usuario
-          </label>
-          <div className="input">
-            <input
-              type="text"
-              id="email"
+          <div>
+            <Input
+              label="Tipo de usuario:"
+              placeholder="Ventas"
+              onChange={event =>
+                setUser({ ...user, userName: event.target.value })
+              }
+            >
+              <AiOutlineUser />
+            </Input>
+            <Input
+              label="Correo:"
               placeholder="ejemplo@ejemplo.com"
               onChange={event =>
-                setUser({ ...user, email: event.target.value })
+                setUser({ ...user, userName: event.target.value })
               }
-            />
-            <div className="icon">
+            >
               <MdOutlineEmail />
-            </div>
-          </div>
-          <label className="label" htmlFor="password">
-            Contraseña
-          </label>
-          <div className="input">
-            <input
-              ref={password}
-              id="password"
-              type="password"
+            </Input>
+            <Input
+              className={user.password !== '' ? 'fontFontello' : ''}
+              label="Contraseña"
               placeholder="Contraseña"
+              type={passShow ? 'text' : 'password'}
               onChange={event =>
                 setUser({ ...user, password: event.target.value })
               }
-            />
-            <div className="icon">
+            >
               <button type="button" onClick={show}>
                 {passShow ? <BsEye /> : <BsEyeSlash />}
               </button>
-            </div>
+            </Input>
           </div>
-          <label className="label" htmlFor="password">
-            Confirmar contraseña
-          </label>
-          <div className="input">
-            <input
-              ref={confirmPassword}
-              id="password"
-              type="password"
-              placeholder="Confirmar contraseña"
-            />
-            <div className="icon">
-              <button type="button" onClick={showConf}>
-                {passShowConf ? <BsEye /> : <BsEyeSlash />}
-              </button>
-            </div>
-          </div>
-          <div className="containerButton">
-            <button
-              type="button"
-              className="enviar"
-              onClick={() => props.createUser(user)}
+        </div>
+        <div className="center">
+          <div className="spaceBetween buttons">
+            <Button
+              size="medium"
+              variant="succes"
+              onClick={() => createUser(user)}
             >
               Crear
-            </button>
-            <button type="button" className="limpiar">
+            </Button>
+            <Button variant="cancel" size="medium" onClick={() => {}}>
               Cancelar
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -205,7 +124,7 @@ function CreateUser(props) {
 
 CreateUser.propTypes = {
   createUser: PropTypes.func,
-  sendError: PropTypes.func,
+  // sendError: PropTypes.func,
 };
 
 export default CreateUser;

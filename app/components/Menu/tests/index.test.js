@@ -1,6 +1,6 @@
 /**
  *
- * Tests for LoginAdmin
+ * Tests for Menu
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -8,21 +8,14 @@
 
 import React from 'react';
 import { render } from 'react-testing-library';
-import { IntlProvider } from 'react-intl';
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
-import { LoginAdmin } from '../index';
-import { DEFAULT_LOCALE } from '../../../i18n';
+import Menu from '../index';
 
-describe('<LoginAdmin />', () => {
+describe('<Menu />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
-    const dispatch = jest.fn();
-    render(
-      <IntlProvider locale={DEFAULT_LOCALE}>
-        <LoginAdmin dispatch={dispatch} />
-      </IntlProvider>,
-    );
+    render(<Menu />);
     expect(spy).not.toHaveBeenCalled();
   });
 
@@ -38,11 +31,7 @@ describe('<LoginAdmin />', () => {
   it.skip('Should render and match the snapshot', () => {
     const {
       container: { firstChild },
-    } = render(
-      <IntlProvider locale={DEFAULT_LOCALE}>
-        <LoginAdmin />
-      </IntlProvider>,
-    );
+    } = render(<Menu />);
     expect(firstChild).toMatchSnapshot();
   });
 });

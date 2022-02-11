@@ -8,20 +8,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+const backgroundColors = {
+  primary: '#00539C',
+  secondary: '#fff',
+  succes: '#317F43',
+  cancel: '#ED1C24',
+};
+
 const StyleButton = styled.button`
-  width: ${props => props.width};
-  height: ${props => props.height};
-  background: ${props => (props.primary ? '#00539C' : '#fff')};
-  color: ${props => (props.primary ? '#fff' : '#00539C')};
+  width: ${props => (props.size === 'large' ? '220px' : '110px')};
+  height: ${props => (props.size === 'large' ? '50px' : '36px')};
+  background: ${props => backgroundColors[props.variant]};
+  color: ${props => (props.variant !== 'secondary' ? '#fff' : '#00539C')};
   font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: ${props => props.borderRadius}px;
-  border: 1px solid #00539c;
+  border-radius: ${props => (props.size === 'large' ? '15px' : '5px')};
+  border-width: 1px;
+  border-color: ${props =>
+    props.variant !== 'primary' ? backgroundColors[props.variant] : '#00539c'};
   @media only screen and (max-width: 360px) {
-    width: 155px;
-    height: 40px;
+    width: ${props => (props.size === 'large' ? '155px' : '155px')};
+    height: ${props => (props.size === 'large' ? '40px' : '40px')};
     font-size: 16px;
     border-radius: 10px;
   }
@@ -29,60 +38,48 @@ const StyleButton = styled.button`
     width: 300px;
     height: 77px;
     font-size: 36px;
-    border: 2px solid #00539c;
+    border-width: 2px;
     border-radius: 10px;
   }
   @media only screen and (min-width: 960px) and (max-width: 1279px) {
-    width: 165px;
-    height: 39px;
+    width: ${props => (props.size === 'large' ? '165px' : '90px')};
+    height: ${props => (props.size === 'large' ? '39px' : '30px')};
     font-size: 17px;
-    border-radius: 10px;
+    border-radius: ${props => (props.size === 'large' ? '10px' : '5px')};
   }
   @media only screen and (min-width: 1920px) and (max-width: 2559px) {
-    width: 330px;
-    height: 77px;
+    width: ${props => (props.size === 'large' ? '330px' : '150px')};
+    height: ${props => (props.size === 'large' ? '77px' : '50px')};
     font-size: 36px;
-    border: 2px solid #00539c;
+    border-width: 2px;
+    ${props => (props.size === 'large' ? '15px' : '5px')}
   }
   @media only screen and (min-width: 2560px) and (max-width: 3839px) {
-    width: 440px;
-    height: 103px;
+    width: ${props => (props.size === 'large' ? '440px' : '220px')};
+    height: ${props => (props.size === 'large' ? '103px' : '65px')};
     font-size: 45px;
-    border: 3px solid #00539c;
-    border-radius: 40px;
+    border-width: 3px;
+    border-radius: ${props => (props.size === 'large' ? '40px' : '10px')};
   }
   @media only screen and (min-width: 3840px) and (max-width: 7679px) {
-    width: 660px;
-    height: 157px;
+    width: ${props => (props.size === 'large' ? '660px' : '330px')};
+    height: ${props => (props.size === 'large' ? '157px' : '100px')};
     font-size: 70px;
-    border: 5px solid #00539c;
-    border-radius: 30px;
+    border-width: 5px;
+    border-radius: ${props => (props.size === 'large' ? '30px' : '20px')};
   }
   @media only screen and (min-width: 7680px) {
-    width: 1320px;
-    height: 300px;
+    width: ${props => (props.size === 'large' ? '1320px' : '700px')};
+    height: ${props => (props.size === 'large' ? '300px' : '200px')};
     font-size: 150px;
-    border: 10px solid #00539c;
-    border-radius: 80px;
+    border-width: 10p;
+    border-radius: ${props => (props.size === 'large' ? '80px' : '40px')};
   }
 `;
 
-function Button({
-  children,
-  onClick,
-  primary,
-  width = '220px',
-  height = '50px',
-  borderRadius = 15,
-}) {
+function Button({ children, onClick, size = 'large', variant }) {
   return (
-    <StyleButton
-      primary={primary}
-      onClick={onClick}
-      width={width}
-      height={height}
-      borderRadius={borderRadius}
-    >
+    <StyleButton variant={variant} onClick={onClick} size={size}>
       {children}
     </StyleButton>
   );
@@ -91,10 +88,8 @@ function Button({
 Button.propTypes = {
   children: PropTypes.element,
   onClick: PropTypes.func,
-  primary: PropTypes.bool,
-  width: PropTypes.string,
-  height: PropTypes.string,
-  borderRadius: PropTypes.number,
+  variant: PropTypes.string,
+  size: PropTypes.string,
 };
 
 export default Button;

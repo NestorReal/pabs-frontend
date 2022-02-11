@@ -5,60 +5,34 @@
  */
 
 import React from 'react';
-import auth from 'utils/auth';
 import PropTypes from 'prop-types';
-// import styled from 'styled-components';
 // eslint-disable-next-line import/no-unresolved
 import { Container } from './styles';
+import Table from '../components/Table';
 
-function UserAdmin(props) {
+function UserAdmin({ data, header, deleteUser, datakey }) {
   return (
     <Container>
       <div className="subtext">
         A continuación se muestra una lista de los usuarios
       </div>
-      <div className="containerTable">
-        <table className="table">
-          <tr className="headerTable">
-            {/* eslint-disable-next-line react/prop-types */}
-            {props.header.map(item => (
-              <th>{item}</th>
-            ))}
-          </tr>
-          <tbody>
-            {/* eslint-disable-next-line react/prop-types */}
-            {props.data.map(item => (
-              <tr>
-                <td>{item.full_name}</td>
-                <td>{item.full_name}</td>
-                <td>{item.email}</td>
-                <td>{item.full_name}</td>
-                <td>{item.is_active ? 'Activo' : 'Desactivado'}</td>
-                <td>
-                  {/* <button type="button" className="editar">
-                     Editar
-                   </button> */}
-                  {props.user._id !== item.id ? (
-                    <button
-                      type="button"
-                      className="eliminar"
-                      onClick={() => props.deleteUser(item.id)}
-                    >
-                      Desactivar
-                    </button>
-                  ) : null}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <Table
+        tHeader={header}
+        data={data}
+        keyData={datakey}
+        actions
+        FuncRemove={id => deleteUser(id)}
+        height="468px"
+      />
     </Container>
   );
 }
 
 UserAdmin.propTypes = {
+  data: PropTypes.array,
+  header: PropTypes.array,
   deleteUser: PropTypes.func,
+  datakey: PropTypes.array,
 };
 
 export default UserAdmin;
