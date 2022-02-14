@@ -6,6 +6,8 @@
  */
 
 import React, { useState } from 'react';
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -29,10 +31,6 @@ export function Login(props) {
   useInjectReducer({ key: 'login', reducer });
   useInjectSaga({ key: 'login', saga });
   const [passShow, setPassShow] = useState(false);
-  const [user, setUser] = useState({
-    email: '',
-    password: '',
-  });
   const show = () => {
     if (!passShow) {
       setPassShow(true);
@@ -40,6 +38,21 @@ export function Login(props) {
       setPassShow(false);
     }
   };
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .required('Este campo es requerido')
+        .email('Por favor ingrese un correo valido'),
+      password: Yup.string().required('Este campo es requerido'),
+    }),
+    onSubmit: values => {
+      props.dispatch(login(values.email, values.password, props.history));
+    },
+  });
   return (
     <Container>
       <Portada />
@@ -47,53 +60,51 @@ export function Login(props) {
         <div className="center">
           <h1>Iniciar sesión</h1>
         </div>
-        <div className="center">
-          <div className="formulario">
-            <Input
-              label="Correo de usuario"
-              placeholder="ejemplo@ejemplo.com"
-              onChange={event =>
-                setUser({ ...user, email: event.target.value })
-              }
-            >
-              <MdOutlineEmail />
-            </Input>
-            <Input
-              className={
-                user.password !== '' && !passShow ? 'fontFontello' : 'Arial'
-              }
-              label="Contraseña"
-              placeholder="Contraseña"
-              type={passShow ? 'text' : 'password'}
-              onChange={event =>
-                setUser({ ...user, password: event.target.value })
-              }
-            >
-              <button type="button" onClick={show}>
-                {passShow ? <BsEye /> : <BsEyeSlash />}
-              </button>
-            </Input>
+        <form onSubmit={formik.handleSubmit}>
+          <div className="center">
+            <div className="formulario">
+              <Input
+                label="Correo de usuario"
+                placeholder="ejemplo@ejemplo.com"
+                name="email"
+                onChange={formik.handleChange}
+                value={formik.values.email}
+              >
+                <MdOutlineEmail />
+              </Input>
+              {formik.touched.email && formik.errors.email ? (
+                <p className="error">{formik.errors.email}</p>
+              ) : null}
+              <Input
+                className={
+                  formik.values.password !== '' && !passShow
+                    ? 'fontFontello'
+                    : 'Arial'
+                }
+                label="Contraseña"
+                placeholder="Contraseña"
+                type={passShow ? 'text' : 'password'}
+                name="password"
+                onChange={formik.handleChange}
+                value={formik.values.password}
+              >
+                <button type="button" onClick={show}>
+                  {passShow ? <BsEye /> : <BsEyeSlash />}
+                </button>
+              </Input>
+              {formik.touched.password && formik.errors.password ? (
+                <p className="error">{formik.errors.password}</p>
+              ) : null}
+            </div>
           </div>
-        </div>
-        <div className="center">
-          <p>¿Aún no tienes cuenta?</p>
-          <div className="containerButton">
-            <Button
-              variant="primary"
-              onClick={() =>
-                props.dispatch(login(user.email, user.password, props.history))
-              }
-            >
-              Ingresar
-            </Button>
-            <Button
-              variant="secondary"
-              onClick={() => props.history.push('/crear-cuenta')}
-            >
-              Crear cuenta
-            </Button>
+          <div className="center">
+            <div className="containerButton">
+              <Button variant="primary" type="submit">
+                Ingresar
+              </Button>
+            </div>
           </div>
-        </div>
+        </form>
       </ContainerForm>
     </Container>
   );

@@ -78,15 +78,16 @@ function Table({
           {data.map(item => (
             <tr key={uuidv4()}>
               {keyData.map(itemKey => (
-                <td>{item[itemKey]}</td>
+                <td key={uuidv4()}>{item[itemKey]}</td>
               ))}
               {actions ? (
                 <td>
                   {FuncEdit ? (
                     <button
                       type="button"
-                      className="eliminar"
-                      onClick={FuncEdit}
+                      className="editar"
+                      // eslint-disable-next-line no-underscore-dangle
+                      onClick={() => FuncEdit(item._id)}
                     >
                       Editar
                     </button>

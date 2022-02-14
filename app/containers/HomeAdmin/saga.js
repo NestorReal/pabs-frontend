@@ -5,15 +5,157 @@ import {
   addErrorMessage,
   addSuccessMessage,
 } from 'containers/Notifications/actions';
-import { getUsers } from './actions';
+import { getUsers, getPlan } from './actions';
 import * as constants from './constants';
 
 // Individual exports for testing
 export default function* defaultSaga() {
+  yield takeLatest(constants.GET_USERS_INIT, getPlanSaga);
   yield takeLatest(constants.GET_USERS_INIT, getUsersSaga);
   yield takeLatest(constants.GET_USER_INIT, getUserSaga);
   yield takeLatest(constants.DELETE_USER_INIT, deleteUserSaga);
   yield takeLatest(constants.CREATE_USER_INIT, createUserSaga);
+  yield takeLatest(constants.GET_COMPANIES_INIT, getCompaniesSaga);
+  yield takeLatest(constants.CREATE_PLANS_INIT, createPlanSaga);
+  yield takeLatest(constants.GET_EDIT_PLANS_INIT, getEditPlanSaga);
+  yield takeLatest(constants.EDIT_PLANS_INIT, EditPlanSaga);
+}
+
+export function* getCompaniesSaga() {
+  try {
+    const requestURL = `http://54.219.179.76/companies`;
+    const response = yield call(request, requestURL, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${auth.getToken()}`,
+        Accept: 'application/json',
+      },
+    });
+    if (response) {
+      yield put({
+        type: constants.GET_COMPANIES_SUCCED,
+        response,
+      });
+    }
+  } catch (error) {
+    yield put({
+      type: constants.GET_COMPANIES_FAILED,
+      error,
+    });
+  }
+}
+
+export function* createPlanSaga(action) {
+  // console.log(action);
+  const body = {
+    name: action.name,
+    cost: action.cost,
+    featureIds: [action.featureIds],
+    companyId: action.companyId,
+  };
+  // console.log(body);
+  try {
+    const requestURL = `http://54.219.179.76/plans`;
+    const response = yield call(request, requestURL, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+      body: JSON.stringify(body),
+    });
+    if (response) {
+      yield put(addSuccessMessage(`Usuario creado correctamente`));
+      yield put(getPlan());
+      yield put({
+        type: constants.CREATE_PLANS_SUCCED,
+      });
+    }
+  } catch (error) {
+    yield put(addErrorMessage(`Error al crear usuario`));
+    yield put({
+      type: constants.CREATE_PLANS_FAILED,
+    });
+  }
+}
+
+export function* getPlanSaga() {
+  try {
+    const requestURL = `http://54.219.179.76/plans`;
+    const response = yield call(request, requestURL, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${auth.getToken()}`,
+        Accept: 'application/json',
+      },
+    });
+    if (response) {
+      yield put({
+        type: constants.GET_PLANS_SUCCED,
+        response,
+      });
+    }
+  } catch (error) {
+    yield put({
+      type: constants.GET_PLANS_FAILED,
+      error,
+    });
+  }
+}
+
+export function* getEditPlanSaga(action) {
+  try {
+    const requestURL = `http://54.219.179.76/plans/${action.id}`;
+    const response = yield call(request, requestURL, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${auth.getToken()}`,
+        Accept: 'application/json',
+      },
+    });
+    if (response) {
+      yield put({
+        type: constants.GET_EDIT_PLANS_SUCCED,
+        response,
+      });
+    }
+  } catch (error) {
+    yield put({
+      type: constants.GET_EDIT_PLANS_FAILED,
+      error,
+    });
+  }
+}
+
+export function* EditPlanSaga(action) {
+  const body = {
+    cost: action.data.cost,
+    featureIds: [action.data.features],
+    companyId: action.data.companyId,
+  };
+  try {
+    const requestURL = `http://54.219.179.76/plans/${action.id}`;
+    const response = yield call(request, requestURL, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${auth.getToken()}`,
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+    if (response) {
+      yield put(addSuccessMessage(`Usuario creado correctamente`));
+      yield put(getPlan());
+      yield put({
+        type: constants.CREATE_PLANS_SUCCED,
+      });
+    }
+  } catch (error) {
+    yield put(addErrorMessage(`Error al crear usuario`));
+    yield put({
+      type: constants.CREATE_PLANS_FAILED,
+    });
+  }
 }
 
 export function* getUsersSaga() {
@@ -93,7 +235,7 @@ export function* deleteUserSaga(action) {
 }
 
 export function* createUserSaga(action) {
-  console.log(action)
+  // console.log(action);
   const body = {
     email: action.email,
     full_name: action.user,
@@ -104,7 +246,7 @@ export function* createUserSaga(action) {
     is_verified: false,
     roles: [action.role],
   };
-  console.log(body)
+  // console.log(body);
   try {
     const requestURL = `http://54.219.179.76/auth/register`;
     const response = yield call(request, requestURL, {

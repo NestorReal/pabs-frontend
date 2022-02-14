@@ -12,6 +12,39 @@ export function defaultAction() {
   };
 }
 
+export function getCompanies() {
+  return {
+    type: constants.GET_COMPANIES_INIT,
+  };
+}
+
+export function createPlan(data) {
+  return {
+    type: constants.CREATE_PLANS_INIT,
+    data,
+  };
+}
+
+export function getPlan() {
+  return {
+    type: constants.GET_PLANS_INIT,
+  };
+}
+
+export function getEditPlan(id) {
+  return {
+    type: constants.GET_EDIT_PLANS_INIT,
+    id,
+  };
+}
+
+export function editPlan(data) {
+  return {
+    type: constants.EDIT_PLANS_INIT,
+    data,
+  };
+}
+
 export function getUsers() {
   return {
     type: constants.GET_USERS_INIT,

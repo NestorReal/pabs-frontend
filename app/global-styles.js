@@ -9,6 +9,10 @@ const GlobalStyle = createGlobalStyle`
   button {
     cursor: pointer;
   }
+  .error {
+    color: red !important;
+    margin: 0px;
+  }
   .center {
     display: flex;
     justify-content: center;

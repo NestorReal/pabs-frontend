@@ -6,6 +6,25 @@
 
 export const DEFAULT_ACTION = 'app/HomeAdmin/DEFAULT_ACTION';
 
+export const GET_COMPANIES_INIT = 'app/HomeAdmin/GET_COMPANIES_INIT';
+export const GET_COMPANIES_SUCCED = 'app/HomeAdmin/GET_COMPANIES_SUCCED';
+export const GET_COMPANIES_FAILED = 'app/HomeAdmin/GET_COMPANIES_FAILED';
+
+export const CREATE_PLANS_INIT = 'app/HomeAdmin/CREATE_PLANS_INIT';
+export const CREATE_PLANS_SUCCED = 'app/HomeAdmin/CREATE_PLANS_SUCCED';
+export const CREATE_PLANS_FAILED = 'app/HomeAdmin/CREATE_PLANS_FAILED';
+
+export const GET_PLANS_INIT = 'app/HomeAdmin/GET_PLANS_INIT';
+export const GET_PLANS_SUCCED = 'app/HomeAdmin/GET_PLANS_SUCCED';
+export const GET_PLANS_FAILED = 'app/HomeAdmin/GET_PLANS_FAILED';
+
+export const GET_EDIT_PLANS_INIT = 'app/HomeAdmin/GET_EDIT_PLANS_INIT';
+export const GET_EDIT_PLANS_SUCCED = 'app/HomeAdmin/GET_EDIT_PLANS_SUCCED';
+export const GET_EDIT_PLANS_FAILED = 'app/HomeAdmin/GET_EDIT_PLANS_FAILED';
+
+export const EDIT_PLANS_INIT = 'app/HomeAdmin/EDIT_PLANS_INIT';
+export const EDIT_PLANS_SUCCED = 'app/HomeAdmin/EDIT_PLANS_SUCCED';
+export const EDIT_PLANS_FAILED = 'app/HomeAdmin/EDIT_PLANS_FAILED';
 
 export const GET_USERS_INIT = 'app/HomeAdmin/GET_USERS_INIT';
 export const GET_USERS_SUCCESS = 'app/HomeAdmin/GET_USERS_SUCCESS';
