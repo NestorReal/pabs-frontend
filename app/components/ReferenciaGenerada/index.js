@@ -19,6 +19,7 @@ function ReferenciaGenerada({
   header,
   data,
   Fundelete,
+  FuncEdit,
   createValue,
   keyData,
   actions,
@@ -52,6 +53,7 @@ function ReferenciaGenerada({
           keyData={keyData}
           actions={actions}
           FuncRemove={id => Fundelete(id)}
+          FuncEdit={id => FuncEdit(id)}
         />
       )}
     </Container>
@@ -65,6 +67,7 @@ ReferenciaGenerada.propTypes = {
   header: PropTypes.array,
   data: PropTypes.array,
   Fundelete: PropTypes.func,
+  FuncEdit: PropTypes.func,
   createValue: PropTypes.func,
   keyData: PropTypes.array.isRequired,
   actions: PropTypes.bool,

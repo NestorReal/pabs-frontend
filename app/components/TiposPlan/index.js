@@ -28,7 +28,9 @@ function TiposPlan(props) {
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         ]}
-        onClick={() => getTipoPlan('Cremación directa')}
+        onClick={() =>
+          getTipoPlan({ name: 'Cremación directa', amount: '$ 10,000 MNX' })
+        }
       />
       <Card
         color="Yellow"
@@ -39,7 +41,9 @@ function TiposPlan(props) {
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         ]}
-        onClick={() => getTipoPlan('Estándar')}
+        onClick={() =>
+          getTipoPlan({ name: 'Estándar', amount: '$ 20,000 MNX' })
+        }
       />
       <Card
         color="Blue"
@@ -50,7 +54,7 @@ function TiposPlan(props) {
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         ]}
-        onClick={() => getTipoPlan('Premium')}
+        onClick={() => getTipoPlan({ name: 'Premium', amount: '$ 10,000 MNX' })}
       />
     </Container>
   );

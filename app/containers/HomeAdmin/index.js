@@ -29,6 +29,7 @@ import Menu from '../../components/Menu';
 import Children from '../../components/Children';
 import {
   headerPlan,
+  keyPlan,
   headerConsultarContrato,
   headerPago,
   headerAdminUser,
@@ -36,7 +37,17 @@ import {
   // eslint-disable-next-line import/extensions
 } from './data.js';
 
-import { getUsers, getUser, deleteUser, createUserAction } from './actions';
+import {
+  getUsers,
+  getUser,
+  deleteUser,
+  createUserAction,
+  getPlan,
+  getCompanies,
+  createPlan,
+  getEditPlan,
+  editPlan,
+} from './actions';
 
 export function HomeAdmin(props) {
   useInjectReducer({ key: 'HomeAdmin', reducer });
@@ -45,17 +56,37 @@ export function HomeAdmin(props) {
   useEffect(() => {
     props.dispatch(getUsers());
     props.dispatch(getUser());
+    props.dispatch(getPlan());
+    props.dispatch(getCompanies());
   }, []);
-
   const ContainerChildren = {
-    Crear_plan: <GenerarRecompensa />,
+    Crear_plan: (
+      <GenerarRecompensa
+        getCompanies={props.HomeAdmin.companies}
+        onClick={values => props.dispatch(createPlan(values))}
+      />
+    ),
+    Editar_plan: (
+      <GenerarRecompensa
+        getCompanies={props.HomeAdmin.companies}
+        data={props.HomeAdmin.editPlan}
+        onClick={value => props.dispatch(editPlan(value))}
+      />
+    ),
     Consultar_plan: (
       <ReferenciaGenerada
         textForm="Nombre del plan"
         placeholder="Nombre del plan"
         textButton="Buscar"
         header={headerPlan}
+        keyData={keyPlan}
+        data={props.HomeAdmin.plans}
         filterNumber
+        actions
+        Fundelete={() => {}}
+        FuncEdit={id => {
+          funcEditPlan(id);
+        }}
       />
     ),
     Consultar_contratos: (
@@ -111,6 +142,14 @@ export function HomeAdmin(props) {
     usuario: false,
   });
   const [option, setOption] = useState('Crear_plan');
+  const [editplan, setEditplan] = useState(false);
+
+  const funcEditPlan = id => {
+    setEditplan(true);
+    setOption('Editar_plan');
+    props.dispatch(getEditPlan(id));
+  };
+
   const buttons = [
     {
       text: 'Planes',
@@ -123,10 +162,11 @@ export function HomeAdmin(props) {
       optionActivate: state.plan,
       options: [
         {
-          text: 'Crear plan',
-          activate: option === 'Crear_plan',
+          text: editplan ? 'Editar plan' : 'Crear plan',
+          activate: option === 'Crear_plan' || option === 'Editar_plan',
           onClick: () => {
             setOption('Crear_plan');
+            setEditplan(false);
           },
         },
         {

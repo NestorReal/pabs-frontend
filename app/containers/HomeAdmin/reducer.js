@@ -7,6 +7,9 @@ import produce from 'immer';
 import * as constants from './constants';
 
 export const initialState = {
+  companies: [],
+  plans: [],
+  editPlan: {},
   users: [],
   user: {},
 };
@@ -16,6 +19,15 @@ const HomeAdminReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case constants.DEFAULT_ACTION:
+        break;
+      case constants.GET_COMPANIES_SUCCED:
+        draft.companies = action.response;
+        break;
+      case constants.GET_PLANS_SUCCED:
+        draft.plans = action.response;
+        break;
+      case constants.GET_EDIT_PLANS_SUCCED:
+        draft.editPlan = action.response;
         break;
       case constants.GET_USERS_SUCCESS:
         draft.users = action.response;

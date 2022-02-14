@@ -25,9 +25,11 @@ const StyleButton = styled.button`
   align-items: center;
   justify-content: center;
   border-radius: ${props => (props.size === 'large' ? '15px' : '5px')};
-  border-width: 1px;
+  border: solid 1px;
   border-color: ${props =>
-    props.variant !== 'primary' ? backgroundColors[props.variant] : '#00539c'};
+    props.variant !== 'secondary'
+      ? backgroundColors[props.variant]
+      : '#00539c'};
   @media only screen and (max-width: 360px) {
     width: ${props => (props.size === 'large' ? '155px' : '155px')};
     height: ${props => (props.size === 'large' ? '40px' : '40px')};
@@ -77,9 +79,15 @@ const StyleButton = styled.button`
   }
 `;
 
-function Button({ children, onClick, size = 'large', variant }) {
+function Button({
+  children,
+  onClick,
+  size = 'large',
+  variant,
+  type = 'button',
+}) {
   return (
-    <StyleButton variant={variant} onClick={onClick} size={size}>
+    <StyleButton variant={variant} onClick={onClick} size={size} type={type}>
       {children}
     </StyleButton>
   );
@@ -90,6 +98,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
   variant: PropTypes.string,
   size: PropTypes.string,
+  type: PropTypes.string,
 };
 
 export default Button;

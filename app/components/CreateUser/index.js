@@ -19,9 +19,9 @@ function CreateUser({ createUser }) {
   const [user, setUser] = useState({
     userName: '',
     lastName: '',
-    typeUser: '',
+    role: '',
     email: '',
-    phone: '',
+    number: '',
     password: '',
   });
   const [passShow, setPassShow] = useState(false);
@@ -54,7 +54,7 @@ function CreateUser({ createUser }) {
               label="Apellidos:"
               placeholder="Apellidos de ejemplo"
               onChange={event =>
-                setUser({ ...user, userName: event.target.value })
+                setUser({ ...user, lastName: event.target.value })
               }
             >
               <AiOutlineUser />
@@ -63,7 +63,7 @@ function CreateUser({ createUser }) {
               label="Teléfono:"
               placeholder="Ej. 1234567890"
               onChange={event =>
-                setUser({ ...user, userName: event.target.value })
+                setUser({ ...user, number: event.target.value })
               }
             >
               <BsTelephone />
@@ -73,9 +73,7 @@ function CreateUser({ createUser }) {
             <Input
               label="Tipo de usuario:"
               placeholder="Ventas"
-              onChange={event =>
-                setUser({ ...user, userName: event.target.value })
-              }
+              onChange={event => setUser({ ...user, role: event.target.value })}
             >
               <AiOutlineUser />
             </Input>
@@ -83,7 +81,7 @@ function CreateUser({ createUser }) {
               label="Correo:"
               placeholder="ejemplo@ejemplo.com"
               onChange={event =>
-                setUser({ ...user, userName: event.target.value })
+                setUser({ ...user, email: event.target.value })
               }
             >
               <MdOutlineEmail />

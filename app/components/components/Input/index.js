@@ -158,6 +158,7 @@ const StyleInput = styled.div`
 
 function Input({
   label,
+  name,
   placeholder,
   children,
   value,
@@ -177,6 +178,8 @@ function Input({
           value={value}
           onChange={onChange}
           className={className}
+          name={name}
+          id={name}
         />
         <div className="icon">{children}</div>
       </div>
@@ -194,6 +197,7 @@ Input.propTypes = {
   className: PropTypes.string,
   width: PropTypes.string,
   height: PropTypes.string,
+  name: PropTypes.string,
 };
 
 export default Input;

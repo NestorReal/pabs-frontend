@@ -12,24 +12,32 @@ import zelle from '../../images/zelle.png';
 import { Container } from './styles';
 import Button from '../components/Button';
 
-function Pago({ onClickPaypal, onClickNetPay }) {
+function Pago({ onClickPaypal, onClickNetPay, dataPlan, dataPaye }) {
   return (
     <Container>
       <div className="spaceBetween">
         <div className="referencia">
-          <label htmlFor="NombreRepresentante">
-            Nombre del representante de pago
+          <label>
+            {dataPaye.name} {dataPaye.father_lastname}{' '}
+            {dataPaye.mothers_lastname}
           </label>
           <br />
           <br />
           <br />
-          <label htmlFor="NombreTitular">Nombre del titular</label>
+          <label>
+            Titular {dataPaye.name} {dataPaye.father_lastname}{' '}
+            {dataPaye.mothers_lastname}
+          </label>
           <br />
           <br />
-          <label htmlFor="Ciudad">Ciudad ejemplo</label>
+          <label>Ciudad {dataPaye.city}</label>
           <br />
           <br />
-          <label htmlFor="Direccion">Dirección ejemplo</label>
+          <label>
+            Calle {dataPaye.street} #{dataPaye.ext_number}
+            {' Col.'}
+            {dataPaye.neighborhood}
+          </label>
           <div className="containerButton">
             <Button variant="primary" size="medium">
               Ingresar
@@ -47,24 +55,24 @@ function Pago({ onClickPaypal, onClickNetPay }) {
             </div>
           </div>
           <div className="titlePlan">
-            <h5>Nombre del plan</h5>
+            <h5>{dataPlan.name}</h5>
           </div>
           <div className="spaceBetween monto">
             <div>
-              <td>Monto total</td>
+              <td>Monto total a pagar</td>
             </div>
             <div>
               <th>
-                <b>$ 0.00 USD</b>
+                <b>{dataPlan.amount}</b>
               </th>
             </div>
           </div>
           <h5>Elige método de pago</h5>
           <div className="spaceBetween buttons">
-            <Button onClick={onClickPaypal}>
+            <Button variant="secondary" onClick={onClickPaypal}>
               <img src={paypal} alt="paypal" />
             </Button>
-            <Button onClick={onClickNetPay}>
+            <Button variant="secondary" onClick={onClickNetPay}>
               <img src={zelle} alt="zelle" />
             </Button>
           </div>
@@ -77,6 +85,8 @@ function Pago({ onClickPaypal, onClickNetPay }) {
 Pago.propTypes = {
   onClickPaypal: PropTypes.func,
   onClickNetPay: PropTypes.func,
+  dataPlan: PropTypes.object,
+  dataPaye: PropTypes.object,
 };
 
 export default Pago;
