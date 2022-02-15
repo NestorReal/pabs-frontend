@@ -26,12 +26,12 @@ export function* payersSaga(action) {
   yield put(stepAction(3)); */
   // console.log(`Bearer ${auth.getToken()}`);
   try {
-    const requestURL = `http://54.219.179.76/payers`;
+    const requestURL = `http://54.219.179.76/payers/`;
     const response = yield call(request, requestURL, {
       method: 'POST',
       headers: {
-        Accept: 'application/json',
         Authorization: `Bearer ${auth.getToken()}`,
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(body),
     });

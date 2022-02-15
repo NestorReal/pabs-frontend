@@ -12,6 +12,9 @@ export const initialState = {
   editPlan: {},
   users: [],
   user: {},
+  editUser: {},
+  contract: [],
+  leaflets: [],
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -29,11 +32,20 @@ const HomeAdminReducer = (state = initialState, action) =>
       case constants.GET_EDIT_PLANS_SUCCED:
         draft.editPlan = action.response;
         break;
+      case constants.GET_CONTRACT_SUCCESS:
+        draft.contract = action.response;
+        break;
+      case constants.GET_LEAFLETS_SUCCESS:
+        draft.leaflets = action.response;
+        break;
       case constants.GET_USERS_SUCCESS:
         draft.users = action.response;
         break;
       case constants.GET_USER_SUCCESS:
         draft.user = action.response;
+        break;
+      case constants.GET_EDIT_USER_SUCCED:
+        draft.editUser = action.response;
         break;
     }
   });

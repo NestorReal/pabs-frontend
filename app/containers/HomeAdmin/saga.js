@@ -19,6 +19,9 @@ export default function* defaultSaga() {
   yield takeLatest(constants.CREATE_PLANS_INIT, createPlanSaga);
   yield takeLatest(constants.GET_EDIT_PLANS_INIT, getEditPlanSaga);
   yield takeLatest(constants.EDIT_PLANS_INIT, EditPlanSaga);
+  yield takeLatest(constants.GET_EDIT_USER_INIT, getEditUserSaga);
+  yield takeLatest(constants.GET_CONTRACT_INIT, getContractSaga);
+  yield takeLatest(constants.GET_LEAFLETS_INIT, getLeafletsSaga);
 }
 
 export function* getCompaniesSaga() {
@@ -48,18 +51,18 @@ export function* getCompaniesSaga() {
 export function* createPlanSaga(action) {
   // console.log(action);
   const body = {
-    name: action.name,
-    cost: action.cost,
-    featureIds: [action.featureIds],
-    companyId: action.companyId,
+    name: action.data.name,
+    cost: action.data.cost,
+    featureIds: [action.data.features],
+    companyId: action.data.companyId,
   };
   // console.log(body);
   try {
-    const requestURL = `http://54.219.179.76/plans`;
+    const requestURL = `http://54.219.179.76/plans/`;
     const response = yield call(request, requestURL, {
       method: 'POST',
       headers: {
-        Accept: 'application/json',
+        Authorization: `Bearer ${auth.getToken()}`,
         'Content-Type': 'application/json; charset=utf-8',
       },
       body: JSON.stringify(body),
@@ -158,6 +161,54 @@ export function* EditPlanSaga(action) {
   }
 }
 
+export function* getContractSaga() {
+  try {
+    const requestURL = `http://54.219.179.76/reports`;
+    const response = yield call(request, requestURL, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${auth.getToken()}`,
+        Accept: 'application/json',
+      },
+    });
+    if (response) {
+      yield put({
+        type: constants.GET_CONTRACT_SUCCESS,
+        response,
+      });
+    }
+  } catch (error) {
+    yield put({
+      type: constants.GET_CONTRACT_FAILED,
+      error,
+    });
+  }
+}
+
+export function* getLeafletsSaga() {
+  try {
+    const requestURL = `http://54.219.179.76/reports`;
+    const response = yield call(request, requestURL, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${auth.getToken()}`,
+        Accept: 'application/json',
+      },
+    });
+    if (response) {
+      yield put({
+        type: constants.GET_LEAFLETS_SUCCESS,
+        response,
+      });
+    }
+  } catch (error) {
+    yield put({
+      type: constants.GET_LEAFLETS_FAILED,
+      error,
+    });
+  }
+}
+
 export function* getUsersSaga() {
   try {
     const requestURL = `http://54.219.179.76/users/all-users`;
@@ -248,12 +299,12 @@ export function* createUserSaga(action) {
   };
   // console.log(body);
   try {
-    const requestURL = `http://54.219.179.76/auth/register`;
+    const requestURL = `http://54.219.179.76/auth/register/`;
     const response = yield call(request, requestURL, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json; charset=utf-8',
+        'Content-Type': 'application/json;',
       },
       body: JSON.stringify(body),
     });
@@ -265,6 +316,30 @@ export function* createUserSaga(action) {
     yield put(addErrorMessage(`Error al crear usuario`));
     yield put({
       type: constants.CREATE_USER_FAILED,
+    });
+  }
+}
+
+export function* getEditUserSaga(action) {
+  try {
+    const requestURL = `http://54.219.179.76/users/${action.id}`;
+    const response = yield call(request, requestURL, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${auth.getToken()}`,
+        Accept: 'application/json',
+      },
+    });
+    if (response) {
+      yield put({
+        type: constants.GET_EDIT_USER_SUCCED,
+        response,
+      });
+    }
+  } catch (error) {
+    yield put({
+      type: constants.GET_EDIT_USER_FAILED,
+      error,
     });
   }
 }

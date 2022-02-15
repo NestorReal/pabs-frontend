@@ -31,6 +31,7 @@ import {
   headerPlan,
   keyPlan,
   headerConsultarContrato,
+  keyConsultarContrato,
   headerPago,
   headerAdminUser,
   keyAdminUser,
@@ -47,6 +48,9 @@ import {
   createPlan,
   getEditPlan,
   editPlan,
+  getEditUser,
+  getContract,
+  getLeaflets,
 } from './actions';
 
 export function HomeAdmin(props) {
@@ -58,6 +62,8 @@ export function HomeAdmin(props) {
     props.dispatch(getUser());
     props.dispatch(getPlan());
     props.dispatch(getCompanies());
+    props.dispatch(getContract());
+    props.dispatch(getLeaflets());
   }, []);
   const ContainerChildren = {
     Crear_plan: (
@@ -95,6 +101,8 @@ export function HomeAdmin(props) {
         placeholder="21/10/2021 - 21/10/2021"
         textButton="Buscar"
         header={headerConsultarContrato}
+        keyData={keyConsultarContrato}
+        data={props.HomeAdmin.contract}
         filterNumber
       />
     ),
@@ -104,6 +112,8 @@ export function HomeAdmin(props) {
         placeholder="21/10/2021 - 21/10/2021"
         textButton="Buscar"
         header={headerPago}
+        keyData={keyConsultarContrato}
+        data={props.HomeAdmin.leaflets}
         filterNumber
       />
     ),
@@ -116,7 +126,13 @@ export function HomeAdmin(props) {
         user={props.HomeAdmin.user}
         deleteUser={id => props.dispatch(deleteUser(id))}
         datakey={keyAdminUser}
+        FuncEdit={id => {
+          funcEditUser(id);
+        }}
       />
+    ),
+    Editar_usuarios: (
+      <CreateUser createUser={valueUser => console.log(valueUser)} />
     ),
     Crear_usuarios: (
       <CreateUser
@@ -142,12 +158,22 @@ export function HomeAdmin(props) {
     usuario: false,
   });
   const [option, setOption] = useState('Crear_plan');
-  const [editplan, setEditplan] = useState(false);
+  const [edit, setEdit] = useState({
+    plan: false,
+    user: false,
+  });
 
   const funcEditPlan = id => {
-    setEditplan(true);
+    setEdit({ ...edit, plan: true });
     setOption('Editar_plan');
     props.dispatch(getEditPlan(id));
+  };
+
+  const funcEditUser = id => {
+    // console.log(id);
+    setEdit({ ...edit, user: true });
+    setOption('Editar_usuarios');
+    props.dispatch(getEditUser(id));
   };
 
   const buttons = [
@@ -162,11 +188,11 @@ export function HomeAdmin(props) {
       optionActivate: state.plan,
       options: [
         {
-          text: editplan ? 'Editar plan' : 'Crear plan',
+          text: edit.plan ? 'Editar plan' : 'Crear plan',
           activate: option === 'Crear_plan' || option === 'Editar_plan',
           onClick: () => {
             setOption('Crear_plan');
-            setEditplan(false);
+            setEdit({ ...edit, plan: false });
           },
         },
         {
@@ -222,10 +248,11 @@ export function HomeAdmin(props) {
           },
         },
         {
-          text: 'Crear usuarios',
-          activate: option === 'Crear_usuarios',
+          text: edit.user ? 'Editar usuario' : 'Crear usuarios',
+          activate: option === 'Crear_usuarios' || option === 'Editar_usuarios',
           onClick: () => {
             setOption('Crear_usuarios');
+            setEdit({ ...edit, user: false });
           },
         },
       ],

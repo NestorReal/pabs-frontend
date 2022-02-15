@@ -41,3 +41,15 @@ export const DELETE_USER_FAILED = 'app/HomeAdmin/DELETE_USER_FAILED';
 export const CREATE_USER_INIT = 'app/HomeAdmin/CREATE_USER_INIT';
 export const CREATE_USER_SUCCEED = 'app/HomeAdmin/CREATE_USER_SUCCEED';
 export const CREATE_USER_FAILED = 'app/HomeAdmin/LOGIN_FAILED';
+
+export const GET_EDIT_USER_INIT = 'app/HomeAdmin/GET_EDIT_USER_INIT';
+export const GET_EDIT_USER_SUCCED = 'app/HomeAdmin/GET_EDIT_USER_SUCCED';
+export const GET_EDIT_USER_FAILED = 'app/HomeAdmin/GET_EDIT_USER_FAILED';
+
+export const GET_CONTRACT_INIT = 'app/HomeAdmin/GET_CONTRACT_INIT';
+export const GET_CONTRACT_SUCCESS = 'app/HomeAdmin/GET_CONTRACT_SUCCESS';
+export const GET_CONTRACT_FAILED = 'app/HomeAdmin/GET_CONTRACT_FAILED';
+
+export const GET_LEAFLETS_INIT = 'app/HomeAdmin/GET_LEAFLETS_INIT';
+export const GET_LEAFLETS_SUCCESS = 'app/HomeAdmin/GET_LEAFLETS_SUCCESS';
+export const GET_LEAFLETS_FAILED = 'app/HomeAdmin/GET_LEAFLETS_FAILED';

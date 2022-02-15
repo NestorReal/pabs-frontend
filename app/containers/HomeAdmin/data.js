@@ -14,6 +14,17 @@ export const headerConsultarContrato = [
   'Fecha de contratación',
 ];
 
+export const keyConsultarContrato = [
+  'contract',
+  'reference_name',
+  'amount',
+  'payment_method',
+  'reference_type',
+  'city',
+  'company',
+  'payment_date',
+];
+
 export const headerPago = [
   'No. seguimineto',
   'Plan',

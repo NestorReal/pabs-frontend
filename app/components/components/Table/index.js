@@ -87,7 +87,7 @@ function Table({
                       type="button"
                       className="editar"
                       // eslint-disable-next-line no-underscore-dangle
-                      onClick={() => FuncEdit(item._id)}
+                      onClick={() => FuncEdit(item._id ? item._id : item.id)}
                     >
                       Editar
                     </button>
@@ -97,7 +97,7 @@ function Table({
                       type="button"
                       className="eliminar"
                       // eslint-disable-next-line no-underscore-dangle
-                      onClick={() => FuncRemove(item._id)}
+                      onClick={() => FuncRemove(item._id ? item._id : item.id)}
                     >
                       Eliminar
                     </button>

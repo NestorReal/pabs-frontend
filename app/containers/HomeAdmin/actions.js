@@ -45,6 +45,18 @@ export function editPlan(data) {
   };
 }
 
+export function getContract() {
+  return {
+    type: constants.GET_CONTRACT_INIT,
+  };
+}
+
+export function getLeaflets() {
+  return {
+    type: constants.GET_LEAFLETS_INIT,
+  };
+}
+
 export function getUsers() {
   return {
     type: constants.GET_USERS_INIT,
@@ -60,6 +72,13 @@ export function getUser() {
 export function deleteUser(id) {
   return {
     type: constants.DELETE_USER_INIT,
+    id,
+  };
+}
+
+export function getEditUser(id) {
+  return {
+    type: constants.GET_EDIT_USER_INIT,
     id,
   };
 }

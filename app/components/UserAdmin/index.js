@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import { Container } from './styles';
 import Table from '../components/Table';
 
-function UserAdmin({ data, header, deleteUser, datakey }) {
+function UserAdmin({ data, header, deleteUser, datakey, FuncEdit }) {
   return (
     <Container>
       <div className="subtext">
@@ -22,6 +22,7 @@ function UserAdmin({ data, header, deleteUser, datakey }) {
         keyData={datakey}
         actions
         FuncRemove={id => deleteUser(id)}
+        FuncEdit={id => FuncEdit(id)}
         height="468px"
       />
     </Container>
@@ -33,6 +34,7 @@ UserAdmin.propTypes = {
   header: PropTypes.array,
   deleteUser: PropTypes.func,
   datakey: PropTypes.array,
+  FuncEdit: PropTypes.object,
 };
 
 export default UserAdmin;
