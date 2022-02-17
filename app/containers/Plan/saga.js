@@ -31,6 +31,7 @@ export function* payersSaga(action) {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${auth.getToken()}`,
+        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(body),

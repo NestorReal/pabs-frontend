@@ -15,6 +15,7 @@ export const initialState = {
   editUser: {},
   contract: [],
   leaflets: [],
+  features: [],
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -46,6 +47,9 @@ const HomeAdminReducer = (state = initialState, action) =>
         break;
       case constants.GET_EDIT_USER_SUCCED:
         draft.editUser = action.response;
+        break;
+      case constants.GET_FEATURES_SUCCESS:
+        draft.features = action.response;
         break;
     }
   });

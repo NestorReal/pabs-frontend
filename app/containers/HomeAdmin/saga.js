@@ -20,8 +20,10 @@ export default function* defaultSaga() {
   yield takeLatest(constants.GET_EDIT_PLANS_INIT, getEditPlanSaga);
   yield takeLatest(constants.EDIT_PLANS_INIT, EditPlanSaga);
   yield takeLatest(constants.GET_EDIT_USER_INIT, getEditUserSaga);
+  yield takeLatest(constants.EDIT_USER_INIT, editUserSaga);
   yield takeLatest(constants.GET_CONTRACT_INIT, getContractSaga);
   yield takeLatest(constants.GET_LEAFLETS_INIT, getLeafletsSaga);
+  yield takeLatest(constants.GET_FEATURES_INIT, getFeaturesSaga);
 }
 
 export function* getCompaniesSaga() {
@@ -63,7 +65,7 @@ export function* createPlanSaga(action) {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${auth.getToken()}`,
-        'Content-Type': 'application/json; charset=utf-8',
+        'Content-Type': 'application/json;',
       },
       body: JSON.stringify(body),
     });
@@ -288,14 +290,14 @@ export function* deleteUserSaga(action) {
 export function* createUserSaga(action) {
   // console.log(action);
   const body = {
-    email: action.email,
-    full_name: action.user,
-    phone_number: action.number,
-    password: action.password,
+    email: action.data.email,
+    full_name: action.data.full_name,
+    phone_number: action.data.phone_number,
+    password: action.data.password,
     is_active: true,
     is_superuser: false,
     is_verified: false,
-    roles: [action.role],
+    roles: [action.data.roles],
   };
   // console.log(body);
   try {
@@ -339,6 +341,69 @@ export function* getEditUserSaga(action) {
   } catch (error) {
     yield put({
       type: constants.GET_EDIT_USER_FAILED,
+      error,
+    });
+  }
+}
+
+export function* editUserSaga(action) {
+  // console.log('sagas ', action);
+  const body = {
+    password: action.data.password,
+    email: action.data.email,
+    is_active: true,
+    is_superuser: false,
+    is_verified: false,
+    full_name: action.data.full_name,
+    phone_number: action.data.phone_number,
+    roles: [action.data.roles],
+  };
+  // console.log(body);
+  try {
+    const requestURL = `http://54.219.179.76/users/${action.data.id}`;
+    const response = yield call(request, requestURL, {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json;',
+        Authorization: `Bearer ${auth.getToken()}`,
+      },
+      body: JSON.stringify(body),
+    });
+    if (response) {
+      yield put({
+        type: constants.EDIT_USER_SUCCED,
+      });
+      yield put(addSuccessMessage(`Usuario modificado correctamente`));
+      yield put(getUsers());
+    }
+  } catch (error) {
+    yield put(addErrorMessage(`Error al modificar usuario`));
+    yield put({
+      type: constants.EDIT_USER_FAILED,
+    });
+  }
+}
+
+export function* getFeaturesSaga() {
+  try {
+    const requestURL = `http://54.219.179.76/features/`;
+    const response = yield call(request, requestURL, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${auth.getToken()}`,
+        Accept: 'application/json',
+      },
+    });
+    if (response) {
+      yield put({
+        type: constants.GET_FEATURES_SUCCESS,
+        response,
+      });
+    }
+  } catch (error) {
+    yield put({
+      type: constants.GET_FEATURES_FAILED,
       error,
     });
   }

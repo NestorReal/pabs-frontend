@@ -83,13 +83,22 @@ export function getEditUser(id) {
   };
 }
 
-export function createUserAction(user, number, email, password, role) {
+export function editUser(data) {
+  return {
+    type: constants.EDIT_USER_INIT,
+    data,
+  };
+}
+
+export function createUserAction(data) {
   return {
     type: constants.CREATE_USER_INIT,
-    user,
-    number,
-    email,
-    password,
-    role,
+    data,
+  };
+}
+
+export function getFeatures() {
+  return {
+    type: constants.GET_FEATURES_INIT,
   };
 }

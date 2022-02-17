@@ -10,10 +10,6 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import Notifications from 'containers/Notifications';
-import {
-  addErrorMessage,
-  //  addSuccessMessage,
-} from 'containers/Notifications/actions';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import { AiOutlineProfile, AiOutlineUser } from 'react-icons/ai';
@@ -43,6 +39,7 @@ import {
   getUser,
   deleteUser,
   createUserAction,
+  editUser,
   getPlan,
   getCompanies,
   createPlan,
@@ -51,6 +48,7 @@ import {
   getEditUser,
   getContract,
   getLeaflets,
+  getFeatures,
 } from './actions';
 
 export function HomeAdmin(props) {
@@ -64,11 +62,13 @@ export function HomeAdmin(props) {
     props.dispatch(getCompanies());
     props.dispatch(getContract());
     props.dispatch(getLeaflets());
+    props.dispatch(getFeatures());
   }, []);
   const ContainerChildren = {
     Crear_plan: (
       <GenerarRecompensa
         getCompanies={props.HomeAdmin.companies}
+        getFeatures={props.HomeAdmin.features}
         onClick={values => props.dispatch(createPlan(values))}
       />
     ),
@@ -132,22 +132,14 @@ export function HomeAdmin(props) {
       />
     ),
     Editar_usuarios: (
-      <CreateUser createUser={valueUser => console.log(valueUser)} />
+      <CreateUser
+        onClick={valueUser => props.dispatch(editUser(valueUser))}
+        data={props.HomeAdmin.editUser}
+      />
     ),
     Crear_usuarios: (
       <CreateUser
-        createUser={payload =>
-          props.dispatch(
-            createUserAction(
-              payload.userName,
-              payload.number,
-              payload.email,
-              payload.password,
-              payload.role,
-            ),
-          )
-        }
-        sendError={() => props.dispatch(addErrorMessage(`Error en los datos`))}
+        onClick={valueUser => props.dispatch(createUserAction(valueUser))}
       />
     ),
   };

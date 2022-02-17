@@ -36,6 +36,6 @@ export const headerPago = [
   'Fecha',
 ];
 
-export const headerAdminUser = ['Nombre(s)', 'Apellidos', 'Correo', 'teléfono'];
+export const headerAdminUser = ['Nombre(s)', 'Rol', 'Correo', 'teléfono'];
 
-export const keyAdminUser = ['full_name', 'full_name', 'email', 'full_name'];
+export const keyAdminUser = ['full_name', 'roles', 'email', 'phone_number'];
