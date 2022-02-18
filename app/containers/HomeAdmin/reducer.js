@@ -16,6 +16,8 @@ export const initialState = {
   contract: [],
   leaflets: [],
   features: [],
+  editFeatures: {},
+  editCompanies: {},
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -23,9 +25,6 @@ const HomeAdminReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case constants.DEFAULT_ACTION:
-        break;
-      case constants.GET_COMPANIES_SUCCED:
-        draft.companies = action.response;
         break;
       case constants.GET_PLANS_SUCCED:
         draft.plans = action.response;
@@ -50,6 +49,21 @@ const HomeAdminReducer = (state = initialState, action) =>
         break;
       case constants.GET_FEATURES_SUCCESS:
         draft.features = action.response;
+        break;
+      case constants.GET_EDIT_FEATURES_SUCCESS:
+        draft.editFeatures = action.response;
+        break;
+      case constants.CREATE_FEATURES_SUCCESS:
+        draft.editFeatures = {};
+        break;
+      case constants.GET_COMPANIES_SUCCED:
+        draft.companies = action.response;
+        break;
+      case constants.GET_EDIT_COMPANIES_SUCCESS:
+        draft.editCompanies = action.response;
+        break;
+      case constants.CREATE_COMPANIES_SUCCESS:
+        draft.editCompanies = {};
         break;
     }
   });

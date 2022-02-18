@@ -49,6 +49,12 @@ import {
   getContract,
   getLeaflets,
   getFeatures,
+  createFeatures,
+  getEditFeatures,
+  deleteFeatures,
+  createContract,
+  getEditContract,
+  deleteContract,
 } from './actions';
 
 export function HomeAdmin(props) {
@@ -75,6 +81,7 @@ export function HomeAdmin(props) {
     Editar_plan: (
       <GenerarRecompensa
         getCompanies={props.HomeAdmin.companies}
+        getFeatures={props.HomeAdmin.features}
         data={props.HomeAdmin.editPlan}
         onClick={value => props.dispatch(editPlan(value))}
       />
@@ -142,13 +149,63 @@ export function HomeAdmin(props) {
         onClick={valueUser => props.dispatch(createUserAction(valueUser))}
       />
     ),
+    Empresa: (
+      <ReferenciaGenerada
+        placeholder={
+          props.HomeAdmin.editCompanies.name !== undefined
+            ? 'Editar empresa'
+            : 'Agregar empresa'
+        }
+        textButton={
+          props.HomeAdmin.editCompanies.name !== undefined
+            ? 'Editar'
+            : 'Agregar'
+        }
+        header={['Nombre']}
+        keyData={['name']}
+        data={props.HomeAdmin.companies}
+        actions
+        valueInput={props.HomeAdmin.editCompanies.name}
+        createValue={value =>
+          props.dispatch(
+            // eslint-disable-next-line no-underscore-dangle
+            createContract(props.HomeAdmin.editCompanies._id, value),
+          )
+        }
+        Fundelete={id => props.dispatch(deleteContract(id))}
+        FuncEdit={id => props.dispatch(getEditContract(id))}
+      />
+    ),
+    Descripcion: (
+      <ReferenciaGenerada
+        placeholder={
+          props.HomeAdmin.editFeatures.description !== undefined
+            ? 'Editar descripción'
+            : 'Agregar descripción'
+        }
+        textButton={
+          props.HomeAdmin.editFeatures.description !== undefined
+            ? 'Editar'
+            : 'Agregar'
+        }
+        header={['Descripción']}
+        keyData={['description']}
+        data={props.HomeAdmin.features}
+        actions
+        valueInput={props.HomeAdmin.editFeatures.description}
+        createValue={value =>
+          props.dispatch(
+            // eslint-disable-next-line no-underscore-dangle
+            createFeatures(props.HomeAdmin.editFeatures._id, value),
+          )
+        }
+        Fundelete={id => props.dispatch(deleteFeatures(id))}
+        FuncEdit={id => props.dispatch(getEditFeatures(id))}
+      />
+    ),
   };
 
-  const [state, setState] = useState({
-    plan: true,
-    reporte: false,
-    usuario: false,
-  });
+  const [state, setState] = useState('Planes');
   const [option, setOption] = useState('Crear_plan');
   const [edit, setEdit] = useState({
     plan: false,
@@ -172,12 +229,12 @@ export function HomeAdmin(props) {
     {
       text: 'Planes',
       icon: <AiOutlineProfile />,
-      activate: state.plan,
+      activate: state === 'Planes',
       onClick: () => {
-        setState({ plan: true, reporte: false, usuario: false });
+        setState('Planes');
         setOption('Crear_plan');
       },
-      optionActivate: state.plan,
+      optionActivate: state === 'Planes',
       options: [
         {
           text: edit.plan ? 'Editar plan' : 'Crear plan',
@@ -199,12 +256,12 @@ export function HomeAdmin(props) {
     {
       text: 'Reportes',
       icon: <AiOutlineProfile />,
-      activate: state.reporte,
+      activate: state === 'Reportes',
       onClick: () => {
-        setState({ plan: false, reporte: true, usuario: false });
+        setState('Reportes');
         setOption('Consultar_contratos');
       },
-      optionActivate: state.reporte,
+      optionActivate: state === 'Reportes',
       options: [
         {
           text: 'Consulta de contratos',
@@ -225,12 +282,12 @@ export function HomeAdmin(props) {
     {
       text: 'Usuarios',
       icon: <AiOutlineUser />,
-      activate: state.usuario,
+      activate: state === 'Usuarios',
       onClick: () => {
-        setState({ plan: false, reporte: false, usuario: true });
+        setState('Usuarios');
         setOption('Administrar_usuarios');
       },
-      optionActivate: state.usuario,
+      optionActivate: state === 'Usuarios',
       options: [
         {
           text: 'Administrar usuarios',
@@ -248,6 +305,24 @@ export function HomeAdmin(props) {
           },
         },
       ],
+    },
+    {
+      text: 'Empresa',
+      icon: <AiOutlineProfile />,
+      activate: state === 'Empresa',
+      onClick: () => {
+        setState('Empresa');
+        setOption('Empresa');
+      },
+    },
+    {
+      text: 'Descripción',
+      icon: <AiOutlineProfile />,
+      activate: state === 'Descripcion',
+      onClick: () => {
+        setState('Descripcion');
+        setOption('Descripcion');
+      },
     },
   ];
 

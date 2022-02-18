@@ -20,6 +20,7 @@ const MenuStyle = styled.div`
     position: absolute;
     top: 20%;
     height: 63%;
+    width: 100%;
     button {
       width: 92%;
       height: 31px;

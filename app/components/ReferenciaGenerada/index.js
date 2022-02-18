@@ -27,16 +27,29 @@ function ReferenciaGenerada({
   historicalValue,
   historicalText,
   filterNumber,
+  valueInput,
 }) {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(null);
+  const [edit, setEdit] = useState(false);
+  if (valueInput !== undefined && edit) {
+    if (!value) {
+      setValue(valueInput);
+    }
+  }
+
   return (
     <Container>
       <FormAdd
         text={textForm}
         placeholder={placeholder}
         onChange={event => setValue(event.target.value)}
-        onClick={() => createValue(value)}
+        onClick={() => {
+          createValue(value);
+          setValue(null);
+          setEdit(false);
+        }}
         textButton={textButton}
+        value={value}
       />
       {historical && (
         <Historico value={historicalValue} text={historicalText} />
@@ -53,7 +66,11 @@ function ReferenciaGenerada({
           keyData={keyData}
           actions={actions}
           FuncRemove={id => Fundelete(id)}
-          FuncEdit={id => FuncEdit(id)}
+          FuncEdit={id => {
+            FuncEdit(id);
+            setEdit(true);
+          }}
+          disable={valueInput !== undefined}
         />
       )}
     </Container>
@@ -75,6 +92,7 @@ ReferenciaGenerada.propTypes = {
   historicalValue: PropTypes.number,
   historicalText: PropTypes.string,
   filterNumber: PropTypes.bool,
+  valueInput: PropTypes.string,
 };
 
 export default ReferenciaGenerada;
