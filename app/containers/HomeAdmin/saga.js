@@ -5,7 +5,7 @@ import {
   addErrorMessage,
   addSuccessMessage,
 } from 'containers/Notifications/actions';
-import { getUsers, getPlan } from './actions';
+import { getUsers, getPlan, getFeatures, getContract } from './actions';
 import * as constants from './constants';
 
 // Individual exports for testing
@@ -20,8 +20,16 @@ export default function* defaultSaga() {
   yield takeLatest(constants.GET_EDIT_PLANS_INIT, getEditPlanSaga);
   yield takeLatest(constants.EDIT_PLANS_INIT, EditPlanSaga);
   yield takeLatest(constants.GET_EDIT_USER_INIT, getEditUserSaga);
-  yield takeLatest(constants.GET_CONTRACT_INIT, getContractSaga);
+  yield takeLatest(constants.EDIT_USER_INIT, editUserSaga);
   yield takeLatest(constants.GET_LEAFLETS_INIT, getLeafletsSaga);
+  yield takeLatest(constants.GET_FEATURES_INIT, getFeaturesSaga);
+  yield takeLatest(constants.CREATE_FEATURES_INIT, createFeaturesSaga);
+  yield takeLatest(constants.GET_EDIT_FEATURES_INIT, getEditFeaturesSaga);
+  yield takeLatest(constants.DELETE_FEATURES_INIT, deleteFeaturesSaga);
+  yield takeLatest(constants.GET_CONTRACT_INIT, getContractSaga);
+  yield takeLatest(constants.CREATE_COMPANIES_INIT, createContractSaga);
+  yield takeLatest(constants.GET_EDIT_COMPANIES_INIT, getEditContractSaga);
+  yield takeLatest(constants.DELETE_COMPANIES_INIT, deleteContractSaga);
 }
 
 export function* getCompaniesSaga() {
@@ -59,23 +67,21 @@ export function* createPlanSaga(action) {
   // console.log(body);
   try {
     const requestURL = `http://54.219.179.76/plans/`;
-    const response = yield call(request, requestURL, {
+    yield call(request, requestURL, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${auth.getToken()}`,
-        'Content-Type': 'application/json; charset=utf-8',
+        'Content-Type': 'application/json;',
       },
       body: JSON.stringify(body),
     });
-    if (response) {
-      yield put(addSuccessMessage(`Usuario creado correctamente`));
-      yield put(getPlan());
-      yield put({
-        type: constants.CREATE_PLANS_SUCCED,
-      });
-    }
+    yield put(addSuccessMessage(`Plan creado correctamente`));
+    yield put(getPlan());
+    yield put({
+      type: constants.CREATE_PLANS_SUCCED,
+    });
   } catch (error) {
-    yield put(addErrorMessage(`Error al crear usuario`));
+    yield put(addErrorMessage(`Error al crear plan`));
     yield put({
       type: constants.CREATE_PLANS_FAILED,
     });
@@ -137,24 +143,23 @@ export function* EditPlanSaga(action) {
     companyId: action.data.companyId,
   };
   try {
-    const requestURL = `http://54.219.179.76/plans/${action.id}`;
-    const response = yield call(request, requestURL, {
+    const requestURL = `http://54.219.179.76/plans/${action.data.id}`;
+    yield call(request, requestURL, {
       method: 'PUT',
       headers: {
         Authorization: `Bearer ${auth.getToken()}`,
         Accept: 'application/json',
+        'Content-Type': 'application/json;',
       },
       body: JSON.stringify(body),
     });
-    if (response) {
-      yield put(addSuccessMessage(`Usuario creado correctamente`));
-      yield put(getPlan());
-      yield put({
-        type: constants.CREATE_PLANS_SUCCED,
-      });
-    }
+    yield put(addSuccessMessage(`Plan editado correctamente`));
+    yield put(getPlan());
+    yield put({
+      type: constants.CREATE_PLANS_SUCCED,
+    });
   } catch (error) {
-    yield put(addErrorMessage(`Error al crear usuario`));
+    yield put(addErrorMessage(`Error al editar plan`));
     yield put({
       type: constants.CREATE_PLANS_FAILED,
     });
@@ -288,14 +293,14 @@ export function* deleteUserSaga(action) {
 export function* createUserSaga(action) {
   // console.log(action);
   const body = {
-    email: action.email,
-    full_name: action.user,
-    phone_number: action.number,
-    password: action.password,
+    email: action.data.email,
+    full_name: action.data.full_name,
+    phone_number: action.data.phone_number,
+    password: action.data.password,
     is_active: true,
     is_superuser: false,
     is_verified: false,
-    roles: [action.role],
+    roles: [action.data.roles],
   };
   // console.log(body);
   try {
@@ -339,6 +344,275 @@ export function* getEditUserSaga(action) {
   } catch (error) {
     yield put({
       type: constants.GET_EDIT_USER_FAILED,
+      error,
+    });
+  }
+}
+
+export function* editUserSaga(action) {
+  // console.log('sagas ', action);
+  const body = {
+    password: action.data.password,
+    email: action.data.email,
+    is_active: true,
+    is_superuser: false,
+    is_verified: false,
+    full_name: action.data.full_name,
+    phone_number: action.data.phone_number,
+    roles: [action.data.roles],
+  };
+  // console.log(body);
+  try {
+    const requestURL = `http://54.219.179.76/users/${action.data.id}`;
+    const response = yield call(request, requestURL, {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json;',
+        Authorization: `Bearer ${auth.getToken()}`,
+      },
+      body: JSON.stringify(body),
+    });
+    if (response) {
+      yield put({
+        type: constants.EDIT_USER_SUCCED,
+      });
+      yield put(addSuccessMessage(`Usuario modificado correctamente`));
+      yield put(getUsers());
+    }
+  } catch (error) {
+    yield put(addErrorMessage(`Error al modificar usuario`));
+    yield put({
+      type: constants.EDIT_USER_FAILED,
+    });
+  }
+}
+
+export function* getFeaturesSaga() {
+  try {
+    const requestURL = `http://54.219.179.76/features/`;
+    const response = yield call(request, requestURL, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${auth.getToken()}`,
+        Accept: 'application/json',
+      },
+    });
+    if (response) {
+      yield put({
+        type: constants.GET_FEATURES_SUCCESS,
+        response,
+      });
+    }
+  } catch (error) {
+    yield put({
+      type: constants.GET_FEATURES_FAILED,
+      error,
+    });
+  }
+}
+
+export function* createFeaturesSaga(action) {
+  const body = { description: action.value };
+  if (action.id === undefined) {
+    try {
+      const requestURL = `http://54.219.179.76/features/`;
+      const response = yield call(request, requestURL, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json;',
+          Authorization: `Bearer ${auth.getToken()}`,
+        },
+        body: JSON.stringify(body),
+      });
+      if (response) {
+        yield put({
+          type: constants.CREATE_FEATURES_SUCCESS,
+        });
+        yield put(addSuccessMessage('Descripción creada correctamente'));
+        yield put(getFeatures());
+      }
+    } catch (error) {
+      yield put(addErrorMessage('Error al crear descripción'));
+      yield put({
+        type: constants.CREATE_FEATURES_FAILED,
+      });
+    }
+  } else {
+    try {
+      const requestURL = `http://54.219.179.76/features/${action.id}`;
+      const response = yield call(request, requestURL, {
+        method: 'PUT',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json;',
+          Authorization: `Bearer ${auth.getToken()}`,
+        },
+        body: JSON.stringify(body),
+      });
+      if (response) {
+        yield put({
+          type: constants.CREATE_FEATURES_SUCCESS,
+        });
+        yield put(addSuccessMessage('Descripción editada correctamente'));
+        yield put(getFeatures());
+      }
+    } catch (error) {
+      yield put(addErrorMessage('Error al editar descripción'));
+      yield put({
+        type: constants.CREATE_FEATURES_FAILED,
+      });
+    }
+  }
+}
+
+export function* getEditFeaturesSaga(action) {
+  try {
+    const requestURL = `http://54.219.179.76/features/${action.id}`;
+    const response = yield call(request, requestURL, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${auth.getToken()}`,
+        Accept: 'application/json',
+      },
+    });
+    if (response) {
+      yield put({
+        type: constants.GET_EDIT_FEATURES_SUCCESS,
+        response,
+      });
+    }
+  } catch (error) {
+    yield put({
+      type: constants.GET_EDIT_FEATURES_FAILED,
+      error,
+    });
+  }
+}
+
+export function* deleteFeaturesSaga(action) {
+  try {
+    const requestURL = `http://54.219.179.76/features/${action.id}`;
+    yield call(request, requestURL, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${auth.getToken()}`,
+        Accept: 'application/json',
+      },
+    });
+    yield put({
+      type: constants.DELETE_FEATURES_SUCCESS,
+    });
+    yield put(addSuccessMessage('Descripción eliminada'));
+    yield put(getFeatures());
+  } catch (error) {
+    yield put(addErrorMessage(`Error al borrar`));
+    yield put({
+      type: constants.DELETE_FEATURES_FAILED,
+      error,
+    });
+  }
+}
+
+export function* createContractSaga(action) {
+  const body = { name: action.value };
+  if (action.id === undefined) {
+    try {
+      const requestURL = `http://54.219.179.76/companies/`;
+      const response = yield call(request, requestURL, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json;',
+          Authorization: `Bearer ${auth.getToken()}`,
+        },
+        body: JSON.stringify(body),
+      });
+      if (response) {
+        yield put({
+          type: constants.CREATE_COMPANIES_SUCCESS,
+        });
+        yield put(addSuccessMessage('Empresa creada correctamente'));
+        yield put(getContract());
+      }
+    } catch (error) {
+      yield put(addErrorMessage('Error al crear la empresa'));
+      yield put({
+        type: constants.CREATE_COMPANIES_FAILED,
+      });
+    }
+  } else {
+    try {
+      const requestURL = `http://54.219.179.76/companies/${action.id}`;
+      const response = yield call(request, requestURL, {
+        method: 'PUT',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json;',
+          Authorization: `Bearer ${auth.getToken()}`,
+        },
+        body: JSON.stringify(body),
+      });
+      if (response) {
+        yield put({
+          type: constants.CREATE_COMPANIES_SUCCESS,
+        });
+        yield put(addSuccessMessage('Empresa editada correctamente'));
+        yield put(getContract());
+      }
+    } catch (error) {
+      yield put(addErrorMessage('Error al editar la empresa'));
+      yield put({
+        type: constants.CREATE_COMPANIES_FAILED,
+      });
+    }
+  }
+}
+
+export function* getEditContractSaga(action) {
+  try {
+    const requestURL = `http://54.219.179.76/companies/${action.id}`;
+    const response = yield call(request, requestURL, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${auth.getToken()}`,
+        Accept: 'application/json',
+      },
+    });
+    if (response) {
+      yield put({
+        type: constants.GET_EDIT_COMPANIES_SUCCESS,
+        response,
+      });
+    }
+  } catch (error) {
+    yield put({
+      type: constants.GET_EDIT_COMPANIES_FAILED,
+      error,
+    });
+  }
+}
+
+export function* deleteContractSaga(action) {
+  try {
+    const requestURL = `http://54.219.179.76/companies/${action.id}`;
+    yield call(request, requestURL, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${auth.getToken()}`,
+        Accept: 'application/json',
+      },
+    });
+    yield put({
+      type: constants.DELETE_COMPANIES_SUCCESS,
+    });
+    yield put(addSuccessMessage('Empresa eliminada'));
+    yield put(getFeatures());
+  } catch (error) {
+    yield put(addErrorMessage(`Error al borrar`));
+    yield put({
+      type: constants.DELETE_COMPANIES_FAILED,
       error,
     });
   }

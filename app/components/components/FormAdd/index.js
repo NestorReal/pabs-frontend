@@ -27,7 +27,7 @@ const FormAddStyle = styled.div`
   }
 `;
 
-function FormAdd({ text, placeholder, onChange, onClick, textButton }) {
+function FormAdd({ text, placeholder, onChange, onClick, textButton, value }) {
   return (
     <FormAddStyle>
       <p style={text ? null : { height: '16px' }}>{text}</p>
@@ -37,6 +37,7 @@ function FormAdd({ text, placeholder, onChange, onClick, textButton }) {
           placeholder={placeholder}
           onChange={onChange}
           height="auto"
+          value={value || ''}
         >
           <i>
             <VscSearch />
@@ -56,6 +57,7 @@ FormAdd.propTypes = {
   onChange: PropTypes.func,
   onClick: PropTypes.func,
   textButton: PropTypes.string,
+  value: PropTypes.string,
 };
 
 export default FormAdd;

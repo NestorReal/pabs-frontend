@@ -21,13 +21,13 @@ const validate = Yup.object({
     .positive('Ingrese un número positivo'),
 });
 
-function GenerarRecompensa({ getCompanies, onClick, data }) {
+function GenerarRecompensa({ getCompanies, getFeatures, onClick, data }) {
   const formik = useFormik({
     initialValues: {
       name: data ? data.name : '',
       cost: data ? data.cost : 0,
       features: data ? data.features : '',
-      companyId: data ? data.companyId : '',
+      companyId: data ? data.company : '',
       // eslint-disable-next-line no-underscore-dangle
       id: data ? data._id : '',
     },
@@ -92,21 +92,26 @@ function GenerarRecompensa({ getCompanies, onClick, data }) {
               ) : null}
             </div>
           </div>
-          <div className="input" style={{ marginTop: '30px' }}>
-            <label htmlFor="features">Descripción</label>
-            <div>
-              <textarea
-                id="features"
-                placeholder="Presiona Enter para separar los detalles por puntos"
-                rows="10"
-                cols="32"
-                onChange={formik.handleChange}
-                value={data && formik.values.features}
-              />
-              {formik.touched.features && formik.errors.features ? (
-                <p className="error">{formik.errors.features}</p>
-              ) : null}
-            </div>
+          <div className="select" style={{ marginTop: '30px' }}>
+            <label htmlFor="companyId">Selecciona la descripcion</label>
+            <br />
+            <select
+              name="features"
+              id="features"
+              onChange={formik.handleChange}
+              value={formik.values.features}
+            >
+              <option>Seleccionar</option>
+              {getFeatures.map(item => (
+                // eslint-disable-next-line no-underscore-dangle
+                <option key={uuidv4()} value={item._id}>
+                  {item.description}
+                </option>
+              ))}
+            </select>
+            {formik.touched.features && formik.errors.features ? (
+              <p className="error">{formik.errors.features}</p>
+            ) : null}
           </div>
           <div className="containerButton">
             <Button type="submit" variant="succes">
@@ -122,6 +127,7 @@ function GenerarRecompensa({ getCompanies, onClick, data }) {
 
 GenerarRecompensa.propTypes = {
   getCompanies: PropTypes.array,
+  getFeatures: PropTypes.array,
   onClick: PropTypes.func,
   data: PropTypes.object,
 };

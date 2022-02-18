@@ -45,12 +45,6 @@ export function editPlan(data) {
   };
 }
 
-export function getContract() {
-  return {
-    type: constants.GET_CONTRACT_INIT,
-  };
-}
-
 export function getLeaflets() {
   return {
     type: constants.GET_LEAFLETS_INIT,
@@ -83,13 +77,72 @@ export function getEditUser(id) {
   };
 }
 
-export function createUserAction(user, number, email, password, role) {
+export function editUser(data) {
+  return {
+    type: constants.EDIT_USER_INIT,
+    data,
+  };
+}
+
+export function createUserAction(data) {
   return {
     type: constants.CREATE_USER_INIT,
-    user,
-    number,
-    email,
-    password,
-    role,
+    data,
+  };
+}
+
+export function getFeatures() {
+  return {
+    type: constants.GET_FEATURES_INIT,
+  };
+}
+
+export function createFeatures(id, value) {
+  return {
+    type: constants.CREATE_FEATURES_INIT,
+    id,
+    value,
+  };
+}
+
+export function getEditFeatures(id) {
+  return {
+    type: constants.GET_EDIT_FEATURES_INIT,
+    id,
+  };
+}
+
+export function deleteFeatures(id) {
+  return {
+    type: constants.DELETE_FEATURES_INIT,
+    id,
+  };
+}
+
+export function getContract() {
+  return {
+    type: constants.GET_CONTRACT_INIT,
+  };
+}
+
+export function createContract(id, value) {
+  return {
+    type: constants.CREATE_COMPANIES_INIT,
+    id,
+    value,
+  };
+}
+
+export function getEditContract(id) {
+  return {
+    type: constants.GET_EDIT_COMPANIES_INIT,
+    id,
+  };
+}
+
+export function deleteContract(id) {
+  return {
+    type: constants.DELETE_COMPANIES_INIT,
+    id,
   };
 }

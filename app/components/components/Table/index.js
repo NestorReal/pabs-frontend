@@ -64,6 +64,7 @@ function Table({
   actions,
   FuncEdit,
   FuncRemove,
+  disable,
 }) {
   return (
     <TableStyle height={height} width={width}>
@@ -84,6 +85,8 @@ function Table({
                 <td>
                   {FuncEdit ? (
                     <button
+                      disabled={disable}
+                      style={disable ? { opacity: '0.5' } : null}
                       type="button"
                       className="editar"
                       // eslint-disable-next-line no-underscore-dangle
@@ -94,6 +97,8 @@ function Table({
                   ) : null}
                   {FuncRemove ? (
                     <button
+                      disabled={disable}
+                      style={disable ? { opacity: '0.5' } : null}
                       type="button"
                       className="eliminar"
                       // eslint-disable-next-line no-underscore-dangle
@@ -121,6 +126,7 @@ Table.propTypes = {
   actions: PropTypes.bool,
   FuncEdit: PropTypes.func,
   FuncRemove: PropTypes.func,
+  disable: PropTypes.bool,
 };
 
 export default Table;
