@@ -20,8 +20,9 @@ import reducer from './reducer';
 import saga from './saga';
 import { Container } from './styles';
 import logo2 from '../../images/logo2.svg';
+import { login } from './actions';
 
-export function LoginAdmin() {
+export function LoginAdmin(props) {
   useInjectReducer({ key: 'loginAdmin', reducer });
   useInjectSaga({ key: 'loginAdmin', saga });
   const [passShow, setPassShow] = useState(false);
@@ -35,7 +36,11 @@ export function LoginAdmin() {
       setPassShow(false);
     }
   };
-
+  const [user, setUser] = useState({
+    email: '',
+    password: '',
+    pass: '',
+  });
   return (
     <div>
       <img
@@ -52,7 +57,13 @@ export function LoginAdmin() {
           <div>
             <label className="label">Correo de usuario</label>
             <div className="input" style={{ marginBottom: '21px' }}>
-              <input type="text" placeholder="ejemplo@ejemplo.com" />
+              <input
+                type="text"
+                placeholder="ejemplo@ejemplo.com"
+                onChange={event =>
+                  setUser({ ...user, email: event.target.value })
+                }
+              />
               <div className="icon">
                 <AiOutlineUser
                   style={{ height: '25px', width: '25px', color: '#113255' }}
@@ -61,7 +72,14 @@ export function LoginAdmin() {
             </div>
             <label className="label">Contraseña</label>
             <div className="input">
-              <input ref={password} type="password" placeholder="Contraseña" />
+              <input
+                ref={password}
+                type="password"
+                placeholder="Contraseña"
+                onChange={event =>
+                  setUser({ ...user, password: event.target.value })
+                }
+              />
               <div className="icon">
                 <button type="button" onClick={show}>
                   {passShow ? (
@@ -85,7 +103,15 @@ export function LoginAdmin() {
               </div>
             </div>
             <div className="containerButton" style={{ marginTop: '69px' }}>
-              <button className="primary" type="button">
+              <button
+                className="primary"
+                type="button"
+                onClick={() =>
+                  props.dispatch(
+                    login(user.email, user.password, props.history),
+                  )
+                }
+              >
                 Ingresar
               </button>
             </div>
