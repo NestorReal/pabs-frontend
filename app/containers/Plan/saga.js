@@ -11,6 +11,7 @@ import { stepAction } from './actions';
 // Individual exports for testing
 export default function* planSaga() {
   yield takeLatest(constants.PAYERS_INIT, payersSaga);
+  yield takeLatest(constants.GET_PLANS_INIT, getPlanSaga);
 }
 
 export function* payersSaga(action) {
@@ -51,5 +52,29 @@ export function* payersSaga(action) {
     });
     yield put(stepAction(2));
     yield put(addErrorMessage(`Error al crear usuario`));
+  }
+}
+
+export function* getPlanSaga() {
+  try {
+    const requestURL = `http://54.219.179.76/plans`;
+    const response = yield call(request, requestURL, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${auth.getToken()}`,
+        Accept: 'application/json',
+      },
+    });
+    if (response) {
+      yield put({
+        type: constants.GET_PLANS_SUCCESS,
+        response,
+      });
+    }
+  } catch (error) {
+    yield put({
+      type: constants.GET_PLANS_FAILED,
+      error,
+    });
   }
 }

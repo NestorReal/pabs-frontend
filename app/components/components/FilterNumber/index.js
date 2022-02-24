@@ -26,9 +26,9 @@ const FilterNumberStyle = styled.div`
 function FilterNumber({ onChange }) {
   return (
     <FilterNumberStyle>
-      Mostrar
+      {/* Mostrar
       <input type="number" defaultValue="10" onChange={onChange} />
-      Registros
+      Registros */}
     </FilterNumberStyle>
   );
 }
