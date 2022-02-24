@@ -32,3 +32,9 @@ export function planAction(plan) {
     plan,
   };
 }
+
+export function getPlan() {
+  return {
+    type: constants.GET_PLANS_INIT,
+  };
+}

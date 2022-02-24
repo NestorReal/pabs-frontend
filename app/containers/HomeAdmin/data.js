@@ -1,6 +1,6 @@
 export const headerPlan = ['Nombres(s)', 'Precio', 'Descripción'];
 
-export const keyPlan = ['name', 'cost', 'features[0].description'];
+export const keyPlan = ['name', 'cost', 'features'];
 
 export const headerConsultarContrato = [
   'Contrato',
@@ -10,7 +10,6 @@ export const headerConsultarContrato = [
   'Teléfono',
   'Dirección',
   'Método de pago',
-  'Edad',
   'Fecha de contratación',
 ];
 
@@ -34,6 +33,34 @@ export const headerPago = [
   'Dirección',
   'Edad',
   'Fecha',
+];
+
+export const headerPagoProspecto = [
+  'No. seguimineto',
+  'Nombre',
+  'Appellido Paterno',
+  'Apellido Materno',
+  'Email',
+  'Teléfono',
+  'Ciudad',
+  'Calle',
+  'Número exterior',
+  'Número interior',
+  'Fecha de nacimiento',
+];
+
+export const keyPagoProspectos = [
+  '_id',
+  'name',
+  'father_lastname',
+  'mothers_lastname',
+  'email',
+  'phone_number',
+  'city',
+  'street',
+  'ext_number',
+  'int_number',
+  'birthname',
 ];
 
 export const headerAdminUser = ['Nombre(s)', 'Rol', 'Correo', 'teléfono'];

@@ -30,7 +30,6 @@ export function Home() {
   const hidden = () => {
     modal.current.style.display = 'none';
   };
-  console.log(auth);
   return (
     <Container>
       <div ref={modal} className="containerModal" style={{ display: 'none' }}>

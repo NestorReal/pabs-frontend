@@ -10,6 +10,7 @@ export const initialState = {
   step: 1,
   plan: {},
   payers: {},
+  plans: [],
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -26,6 +27,9 @@ const planReducer = (state = initialState, action) =>
         break;
       case constants.PAYERS_SUCCEED:
         draft.payers = action.response;
+        break;
+      case constants.GET_PLANS_SUCCESS:
+        draft.plans = action.response;
         break;
     }
   });
