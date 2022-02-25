@@ -146,3 +146,9 @@ export function deleteContract(id) {
     id,
   };
 }
+
+export function getTransactions() {
+  return {
+    type: constants.GET_TRANSACTIONS_INIT,
+  };
+}

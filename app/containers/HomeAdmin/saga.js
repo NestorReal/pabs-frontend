@@ -10,7 +10,7 @@ import * as constants from './constants';
 
 // Individual exports for testing
 export default function* defaultSaga() {
-  yield takeLatest(constants.GET_USERS_INIT, getPlanSaga);
+  yield takeLatest(constants.GET_PLANS_INIT, getPlanSaga);
   yield takeLatest(constants.GET_USERS_INIT, getUsersSaga);
   yield takeLatest(constants.GET_USER_INIT, getUserSaga);
   yield takeLatest(constants.DELETE_USER_INIT, deleteUserSaga);
@@ -30,6 +30,7 @@ export default function* defaultSaga() {
   yield takeLatest(constants.CREATE_COMPANIES_INIT, createContractSaga);
   yield takeLatest(constants.GET_EDIT_COMPANIES_INIT, getEditContractSaga);
   yield takeLatest(constants.DELETE_COMPANIES_INIT, deleteContractSaga);
+  yield takeLatest(constants.GET_TRANSACTIONS_INIT, getTransactionsSaga);
 }
 
 export function* getCompaniesSaga() {
@@ -275,13 +276,16 @@ export function* deleteUserSaga(action) {
         Accept: 'application/json',
       },
     });
+    yield put(getUsers());
     if (response) {
+      yield put(getUsers());
       yield put({
         type: constants.DELETE_USER_SUCCESS,
         response,
       });
     }
   } catch (error) {
+    yield put(getUsers());
     yield put(addErrorMessage(`Error al borrar usuario`));
     yield put({
       type: constants.DELETE_USER_FAILED,
@@ -613,6 +617,30 @@ export function* deleteContractSaga(action) {
     yield put(addErrorMessage(`Error al borrar`));
     yield put({
       type: constants.DELETE_COMPANIES_FAILED,
+      error,
+    });
+  }
+}
+
+export function* getTransactionsSaga() {
+  try {
+    const requestURL = `http://54.219.179.76/payers/`;
+    const response = yield call(request, requestURL, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${auth.getToken()}`,
+        Accept: 'application/json',
+      },
+    });
+    if (response) {
+      yield put({
+        type: constants.GET_TRANSACTIONS_SUCCESS,
+        response,
+      });
+    }
+  } catch (error) {
+    yield put({
+      type: constants.GET_TRANSACTIONS_FAILED,
       error,
     });
   }

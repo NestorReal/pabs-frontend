@@ -37,6 +37,17 @@ function ReferenciaGenerada({
     }
   }
 
+  const search = dataArray => {
+    if (Object.keys(dataArray).length !== 0) {
+      return dataArray.filter(test =>
+        test.create_time !== undefined
+          ? test.create_time.includes(value)
+          : test,
+      );
+    }
+    return [];
+  };
+
   return (
     <Container>
       <FormAdd
@@ -63,7 +74,7 @@ function ReferenciaGenerada({
           height="324px"
           top="40%"
           tHeader={header}
-          data={data}
+          data={search(data)}
           keyData={keyData}
           actions={actions}
           FuncRemove={id => Fundelete(id)}

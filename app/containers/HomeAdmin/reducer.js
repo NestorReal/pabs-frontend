@@ -18,6 +18,7 @@ export const initialState = {
   features: [],
   editFeatures: {},
   editCompanies: {},
+  transactions: {},
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -64,6 +65,9 @@ const HomeAdminReducer = (state = initialState, action) =>
         break;
       case constants.CREATE_COMPANIES_SUCCESS:
         draft.editCompanies = {};
+        break;
+      case constants.GET_TRANSACTIONS_SUCCESS:
+        draft.transactions = action.response;
         break;
     }
   });

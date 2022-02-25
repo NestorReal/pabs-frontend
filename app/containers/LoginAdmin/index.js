@@ -5,7 +5,7 @@
  *
  */
 
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -20,74 +20,83 @@ import reducer from './reducer';
 import saga from './saga';
 import { Container } from './styles';
 import logo2 from '../../images/logo2.svg';
+import { login } from './actions';
+import Input from '../../components/components/Input';
+import Button from '../../components/components/Button';
 
-export function LoginAdmin() {
+export function LoginAdmin(props) {
   useInjectReducer({ key: 'loginAdmin', reducer });
   useInjectSaga({ key: 'loginAdmin', saga });
+  const [user, setUser] = useState({
+    email: '',
+    password: '',
+    pass: '',
+  });
   const [passShow, setPassShow] = useState(false);
-  const password = useRef(null);
   const show = () => {
-    if (password.current.type === 'password') {
-      password.current.type = 'text';
+    if (!passShow) {
       setPassShow(true);
     } else {
-      password.current.type = 'password';
       setPassShow(false);
     }
   };
-
   return (
     <div>
       <img
         src={logo2}
         className="logo"
         alt="logo"
-        height="66.7021255493164px"
-        width="110px"
-        style={{ position: 'absolute', left: '30px', top: '20px' }}
+        height="9.167%"
+        width="8.594%"
+        style={{ position: 'absolute', left: '2.344%', top: '2.778%' }}
       />
       <Container>
         <div className="formulario">
-          <div className="title">Iniciar sesión</div>
+          <div className="title">
+            <h1>Iniciar sesión</h1>
+          </div>
           <div>
-            <label className="label">Correo de usuario</label>
-            <div className="input" style={{ marginBottom: '21px' }}>
-              <input type="text" placeholder="ejemplo@ejemplo.com" />
-              <div className="icon">
-                <AiOutlineUser
-                  style={{ height: '25px', width: '25px', color: '#113255' }}
-                />
-              </div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <Input
+                label="Correo de usuario"
+                placeholder="ejemplo@ejemplo.com"
+                name="email"
+                onChange={event =>
+                  setUser({ ...user, email: event.target.value })
+                }
+              >
+                <AiOutlineUser />
+              </Input>
             </div>
-            <label className="label">Contraseña</label>
-            <div className="input">
-              <input ref={password} type="password" placeholder="Contraseña" />
-              <div className="icon">
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <Input
+                className={
+                  user.password !== '' && !passShow ? 'fontFontello' : 'Arial'
+                }
+                label="Contraseña"
+                placeholder="Contraseña"
+                type={passShow ? 'text' : 'password'}
+                name="password"
+                onChange={event =>
+                  setUser({ ...user, password: event.target.value })
+                }
+              >
                 <button type="button" onClick={show}>
-                  {passShow ? (
-                    <BsEye
-                      style={{
-                        height: '25px',
-                        width: '25px',
-                        color: '#113255',
-                      }}
-                    />
-                  ) : (
-                    <BsEyeSlash
-                      style={{
-                        height: '25px',
-                        width: '25px',
-                        color: '#113255',
-                      }}
-                    />
-                  )}
+                  {passShow ? <BsEye /> : <BsEyeSlash />}
                 </button>
-              </div>
+              </Input>
             </div>
             <div className="containerButton" style={{ marginTop: '69px' }}>
-              <button className="primary" type="button">
+              <Button
+                variant="primary"
+                onClick={() =>
+                  props.dispatch(
+                    login(user.email, user.password, props.history),
+                  )
+                }
+              >
                 Ingresar
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -99,6 +108,7 @@ export function LoginAdmin() {
 LoginAdmin.propTypes = {
   // eslint-disable-next-line react/no-unused-prop-types
   dispatch: PropTypes.func.isRequired,
+  history: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({

@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Container } from './styles';
 import Card from '../Card';
 
@@ -16,10 +16,24 @@ function TiposPlan(props) {
     // eslint-disable-next-line react/prop-types
     props.getStep(2);
   };
-
+  const colors = ['Red', 'Yellow', 'Blue'];
+  let dataPlan = [];
+  if (Object.keys(props.dataPlans).length !== 0) {
+    dataPlan = props.dataPlans.map((plan, id) => (
+      <Card
+        color={colors[id]}
+        title={`$ ${plan.cost} MNX`}
+        subTitle="Planes"
+        titleCard={plan.name}
+        text={plan.features.map(feature => feature.description)}
+        onClick={() => getTipoPlan({ name: plan.name, amount: plan.cost })}
+      />
+    ));
+  }
   return (
     <Container>
-      <Card
+      {dataPlan}
+      {/* <Card
         color="Red"
         title="$ 10,000 MNX"
         subTitle="Planes"
@@ -55,11 +69,13 @@ function TiposPlan(props) {
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         ]}
         onClick={() => getTipoPlan({ name: 'Premium', amount: '$ 10,000 MNX' })}
-      />
+      /> */}
     </Container>
   );
 }
 
-TiposPlan.propTypes = {};
+TiposPlan.propTypes = {
+  dataPlans: PropTypes.object,
+};
 
 export default TiposPlan;

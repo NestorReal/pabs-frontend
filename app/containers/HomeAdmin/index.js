@@ -7,6 +7,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import auth from 'utils/auth';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import Notifications from 'containers/Notifications';
@@ -28,9 +29,10 @@ import {
   keyPlan,
   headerConsultarContrato,
   keyConsultarContrato,
-  headerPago,
   headerAdminUser,
   keyAdminUser,
+  keyPagoProspectos,
+  headerPagoProspecto,
   // eslint-disable-next-line import/extensions
 } from './data.js';
 
@@ -55,6 +57,7 @@ import {
   createContract,
   getEditContract,
   deleteContract,
+  getTransactions,
 } from './actions';
 
 export function HomeAdmin(props) {
@@ -70,7 +73,21 @@ export function HomeAdmin(props) {
     props.dispatch(getContract());
     props.dispatch(getLeaflets());
     props.dispatch(getFeatures());
+    props.dispatch(getTransactions());
   }, []);
+
+  const deletePlan = idPlan => {
+    fetch(`http://54.219.179.76/plans/${idPlan}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${auth.getToken()}`,
+      },
+      method: 'DELETE',
+    })
+      .then(response => props.dispatch(getPlan()))
+      .then(() => props.dispatch(getPlan()))
+      .catch(error => console.log(error));
+  };
   const ContainerChildren = {
     Crear_plan: (
       <GenerarRecompensa
@@ -94,9 +111,17 @@ export function HomeAdmin(props) {
         textButton="Buscar"
         header={headerPlan}
         keyData={keyPlan}
-        data={props.HomeAdmin.plans}
+        data={props.HomeAdmin.plans.map(plan => ({
+          company: plan.company,
+          cost: plan.cost,
+          features: plan.features.map(planName => planName.description)[0],
+          name: plan.name,
+          // eslint-disable-next-line no-underscore-dangle
+          _id: plan._id,
+        }))}
+        filterNumber
         actions
-        Fundelete={() => {}}
+        Fundelete={id => deletePlan(id)}
         FuncEdit={id => {
           funcEditPlan(id);
         }}
@@ -117,9 +142,9 @@ export function HomeAdmin(props) {
         textForm="Selecciona rango de fechas"
         placeholder="21/10/2021 - 21/10/2021"
         textButton="Buscar"
-        header={headerPago}
-        keyData={keyConsultarContrato}
-        data={props.HomeAdmin.leaflets}
+        header={headerPagoProspecto}
+        keyData={keyPagoProspectos}
+        data={props.HomeAdmin.transactions}
       />
     ),
     Administrar_usuarios: (
