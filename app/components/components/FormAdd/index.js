@@ -12,8 +12,9 @@ import Input from '../Input';
 import Button from '../Button';
 
 const FormAddStyle = styled.div`
-  width: 604px;
-  height: 133px;
+  position: fixed;
+  width: 47.2%;
+  height: 18.5%;
   background: #ffffff;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
@@ -21,9 +22,20 @@ const FormAddStyle = styled.div`
   .buscar {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     width: 86.5%;
     height: 38%;
+  }
+  @media only screen and (max-width: 700px) {
+    width: 90%;
+    padding: 0 5px;
+    .buscar {
+      width: 100%;
+    }
+  }
+  @media only screen and (min-width: 700px) and (max-width: 1000px) {
+    .buscar {
+      width: 93%;
+    }
   }
 `;
 
@@ -43,9 +55,11 @@ function FormAdd({ text, placeholder, onChange, onClick, textButton, value }) {
             <VscSearch />
           </i>
         </Input>
-        <Button variant="primary" onClick={onClick} size="medium">
-          {textButton}
-        </Button>
+        <div style={{ marginTop: '2%' }}>
+          <Button variant="primary" onClick={onClick} size="medium">
+            {textButton}
+          </Button>
+        </div>
       </div>
     </FormAddStyle>
   );

@@ -69,6 +69,43 @@ export const Container = styled.div`
     height: 36px;
     border-radius: 5px;
   }
+  @media only screen and (max-width: 499px) {
+    min-width: 300px;
+    .logo {
+      height: 7.167%;
+      width: 15.597%;
+    }
+    .title h1 {
+      font-size: 18px;
+    }
+    h5 {
+      font-size: 16px;
+    }
+    .titulo2 h2 {
+      font-size: 17px;
+    }
+    label {
+      font-size: 10px;
+    }
+    .paper {
+      height: 30.5%;
+    }
+  }
+  @media only screen and (min-width: 500px) and (max-width: 959px) {
+    min-width: 300px;
+    .title h1 {
+      font-size: 23px;
+    }
+    .titulo2 h2 {
+      font-size: 20px;
+    }
+    label {
+      font-size: 10px;
+    }
+    .paper {
+      height: 45.5%;
+    }
+  }
   @media only screen and (min-width: 960px) and (max-width: 1279px) {
     min-width: 945px;
     min-height: 540px;

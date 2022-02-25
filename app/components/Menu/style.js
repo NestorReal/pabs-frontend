@@ -7,7 +7,8 @@ const MenuStyle = styled.div`
   height: 100%;
   min-height: 720px;
   width: 12.813%;
-  .bienvenida {
+  .bienvenida,
+  .hidden {
     display: none;
   }
   .logo {
@@ -58,6 +59,35 @@ const MenuStyle = styled.div`
         color: #113255;
         p {
           border-right: solid 2px #00539c;
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: 950px) {
+    width: 150px;
+    left: -150px;
+    transition: 1s;
+    .bienvenida {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+    .hidden {
+      width: 100%;
+      display: block;
+      position: absolute;
+      left: 30%;
+      z-index: 100;
+      button {
+        float: right;
+        border: none;
+        background: transparent;
+      }
+    }
+    .menu {
+      button {
+        i {
+          margin-right: 7px;
         }
       }
     }

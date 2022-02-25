@@ -14,7 +14,7 @@ function UserAdmin({ data, header, deleteUser, datakey, FuncEdit }) {
   return (
     <Container>
       <div className="subtext">
-        A continuación se muestra una lista de los usuarios
+        <p>A continuación se muestra una lista de los usuarios</p>
       </div>
       <Table
         tHeader={header}

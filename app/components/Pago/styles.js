@@ -59,6 +59,22 @@ export const Container = styled.div`
   .buttons {
     margin-top: 14px;
   }
+  @media only screen and (max-width: 959px) {
+    min-width: 300px;
+    padding: 0px;
+    padding-left: 5%;
+    .referencia {
+      padding: 20px 10px 20px 10px;
+      margin-bottom: 50px;
+    }
+    .referencia,
+    .containerPlans {
+      width: 90%;
+    }
+    .res {
+      display: block;
+    }
+  }
   @media only screen and (min-width: 960px) and (max-width: 1279px) {
     min-width: 945px;
     min-height: 433px;
