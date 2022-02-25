@@ -76,7 +76,7 @@ function GenerarRecompensa({ getCompanies, getFeatures, onClick, data }) {
               ) : null}
             </div>
           </div>
-          <div className="input" style={{ marginTop: '32px' }}>
+          <div className="input">
             <label htmlFor="cost">Precio en pesos</label>
             <div>
               <input
@@ -92,7 +92,7 @@ function GenerarRecompensa({ getCompanies, getFeatures, onClick, data }) {
               ) : null}
             </div>
           </div>
-          <div className="select" style={{ marginTop: '30px' }}>
+          <div className="select">
             <label htmlFor="companyId">Selecciona la descripcion</label>
             <br />
             <select
@@ -113,11 +113,15 @@ function GenerarRecompensa({ getCompanies, getFeatures, onClick, data }) {
               <p className="error">{formik.errors.features}</p>
             ) : null}
           </div>
-          <div className="containerButton">
-            <Button type="submit" variant="succes">
-              Enviar
-            </Button>
-            <Button variant="cancel">Limpiar</Button>
+          <div className="center">
+            <div className="containerButton">
+              <Button type="submit" size="medium" variant="succes">
+                Enviar
+              </Button>
+              <Button variant="cancel" size="medium">
+                Limpiar
+              </Button>
+            </div>
           </div>
         </form>
       </div>

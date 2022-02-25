@@ -15,7 +15,7 @@ import Button from '../components/Button';
 function Pago({ onClickPaypal, onClickNetPay, dataPlan, dataPaye }) {
   return (
     <Container>
-      <div className="spaceBetween">
+      <div className="spaceBetween res">
         <div className="referencia">
           <label>
             {dataPaye.name} {dataPaye.father_lastname}{' '}

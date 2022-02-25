@@ -15,6 +15,7 @@ const ChildrenStyle = styled.div`
   height: 100%;
   left: 12.5%;
   top: 0px;
+  transition: 1s;
   .bodyChildren {
     position: absolute;
     top: 16.5%;
@@ -31,12 +32,10 @@ const ChildrenStyle = styled.div`
       position: absolute;
       top: 14%;
       left: 4%;
-      font-family: Arial;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 48px;
-      line-height: 55px;
       color: #005c9e;
+      h1 {
+        margin: 0px;
+      }
     }
     .sesion {
       width: 41%;
@@ -48,12 +47,13 @@ const ChildrenStyle = styled.div`
       padding-top: 20px;
       padding-right: 30px;
       .text {
-        font-family: Arial;
-        font-style: normal;
         font-weight: bold;
-        font-size: 16px;
         letter-spacing: 0.375px;
         color: #113255;
+        margin-top: 3%;
+        p {
+          margin: 0px;
+        }
       }
       .subtext {
         font-family: Arial;
@@ -82,21 +82,36 @@ const ChildrenStyle = styled.div`
       }
     }
   }
+  @media only screen and (max-width: 950px) {
+    left: 0px;
+    width: 100%;
+    .header {
+      .sesion {
+        display: none;
+      }
+    }
+  }
 `;
 
-function Children({ title, userName, typeUser, sesion, children }) {
+function Children({ title, userName, typeUser, sesion, children, style }) {
   return (
-    <ChildrenStyle>
+    <ChildrenStyle style={style}>
       <div className="header">
-        <div className="title">{title}</div>
+        <div className="title">
+          <h1>{title}</h1>
+        </div>
         <div className="sesion">
           <div className="text">
-            Bienvenido {userName}
-            <div className="subtext">Tipo de usuario: {typeUser}</div>
+            <p>Bienvenido {userName}</p>
+            <div className="subtext">
+              <p>Tipo de usuario: {typeUser}</p>
+            </div>
           </div>
           <button type="button" className="sesionButton" onClick={sesion}>
-            Cerrar Sesión
-            <ImExit />
+            <p>Cerrar Sesión</p>
+            <p>
+              <ImExit />
+            </p>
           </button>
         </div>
       </div>
@@ -111,6 +126,7 @@ Children.propTypes = {
   typeUser: PropTypes.string,
   sesion: PropTypes.func,
   children: PropTypes.element,
+  style: PropTypes.object,
 };
 
 export default Children;

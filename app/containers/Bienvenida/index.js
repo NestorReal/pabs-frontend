@@ -73,7 +73,7 @@ export function Bienvenida(props) {
         </div>
         <Button
           type="button"
-          primary
+          variant="primary"
           // eslint-disable-next-line react/prop-types
           onClick={() => props.history.push('/auth')}
         >

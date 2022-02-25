@@ -60,6 +60,7 @@ import {
 export function HomeAdmin(props) {
   useInjectReducer({ key: 'HomeAdmin', reducer });
   useInjectSaga({ key: 'HomeAdmin', saga });
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     props.dispatch(getUsers());
@@ -94,7 +95,6 @@ export function HomeAdmin(props) {
         header={headerPlan}
         keyData={keyPlan}
         data={props.HomeAdmin.plans}
-        filterNumber
         actions
         Fundelete={() => {}}
         FuncEdit={id => {
@@ -110,7 +110,6 @@ export function HomeAdmin(props) {
         header={headerConsultarContrato}
         keyData={keyConsultarContrato}
         data={props.HomeAdmin.contract}
-        filterNumber
       />
     ),
     Prospectos: (
@@ -121,7 +120,6 @@ export function HomeAdmin(props) {
         header={headerPago}
         keyData={keyConsultarContrato}
         data={props.HomeAdmin.leaflets}
-        filterNumber
       />
     ),
     Administrar_usuarios: (
@@ -329,8 +327,15 @@ export function HomeAdmin(props) {
   return (
     <Container>
       <Notifications />
-      <Menu userName={props.HomeAdmin.user.full_name} buttons={buttons} />
+      <Menu
+        userName={props.HomeAdmin.user.full_name}
+        buttons={buttons}
+        onClick={() => setShow(!show)}
+        show={show}
+        sesion={() => props.history.push('/auth-admin')}
+      />
       <Children
+        style={show ? { left: '150px' } : null}
         title={option.replace('_', ' ')}
         userName={
           Object.keys(props.HomeAdmin.user).length !== 0 &&

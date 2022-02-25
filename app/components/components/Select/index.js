@@ -1,14 +1,13 @@
 /**
  *
- * Input
+ * select
  *
  */
 
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import './style.css';
-const StyleInput = styled.div`
+const Styleselect = styled.div`
   width: ${props => props.width};
   height: ${props => props.height};
   .fontFontello {
@@ -17,7 +16,7 @@ const StyleInput = styled.div`
   label {
     color: #113255;
   }
-  .input {
+  .select {
     width: 100%;
     height: 55px;
     border: 1px solid #113255;
@@ -38,12 +37,16 @@ const StyleInput = styled.div`
       font-size: 25px;
     }
   }
-  input {
+  select {
     height: 95%;
-    width: 90%;
+    width: 95%;
     border-radius: 10px;
     border: none;
     padding: 10px;
+    background: transparent;
+  }
+  select:focus {
+    outline: none;
   }
   @media only screen and (max-width: 700) {
     height: 65px;
@@ -51,12 +54,12 @@ const StyleInput = styled.div`
   @media only screen and (min-width: 700px) and (max-width: 959px) {
     width: 264px;
     height: 75px;
-    .input {
+    .select {
       height: 40px;
       border: 1px solid #113255;
       border-radius: 5px;
     }
-    input {
+    select {
       border-radius: 15px;
     }
     .icon {
@@ -69,7 +72,7 @@ const StyleInput = styled.div`
   @media only screen and (min-width: 960px) and (max-width: 1279px) {
     width: 270px;
     height: 73px;
-    .input {
+    .select {
       height: 42px;
     }
     .icon {
@@ -82,12 +85,12 @@ const StyleInput = styled.div`
   @media only screen and (min-width: 1920px) and (max-width: 2559px) {
     width: 545px;
     height: 146px;
-    .input {
+    .select {
       height: 87px;
       border: 2px solid #113255;
       border-radius: 15px;
     }
-    input {
+    select {
       border-radius: 15px;
     }
     .icon {
@@ -100,12 +103,12 @@ const StyleInput = styled.div`
   @media only screen and (min-width: 2560px) and (max-width: 3839px) {
     width: 720px;
     height: 183px;
-    .input {
+    .select {
       height: 110px;
       border: 3px solid #113255;
       border-radius: 20px;
     }
-    input {
+    select {
       border-radius: 20px;
       padding-left: 20px;
     }
@@ -119,12 +122,12 @@ const StyleInput = styled.div`
   @media only screen and (min-width: 3840px) and (max-width: 7679px) {
     width: 1075px;
     height: 278px;
-    .input {
+    .select {
       height: 160px;
       border: 5px solid #113255;
       border-radius: 30px;
     }
-    input {
+    select {
       border-radius: 30px;
       padding-left: 25px;
     }
@@ -138,12 +141,12 @@ const StyleInput = styled.div`
   @media only screen and (min-width: 7680px) {
     width: 2146px;
     height: 575px;
-    .input {
+    .select {
       height: 330px;
       border: 10px solid #113255;
       border-radius: 80px;
     }
-    input {
+    select {
       border-radius: 80px;
       padding-left: 50px;
     }
@@ -156,44 +159,25 @@ const StyleInput = styled.div`
   }
 `;
 
-function Input({
-  label,
-  name,
-  placeholder,
-  children,
-  value,
-  onChange,
-  type = 'text',
-  className,
-}) {
+function Select({ label, name, value, onChange, children }) {
   return (
-    <StyleInput>
+    <Styleselect>
       <label>{label}</label>
-      <div className="input">
-        <input
-          type={type}
-          placeholder={placeholder}
-          value={value}
-          onChange={onChange}
-          className={className}
-          name={name}
-          id={name}
-        />
-        <div className="icon">{children}</div>
+      <div className="select">
+        <select value={value} onChange={onChange} name={name} id={name}>
+          {children}
+        </select>
       </div>
-    </StyleInput>
+    </Styleselect>
   );
 }
 
-Input.propTypes = {
+Select.propTypes = {
   label: PropTypes.string,
-  placeholder: PropTypes.string,
-  children: PropTypes.element,
   value: PropTypes.string,
   onChange: PropTypes.func,
-  type: PropTypes.string,
-  className: PropTypes.string,
   name: PropTypes.string,
+  children: PropTypes.element,
 };
 
-export default Input;
+export default Select;

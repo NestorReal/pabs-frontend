@@ -16,6 +16,7 @@ import * as Yup from 'yup';
 import { Container } from './style';
 import Input from '../components/Input';
 import Button from '../components/Button';
+import Select from '../components/Select';
 
 function CreateUser({ onClick, data }) {
   const [passShow, setPassShow] = useState(false);
@@ -55,7 +56,7 @@ function CreateUser({ onClick, data }) {
         Ingrese a información del usuario a continuación
       </div>
       <form onSubmit={formik.handleSubmit} className="containerFormulario">
-        <div className="spaceBetween">
+        <div className="containerInput">
           <div className="left">
             <Input
               label="Nombre:"
@@ -83,18 +84,19 @@ function CreateUser({ onClick, data }) {
             ) : null}
           </div>
           <div className="rigth">
-            <select
+            <Select
               name="roles"
               id="roles"
               onChange={formik.handleChange}
               value={formik.values.roles}
+              label="Rol"
             >
               <option>Seleccionar</option>
               <option value="finances">Finances</option>
               <option value="Voluptate">Voluptate</option>
               <option value="ventas">ventas</option>
               <option value="administrador">Administrador</option>
-            </select>
+            </Select>
             {formik.touched.roles && formik.errors.roles ? (
               <p className="error">{formik.errors.roles}</p>
             ) : null}

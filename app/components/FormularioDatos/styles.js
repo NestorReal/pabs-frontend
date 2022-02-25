@@ -17,4 +17,10 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
   }
+  @media only screen and (max-width: 775px) {
+    .responsable,
+    .titular {
+      display: block;
+    }
+  }
 `;

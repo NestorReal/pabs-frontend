@@ -51,7 +51,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: Arial !important;
   }
 
-  td, th, label, input {
+  td, th, label, input, option, select {
     font-family: Arial;
     font-style: normal;
     font-weight: normal;
@@ -88,14 +88,14 @@ const GlobalStyle = createGlobalStyle`
     line-height: normal;
     letter-spacing: 0.375px;
   }
-  @media only screen and (min-width: 700px) and (max-width: 900px) {
+  /* @media only screen and (min-width: 700px) and (max-width: 900px) {
     h1 {
       font-size: 66px !important;
     }
     h2 {
       font-size: 64px !important;
     }
-    td, th, label, input {
+    td, th, label, input, option, select {
       font-size: 30px !important;
     }
     p {
@@ -104,7 +104,7 @@ const GlobalStyle = createGlobalStyle`
     h5 {
       font-size: 35px !important;
     }
-  }
+  } */
   @media only screen and (max-width: 900px) {
     h1 {
       font-size: 30px;
@@ -112,7 +112,7 @@ const GlobalStyle = createGlobalStyle`
     h2 {
       font-size: 28px;
     }
-    td, th, label, input {
+    td, th, label, input, option, select {
       font-size: 15px;
     }
     p {
@@ -130,7 +130,7 @@ const GlobalStyle = createGlobalStyle`
     h2 {
       font-size: 30px;
     }
-    td, th, label, input {
+    td, th, label, input, option, select {
       font-size: 14px;
     }
     p {
@@ -147,7 +147,7 @@ const GlobalStyle = createGlobalStyle`
     h2 {
       font-size: 60px;
     }
-    td, th, label, input {
+    td, th, label, input, option, select {
       font-size: 27px;
     }
     p {
@@ -164,7 +164,7 @@ const GlobalStyle = createGlobalStyle`
     h2 {
       font-size: 80px;
     }
-    td, th, label, input {
+    td, th, label, input, option, select {
       font-size: 38px;
     }
     p {
@@ -181,7 +181,7 @@ const GlobalStyle = createGlobalStyle`
     h2 {
       font-size: 115px;
     }
-    td, th, label, input {
+    td, th, label, input, option, select {
       font-size: 60px;
     }
     p {
@@ -198,7 +198,7 @@ const GlobalStyle = createGlobalStyle`
     h2 {
       font-size: 235px;
     }
-    td, th, label, input {
+    td, th, label, input, option, select {
       font-size: 120px;
     }
     p {
@@ -208,6 +208,30 @@ const GlobalStyle = createGlobalStyle`
       font-size: 200px;
     }
   }
+  /*@media only screen  and (min-width: 960px) and (max-width: 1279px) and (min-height : 540px) and (max-height: 719px) {
+    min-height: 540px;
+    min-width: 960px;
+  }
+  @media only screen and (min-width: 1280px) and (max-width: 1919px) and (min-height: 720px) and (max-height: 1079px) {
+    min-height: 720px;
+    min-width: 1280px;
+  }
+  @media only screen and (min-width: 1920px) and (max-width: 2559px) and (min-height: 1080px) and (max-height: 1439px) {
+    min-height: 1080px;
+    min-width: 1920px;
+  }
+  @media only screen and (min-width: 2560px) and (max-width: 3839px) and (min-height: 1440px) and (max-height: 2159px) {
+    min-height: 1440px;
+    min-width: 2560px;
+  }
+  @media only screen and (min-width: 3840px) and (max-width: 7679px) and (min-height: 2160px) and (max-height: 4319px) {
+    min-height: 2160px;
+    min-width: 3840px;
+  }
+  @media only screen and (min-width: 7680px) and (min-height: 4320px) {
+    min-height: 4320px;
+    min-width: 7680px;
+  }*/
 `;
 
 export default GlobalStyle;
