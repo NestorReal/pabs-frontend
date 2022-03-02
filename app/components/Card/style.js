@@ -200,7 +200,7 @@ const CardStyle = styled.div`
     }
   }
   @media only screen and (min-width: 1920px) and (max-width: 2559px) {
-    width: 390px;
+    width: 370px;
     .triangulo {
       width: 0;
       height: 0;
