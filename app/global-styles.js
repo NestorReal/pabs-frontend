@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     width: 100%;
   }
-  button {
+  button, button label {
     cursor: pointer;
   }
   .error {
