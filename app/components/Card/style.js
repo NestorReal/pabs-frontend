@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const CardStyle = styled.div`
-  width: 239px;
+  width: calc(239px + 5%);
   .triangulo {
     width: 0;
     height: 0;
@@ -41,7 +41,7 @@ const CardStyle = styled.div`
     color: #00539c;
   }
   .tag {
-    width: 126px;
+    width: 50%;
     height: 104px;
     border-radius: 0px 15px 15px 15px;
     float: right;
@@ -74,7 +74,7 @@ const CardStyle = styled.div`
     background: #e8f3fd;
   }
   .card {
-    width: 239px;
+    width: 100%;
     height: 300px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.08);
     border-radius: 15px;
@@ -161,7 +161,7 @@ const CardStyle = styled.div`
     }
   }
   @media only screen and (min-width: 960px) and (max-width: 1279px) {
-    width: 202px;
+    width: calc(202px + 5%);
     .triangulo {
       width: 0;
       height: 0;
@@ -183,19 +183,19 @@ const CardStyle = styled.div`
       border-top: 7px solid #113255;
     }
     .tag {
-      width: 110px;
+      width: 50%;
       height: 75px;
       border-radius: 0px 15px 15px 15px;
       float: right;
       padding-top: 22px;
     }
     .card {
-      width: 190px;
+      width: 100%;
       height: 220px;
       box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.08);
       border-radius: 15px;
       margin-top: 14px;
-      padding: 10px 15px 15px 15px;
+      padding: 10px 15px 15px 15px;      
       .titleCard {
         height: 48px;
       }
@@ -229,7 +229,7 @@ const CardStyle = styled.div`
     }
   }
   @media only screen and (min-width: 1920px) and (max-width: 2559px) {
-    width: 370px;
+    width: calc(300px + 5%);
     .triangulo {
       width: 0;
       height: 0;
@@ -251,14 +251,14 @@ const CardStyle = styled.div`
       border-top: 21px solid #113255;
     }
     .tag {
-      width: 206px;
+      width: 54%;
       height: 150px;
       border-radius: 0px 15px 15px 15px;
       float: right;
       padding-top: 60px;
     }
     .card {
-      width: 360px;
+      width: 100%;
       height: 440px;
       box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.08);
       border-radius: 15px;
@@ -303,7 +303,7 @@ const CardStyle = styled.div`
     }
   }
   @media only screen and (min-width: 2560px) and (max-width: 3839px) {
-    width: 520px;
+    width: calc(410px + 5%);
     .triangulo {
       border-left: 31px solid transparent;
       border-bottom: 31px solid transparent;
@@ -321,14 +321,14 @@ const CardStyle = styled.div`
       border-top: 31px solid #113255;
     }
     .tag {
-      width: 280px;
+      width: 50%;
       height: 225px;
       border-radius: 0px 25px 25px 25px;
       float: right;
       padding-top: 90px;
     }
     .card {
-      width: 480px;
+      width: 100%;
       height: 610px;
       box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.08);
       border-radius: 30px;
@@ -364,7 +364,7 @@ const CardStyle = styled.div`
     }
   }
   @media only screen and (min-width: 3840px) and (max-width: 7679px) {
-    width: 800px;
+    width: calc(700px + 5%);
     .triangulo {
       border-left: 41px solid transparent;
       border-bottom: 41px solid transparent;
@@ -382,14 +382,14 @@ const CardStyle = styled.div`
       border-top: 41px solid #113255;
     }
     .tag {
-      width: 440px;
+      width: 50%;
       height: 310px;
       border-radius: 0px 25px 25px 25px;
       float: right;
       padding-top: 130px;
     }
     .card {
-      width: 750px;
+      width: 100%;
       height: 950px;
       box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.08);
       border-radius: 30px;
@@ -443,19 +443,19 @@ const CardStyle = styled.div`
       border-top: 80px solid #113255;
     }
     .tag {
-      width: 855px;
+      width: 50%;
       height: 570px;
       border-radius: 0px 80px 80px 80px;
       float: right;
       padding-top: 240px;
     }
     .card {
-      width: 1520px;
+      width: 100%;
       height: 1740px;
       box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.08);
       border-radius: 100px;
       margin-top: 160px;
-      padding: 100px 22px 15px 80px;
+      padding: 100px 22px 15px 120px;
       .titleCard {
         height: 140px;
       }
@@ -471,6 +471,7 @@ const CardStyle = styled.div`
         height: 200px;
       }
       .containerButton {
+        bottom: 80px;
         width: 730px;
         margin-top: 70px;
         button {
