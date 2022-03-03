@@ -12,9 +12,7 @@ import { compose } from 'redux';
 import Notifications from 'containers/Notifications';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import TiposPlan from 'components/TiposPlan/';
-import FormularioDatos from 'components/FormularioDatos/';
-import Pago from 'components/Pago';
+import OptionsPlan from '../../components/OptionsPlan';
 import makeSelectPlan from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -32,59 +30,7 @@ export function Plan(props) {
   useEffect(() => {
     props.dispatch(getPlan());
   }, []);
-  console.log(props.plan.plans);
 
-  const ContainerFormulario = valueData => {
-    const getStep = step => {
-      // eslint-disable-next-line react/prop-types
-      valueData.getStep(step);
-    };
-
-    const getTipoPlan = value => {
-      // eslint-disable-next-line react/prop-types
-      valueData.getTipoPlan(value);
-    };
-
-    const getDataPayer = data => {
-      // eslint-disable-next-line react/prop-types
-      valueData.getDataPayer(data);
-    };
-
-    // eslint-disable-next-line react/prop-types
-    switch (valueData.menu) {
-      case 1:
-        return (
-          <TiposPlan
-            getStep={step => getStep(step)}
-            getTipoPlan={value => getTipoPlan(value)}
-            top
-            dataPlans={props.plan.plans}
-          />
-        );
-      case 2:
-        return <FormularioDatos getData={data => getDataPayer(data)} />;
-      case 3:
-        return (
-          <Pago
-            // eslint-disable-next-line react/prop-types
-            onClickPaypal={props.onClickPaypal}
-            // eslint-disable-next-line react/prop-types
-            onClickNetPay={props.onClickNetPay}
-            // eslint-disable-next-line react/prop-types
-            dataPlan={props.dataPlan}
-            // eslint-disable-next-line react/prop-types
-            dataPaye={props.dataPaye}
-          />
-        );
-      default:
-        return (
-          <TiposPlan
-            getStep={step => getStep(step)}
-            getTipoPlan={value => getTipoPlan(value)}
-          />
-        );
-    }
-  };
   const [modal, setModal] = useState(false);
   const show = () => {
     setModal(true);
@@ -126,7 +72,7 @@ export function Plan(props) {
           option={props.plan.step}
         />
         <div className="containerFormulario">
-          <ContainerFormulario
+          <OptionsPlan
             menu={props.plan.step}
             getStep={step => props.dispatch(stepAction(step))}
             // eslint-disable-next-line no-console
@@ -136,7 +82,7 @@ export function Plan(props) {
             onClickNetPay={show}
             getDataPayer={data => props.dispatch(payersAction(data))}
             dataPaye={props.plan.payers}
-            dataPlan={props.plan.plan}
+            dataPlan={props.plan.plans}
           />
         </div>
       </ContainerForm>
