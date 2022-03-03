@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     width: 100%;
   }
-  button {
+  button, button label {
     cursor: pointer;
   }
   .error {
@@ -165,7 +165,7 @@ const GlobalStyle = createGlobalStyle`
       font-size: 80px;
     }
     td, th, label, input, option, select {
-      font-size: 38px;
+      font-size: 35px;
     }
     p {
       font-size: 30px;
@@ -182,7 +182,7 @@ const GlobalStyle = createGlobalStyle`
       font-size: 115px;
     }
     td, th, label, input, option, select {
-      font-size: 60px;
+      font-size: 55px;
     }
     p {
       font-size: 45px;
@@ -199,7 +199,7 @@ const GlobalStyle = createGlobalStyle`
       font-size: 235px;
     }
     td, th, label, input, option, select {
-      font-size: 120px;
+      font-size: 100px;
     }
     p {
       font-size: 90px;

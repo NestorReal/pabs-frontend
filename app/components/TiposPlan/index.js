@@ -31,7 +31,7 @@ function TiposPlan(props) {
     ));
   }
   return (
-    <Container>
+    <Container planesLength={dataPlan.length}>
       {dataPlan}
       {/* <Card
         color="Red"
