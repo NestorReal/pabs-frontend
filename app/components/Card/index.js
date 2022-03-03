@@ -48,17 +48,15 @@ function Card({
             </div>
           ))}
         </div>
-        <div className="center">
-          <div className="containerButton">
-            <button type="button" className="primary" onClick={onClickDetail}>
-              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-              <label>Detalles</label>
-            </button>
-            <button type="button" className="secondary" onClick={onClick}>
-              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-              <label>Comprar</label>
-            </button>
-          </div>
+        <div className="containerButton">
+          <button type="button" className="primary" onClick={onClickDetail}>
+            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+            <label>Detalles</label>
+          </button>
+          <button type="button" className="secondary" onClick={onClick}>
+            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+            <label>Comprar</label>
+          </button>
         </div>
       </div>
     </CardStyle>

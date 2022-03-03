@@ -46,6 +46,8 @@ const CardStyle = styled.div`
     border-radius: 0px 15px 15px 15px;
     float: right;
     padding-top: 40px;
+    position: relative;
+    z-index: 1;
     .title {
       width: 100%;
       color: #ffffff;
@@ -78,6 +80,8 @@ const CardStyle = styled.div`
     border-radius: 15px;
     margin-top: 22px;
     padding: 21px 22px 15px 15px;
+    position: relative;
+
     .titleCard {
       height: 48px;
       label {
@@ -119,7 +123,12 @@ const CardStyle = styled.div`
     }
     .containerButton {
       width: 110px;
-      margin-top: 10px;
+      margin: 10px auto 0 auto;
+      bottom: 25px;
+      left: 0;
+      position: absolute;
+      right: 0;
+
       button {
         height: 36px;
         width: 110px;
@@ -144,6 +153,12 @@ const CardStyle = styled.div`
     display: flow-root;
     margin-bottom: 20px;
     width: 255px;
+
+    .card{
+      .containerButton{
+        bottom: 15px;
+      }
+    }
   }
   @media only screen and (min-width: 960px) and (max-width: 1279px) {
     width: 202px;
@@ -198,6 +213,7 @@ const CardStyle = styled.div`
         font-size: 22px;
       }
       .containerButton {
+        bottom: 20px;
         width: 80px;
         margin-top: 10px;
         button {
@@ -262,6 +278,7 @@ const CardStyle = styled.div`
         height: 50px;
       }
       .containerButton {
+        bottom: 30px;
         width: 180px;
         margin-top: 20px;
         button {
@@ -331,6 +348,7 @@ const CardStyle = styled.div`
         height: 70px;
       }
       .containerButton {
+        bottom: 40px;
         width: 220px;
         margin-top: 40px;
         button {
@@ -391,6 +409,7 @@ const CardStyle = styled.div`
         height: 88px;
       }
       .containerButton {
+        bottom: 50px;
         width: 355px;
         margin-top: 40px;
         button {
