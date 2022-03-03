@@ -36,7 +36,7 @@ function Card({
         </div>
         <div className="containerText">
           {text.map(item => (
-            <div key={uuidv4()} className="center spacing">
+            <div key={uuidv4()} className="details-item spacing">
               <div className="icon">
                 <h5>
                   <CgLoadbarDoc />

@@ -87,6 +87,19 @@ const CardStyle = styled.div`
     .containerText {
       margin-top: 20px;
     }
+
+    .details-item{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      .text{
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    }
     .spacing {
       margin-bottom: 10px;
     }
