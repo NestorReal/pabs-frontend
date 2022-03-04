@@ -56,7 +56,7 @@ function FormularioDatos(props) {
       </div>
       <form onSubmit={formik.handleSubmit}>
         <div className="responsable">
-          <div className="left">
+          <div className="left input-group">
             <Input
               label="Nombre(s) del reponsable de pago:"
               placeholder="Nombre de ejemplo"
@@ -152,7 +152,7 @@ function FormularioDatos(props) {
               <Check label="Acepto los términos y condiciones" />
             </div>
           </div>
-          <div className="right">
+          <div className="right input-group">
             <Input
               label="Primer apellido:"
               placeholder="Apellido de ejemplo"
@@ -244,7 +244,7 @@ function FormularioDatos(props) {
           <h2>Datos del titular del contrato</h2>
         </div>
         <div className="titular">
-          <div className="left">
+          <div className="left input-group">
             <Input
               label="Nombre(s) del reponsable de pago:"
               placeholder="Nombre de ejemplo"
@@ -282,7 +282,7 @@ function FormularioDatos(props) {
               <p className="error">{formik.errors.phone_number}</p>
             ) : null}
           </div>
-          <div className="right">
+          <div className="right input-group">
             <Input
               label="Primer apellido:"
               placeholder="Apellido de ejemplo"

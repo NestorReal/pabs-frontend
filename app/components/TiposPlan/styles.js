@@ -8,15 +8,16 @@ export const Container = styled.div`
   justify-content: ${props =>
     props.planesLength > 3 ? 'space-between' : 'center'};
   align-items: center;
-  padding: 87px 19px 90px 37px;
+  padding: 90px 19px 90px 37px;
   @media only screen and (max-width: 775px) {
-    left: 0px;
-    display: block;
+    flex-direction: column;
+    padding: 90px 10px;
     width: 310px;
   }
-  @media only screen and (min-width: 776px) and (max-width: 915px) {
+  @media only screen and (min-width: 776px) and (max-width: 959px) {
     column-gap: 20px;
     left: 0px;
+    padding: 90px 40px;
     width: 100%;
   }
   @media only screen and (min-width: 960px) and (max-width: 1279px) {
