@@ -4,18 +4,57 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import auth from 'utils/auth';
+import { addSuccessMessage } from 'containers/Notifications/actions';
+import Notifications from 'containers/Notifications';
+import NewWindow from 'react-new-window';
 import paypal from '../../images/paypal.png';
 import zelle from '../../images/zelle.png';
 // eslint-disable-next-line import/no-unresolved
 import { Container } from './styles';
 import Button from '../components/Button';
 
-function Pago({ onClickPaypal, onClickNetPay, dataPlan, dataPaye }) {
+function Pago({ onClickNetPay, dataPlan, dataPaye }, props) {
+  const [dataUrl, setDataUrl] = useState({});
+
+  const getUrl = () => {
+    fetch(
+      `http://54.219.179.76/payments/paypal/?currency_code=${'MXN'}&value=${20}&reference_id=${'test'}&soft_descriptor=${'payment PABS'}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${auth.getToken()}`,
+        },
+        method: 'GET',
+      },
+    )
+      .then(response => response.json())
+      .then(success => {
+        setDataUrl(success);
+      })
+      .catch(error => console.log(error));
+  };
+
+  let component = null;
+  if (dataUrl.approve_link) {
+    component = (
+      <NewWindow
+        url={dataUrl.approve_link.href}
+        onUnload={() => {
+          props.dispatch(addSuccessMessage('Se hizo correctamente el pago'));
+        }}
+        closeOnUnmount
+      />
+    );
+  }
   return (
     <Container>
       <div className="spaceBetween res">
+        <Notifications />
         <div className="referencia">
           <label>
             {dataPaye.name} {dataPaye.father_lastname}{' '}
@@ -67,9 +106,10 @@ function Pago({ onClickPaypal, onClickNetPay, dataPlan, dataPaye }) {
               </th>
             </div>
           </div>
+          {component}
           <h5>Elige método de pago</h5>
           <div className="spaceBetween buttons">
-            <Button variant="secondary" onClick={onClickPaypal}>
+            <Button variant="secondary" onClick={() => getUrl()}>
               <img src={paypal} alt="paypal" />
             </Button>
             <Button variant="secondary" onClick={onClickNetPay}>
@@ -82,11 +122,19 @@ function Pago({ onClickPaypal, onClickNetPay, dataPlan, dataPaye }) {
   );
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
+const withConnect = connect(mapDispatchToProps);
 Pago.propTypes = {
-  onClickPaypal: PropTypes.func,
+  // onClickPaypal: PropTypes.func,
   onClickNetPay: PropTypes.func,
   dataPlan: PropTypes.object,
   dataPaye: PropTypes.object,
+  dispatch: PropTypes.func,
 };
 
-export default Pago;
+export default compose(withConnect)(Pago);
