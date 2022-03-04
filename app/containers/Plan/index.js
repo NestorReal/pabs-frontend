@@ -31,15 +31,15 @@ export function Plan(props) {
     props.dispatch(getPlan());
   }, []);
 
-  const [modal, setModal] = useState(false);
-  const show = () => {
+  const [modal] = useState(false);
+  /* const show = () => {
     setModal(true);
     // eslint-disable-next-line func-names
     setTimeout(function() {
       // eslint-disable-next-line react/prop-types
       props.history.push('/bienvenida');
     }, 3000);
-  };
+  }; */
   return (
     <Container>
       <Notifications />
@@ -75,14 +75,11 @@ export function Plan(props) {
           <OptionsPlan
             menu={props.plan.step}
             getStep={step => props.dispatch(stepAction(step))}
-            // eslint-disable-next-line no-console
             getTipoPlan={value => props.dispatch(planAction(value))}
-            // eslint-disable-next-line react/prop-types
-            onClickPaypal={show}
-            onClickNetPay={show}
             getDataPayer={data => props.dispatch(payersAction(data))}
             dataPaye={props.plan.payers}
-            dataPlan={props.plan.plans}
+            dataPlans={props.plan.plans}
+            dataPlan={props.plan.plan}
           />
         </div>
       </ContainerForm>
