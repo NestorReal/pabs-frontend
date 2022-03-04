@@ -17,6 +17,7 @@ import LoginAdmin from 'containers/LoginAdmin';
 import HomeAdmin from 'containers/HomeAdmin';
 import Home from 'containers/Home';
 import Login from 'containers/Login';
+import ValidatePayment from 'components/ValidatePayment';
 import Plan from 'containers/Plan';
 import Bienvenida from 'containers/Bienvenida';
 
@@ -33,6 +34,11 @@ export default function App() {
         <ProtectedRoute exact path="/HomeAdmin" component={HomeAdmin} />
         <Route exact path="/plan" component={Plan} />
         <Route exact path="/bienvenida" component={Bienvenida} />
+        <ProtectedRoute
+          exact
+          path="/paypal/return"
+          component={ValidatePayment}
+        />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
