@@ -13,17 +13,20 @@ import { addSuccessMessage } from 'containers/Notifications/actions';
 import Notifications from 'containers/Notifications';
 import NewWindow from 'react-new-window';
 import paypal from '../../images/paypal.png';
-import zelle from '../../images/zelle.png';
 // eslint-disable-next-line import/no-unresolved
 import { Container } from './styles';
 import Button from '../components/Button';
 
-function Pago({ onClickNetPay, dataPlan, dataPaye }, props) {
+function Pago({ dataPlan, dataPaye }, props) {
   const [dataUrl, setDataUrl] = useState({});
-
+  const titular = `${dataPaye.name} ${dataPaye.father_lastname} ${
+    dataPaye.mothers_lastname
+  }`;
   const getUrl = () => {
     fetch(
-      `http://54.219.179.76/payments/paypal/?currency_code=${'MXN'}&value=${20}&reference_id=${'test'}&soft_descriptor=${'payment PABS'}`,
+      `http://54.219.179.76/payments/paypal/?currency_code=${'MXN'}&value=${
+        dataPlan.amount
+      }&reference_id=${dataPlan.name}&soft_descriptor=${'payment PABS'}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -56,17 +59,11 @@ function Pago({ onClickNetPay, dataPlan, dataPaye }, props) {
       <div className="spaceBetween res">
         <Notifications />
         <div className="referencia">
-          <label>
-            {dataPaye.name} {dataPaye.father_lastname}{' '}
-            {dataPaye.mothers_lastname}
-          </label>
+          <label>{titular}</label>
           <br />
           <br />
           <br />
-          <label>
-            Titular {dataPaye.name} {dataPaye.father_lastname}{' '}
-            {dataPaye.mothers_lastname}
-          </label>
+          <label>Titular {titular}</label>
           <br />
           <br />
           <label>Ciudad {dataPaye.city}</label>
@@ -108,12 +105,9 @@ function Pago({ onClickNetPay, dataPlan, dataPaye }, props) {
           </div>
           {component}
           <h5>Elige método de pago</h5>
-          <div className="spaceBetween buttons">
+          <div className="center buttons">
             <Button variant="secondary" onClick={() => getUrl()}>
               <img src={paypal} alt="paypal" />
-            </Button>
-            <Button variant="secondary" onClick={onClickNetPay}>
-              <img src={zelle} alt="zelle" />
             </Button>
           </div>
         </div>
@@ -131,7 +125,6 @@ function mapDispatchToProps(dispatch) {
 const withConnect = connect(mapDispatchToProps);
 Pago.propTypes = {
   // onClickPaypal: PropTypes.func,
-  onClickNetPay: PropTypes.func,
   dataPlan: PropTypes.object,
   dataPaye: PropTypes.object,
   dispatch: PropTypes.func,
