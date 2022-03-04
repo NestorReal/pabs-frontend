@@ -45,6 +45,10 @@ const SteppersStyle = styled.div`
   @media only screen and (max-width: 915px) {
     left: 0px;
     width: 100%;
+
+    .circle {
+      min-width: 37px;
+    }
   }
   @media only screen and (min-width: 960px) and (max-width: 1279px) {
     .steppers {
@@ -112,7 +116,7 @@ function Steppers({ option }) {
   return (
     <>
       <SteppersStyle>
-        <div className="steppers spaceBetween">
+        <div className="steppers center">
           <div
             className="circle center"
             style={option === 1 ? { background: '#00539C' } : null}
