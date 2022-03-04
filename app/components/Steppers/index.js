@@ -29,9 +29,17 @@ const SteppersStyle = styled.div`
       border: 1px solid #005c9e;
       text-align: center;
       color: #ffffff;
+      position: relative;
       label {
         font-weight: bold;
       }
+    }
+
+    .step-label {
+      bottom: -75%;
+      color: #113255;
+      white-space: nowrap;
+      position: absolute;
     }
   }
   @media only screen and (max-width: 915px) {
@@ -111,6 +119,11 @@ function Steppers({ option }) {
           >
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
             <label>1</label>
+            {option === 1 ? (
+              <span className="step-label label">Tipos de plan</span>
+            ) : (
+              ''
+            )}
           </div>
           <div className="line" />
           <div
@@ -119,6 +132,11 @@ function Steppers({ option }) {
           >
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
             <label>2</label>
+            {option === 2 ? (
+              <span className="step-label label">Datos</span>
+            ) : (
+              ''
+            )}
           </div>
           <div className="line" />
           <div
@@ -127,21 +145,12 @@ function Steppers({ option }) {
           >
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
             <label>3</label>
+            {option === 3 ? (
+              <span className="step-label label">Pagar</span>
+            ) : (
+              ''
+            )}
           </div>
-        </div>
-      </SteppersStyle>
-      <SteppersStyle>
-        <div
-          className="steppers spaceBetween"
-          style={{ width: '80%', marginTop: '0.5%' }}
-        >
-          <label htmlFor="Tipos de plan">
-            {option === 1 ? 'Tipos de plan' : ''}
-          </label>
-          <label htmlFor="Datos">{option === 2 ? 'Datos' : ''}</label>
-          <label htmlFor="Pagar" style={{ marginRight: '2.5%' }}>
-            {option === 3 ? 'Pagar' : ''}
-          </label>
         </div>
       </SteppersStyle>
     </>
