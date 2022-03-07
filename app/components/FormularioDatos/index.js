@@ -14,6 +14,7 @@ import { Container } from './styles';
 import Input from '../components/Input';
 import Check from '../components/Check';
 import Button from '../components/Button';
+import { InputGroup } from '../components/InputGroup';
 
 import { formData, validate, validatePassword } from './validation';
 
@@ -56,7 +57,7 @@ function FormularioDatos(props) {
       </div>
       <form onSubmit={formik.handleSubmit}>
         <div className="responsable">
-          <div className="left input-group">
+          <InputGroup className="left">
             <Input
               label="Nombre(s) del reponsable de pago:"
               placeholder="Nombre de ejemplo"
@@ -151,8 +152,8 @@ function FormularioDatos(props) {
             <div>
               <Check label="Acepto los términos y condiciones" />
             </div>
-          </div>
-          <div className="right input-group">
+          </InputGroup>
+          <InputGroup className="right">
             <Input
               label="Primer apellido:"
               placeholder="Apellido de ejemplo"
@@ -238,13 +239,13 @@ function FormularioDatos(props) {
                 ) : null}
               </div>
             )}
-          </div>
+          </InputGroup>
         </div>
         <div className="tituloDos" style={{ marginTop: '8.333%' }}>
           <h2>Datos del titular del contrato</h2>
         </div>
         <div className="titular">
-          <div className="left input-group">
+          <InputGroup className="left input-group">
             <Input
               label="Nombre(s) del reponsable de pago:"
               placeholder="Nombre de ejemplo"
@@ -281,8 +282,8 @@ function FormularioDatos(props) {
             {formik.touched.phone_number && formik.errors.phone_number ? (
               <p className="error">{formik.errors.phone_number}</p>
             ) : null}
-          </div>
-          <div className="right input-group">
+          </InputGroup>
+          <InputGroup className="right">
             <Input
               label="Primer apellido:"
               placeholder="Apellido de ejemplo"
@@ -307,7 +308,7 @@ function FormularioDatos(props) {
             {formik.touched.email && formik.errors.email ? (
               <p className="error">{formik.errors.email}</p>
             ) : null}
-          </div>
+          </InputGroup>
         </div>
         <div className="center" style={{ marginTop: '6.389%' }}>
           <Button variant="primary" type="submit">
