@@ -143,7 +143,24 @@ const GlobalStyle = createGlobalStyle`
   }
   @media only screen and (min-width: 1920px) and (max-width: 2559px) {
     h1 {
-      font-size: 80px;
+      font-size: 60px;
+    }
+    h2 {
+      font-size: 45px;
+    }
+    td, th, label, .label, input, option, select {
+      font-size: 20px;
+    }
+    p {
+      font-size: 17px;
+    }
+    h5 {
+      font-size: 27px;
+    }
+  }
+  @media only screen and (min-width: 2560px) and (max-width: 3839px) {
+    h1 {
+      font-size: 75px;
     }
     h2 {
       font-size: 60px;
@@ -152,61 +169,44 @@ const GlobalStyle = createGlobalStyle`
       font-size: 27px;
     }
     p {
-      font-size: 22px;
+      font-size: 23px;
     }
     h5 {
-      font-size: 35px;
-    }
-  }
-  @media only screen and (min-width: 2560px) and (max-width: 3839px) {
-    h1 {
-      font-size: 100px;
-    }
-    h2 {
-      font-size: 80px;
-    }
-    td, th, label, .label, input, option, select {
-      font-size: 35px;
-    }
-    p {
-      font-size: 30px;
-    }
-    h5 {
-      font-size: 50px;
+      font-size: 38px;
     }
   }
   @media only screen and (min-width: 3840px) and (max-width: 7679px) {
     h1 {
-      font-size: 170px;
+      font-size: 130px;
     }
     h2 {
-      font-size: 115px;
+      font-size: 85px;
     }
     td, th, label, .label, input, option, select {
-      font-size: 55px;
+      font-size: 42px;
     }
     p {
-      font-size: 45px;
+      font-size: 34px;
     }
     h5 {
-      font-size: 90px;
+      font-size: 67px;
     }
   }
   @media only screen and (min-width: 7680px) {
     h1 {
-      font-size: 325px;
+      font-size: 245px;
     }
     h2 {
-      font-size: 235px;
+      font-size: 176px;
     }
     td, th, label, .label, input, option, select {
-      font-size: 100px;
+      font-size: 75px;
     }
     p {
-      font-size: 90px;
+      font-size: 68px;
     }
     h5 {
-      font-size: 200px;
+      font-size: 150px;
     }
   }
   /*@media only screen  and (min-width: 960px) and (max-width: 1279px) and (min-height : 540px) and (max-height: 719px) {
