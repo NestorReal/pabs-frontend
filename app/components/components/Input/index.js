@@ -9,8 +9,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import './style.css';
 const StyleInput = styled.div`
-  width: ${props => props.width};
-  height: ${props => props.height};
+  width: ${({ fullWidth }) => (fullWidth ? '100% !important' : '')};
   .fontFontello {
     font-family: 'fontello' !important;
   }
@@ -45,12 +44,8 @@ const StyleInput = styled.div`
     border: none;
     padding: 10px;
   }
-  @media only screen and (max-width: 700) {
-    height: 65px;
-  }
   @media only screen and (min-width: 700px) and (max-width: 959px) {
     width: 300px;
-    height: 75px;
     .input {
       height: 40px;
       border: 1px solid #113255;
@@ -68,7 +63,6 @@ const StyleInput = styled.div`
   }
   @media only screen and (min-width: 960px) and (max-width: 1279px) {
     width: 270px;
-    height: 73px;
     .input {
       height: 42px;
     }
@@ -81,9 +75,8 @@ const StyleInput = styled.div`
   }
   @media only screen and (min-width: 1920px) and (max-width: 2559px) {
     width: 545px;
-    height: 146px;
     .input {
-      height: 87px;
+      height: 70px;
       border: 2px solid #113255;
       border-radius: 15px;
     }
@@ -99,7 +92,6 @@ const StyleInput = styled.div`
   }
   @media only screen and (min-width: 2560px) and (max-width: 3839px) {
     width: 720px;
-    height: 183px;
     .input {
       height: 110px;
       border: 3px solid #113255;
@@ -118,7 +110,6 @@ const StyleInput = styled.div`
   }
   @media only screen and (min-width: 3840px) and (max-width: 7679px) {
     width: 1075px;
-    height: 278px;
     .input {
       height: 160px;
       border: 5px solid #113255;
@@ -137,7 +128,6 @@ const StyleInput = styled.div`
   }
   @media only screen and (min-width: 7680px) {
     width: 2146px;
-    height: 575px;
     .input {
       height: 330px;
       border: 10px solid #113255;
@@ -165,9 +155,10 @@ function Input({
   onChange,
   type = 'text',
   className,
+  fullWidth = true,
 }) {
   return (
-    <StyleInput>
+    <StyleInput fullWidth={fullWidth}>
       <label>{label}</label>
       <div className="input">
         <input
@@ -194,6 +185,7 @@ Input.propTypes = {
   type: PropTypes.string,
   className: PropTypes.string,
   name: PropTypes.string,
+  fullWidth: PropTypes.bool,
 };
 
 export default Input;
