@@ -37,6 +37,7 @@ const GlobalStyle = createGlobalStyle`
   body.fontLoaded,
   p,
   label,
+  .label,
   input,
   h1,
   h2,
@@ -51,7 +52,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: Arial !important;
   }
 
-  td, th, label, input, option, select {
+  td, th, label, .label, input, option, select {
     font-family: Arial;
     font-style: normal;
     font-weight: normal;
@@ -112,7 +113,7 @@ const GlobalStyle = createGlobalStyle`
     h2 {
       font-size: 28px;
     }
-    td, th, label, input, option, select {
+    td, th, label, .label, input, option, select {
       font-size: 15px;
     }
     p {
@@ -130,7 +131,7 @@ const GlobalStyle = createGlobalStyle`
     h2 {
       font-size: 30px;
     }
-    td, th, label, input, option, select {
+    td, th, label, .label, input, option, select {
       font-size: 14px;
     }
     p {
@@ -147,7 +148,7 @@ const GlobalStyle = createGlobalStyle`
     h2 {
       font-size: 60px;
     }
-    td, th, label, input, option, select {
+    td, th, label, .label, input, option, select {
       font-size: 27px;
     }
     p {
@@ -164,7 +165,7 @@ const GlobalStyle = createGlobalStyle`
     h2 {
       font-size: 80px;
     }
-    td, th, label, input, option, select {
+    td, th, label, .label, input, option, select {
       font-size: 35px;
     }
     p {
@@ -181,7 +182,7 @@ const GlobalStyle = createGlobalStyle`
     h2 {
       font-size: 115px;
     }
-    td, th, label, input, option, select {
+    td, th, label, .label, input, option, select {
       font-size: 55px;
     }
     p {
@@ -198,7 +199,7 @@ const GlobalStyle = createGlobalStyle`
     h2 {
       font-size: 235px;
     }
-    td, th, label, input, option, select {
+    td, th, label, .label, input, option, select {
       font-size: 100px;
     }
     p {

@@ -49,7 +49,7 @@ const StyleInput = styled.div`
     height: 65px;
   }
   @media only screen and (min-width: 700px) and (max-width: 959px) {
-    width: 264px;
+    width: 300px;
     height: 75px;
     .input {
       height: 40px;
