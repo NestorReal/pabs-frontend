@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 100%;
+  background: #fff;
   padding: 9.028% 5.859% 6.111% 5.859%;
+  width: 100%;
   .tituloDos {
     color: #00539c;
     margin-bottom: 1.111%;
