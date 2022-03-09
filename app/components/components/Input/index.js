@@ -93,7 +93,7 @@ const StyleInput = styled.div`
   @media only screen and (min-width: 2560px) and (max-width: 3839px) {
     width: 720px;
     .input {
-      height: 110px;
+      height: 90px;
       border: 3px solid #113255;
       border-radius: 20px;
     }
@@ -102,7 +102,7 @@ const StyleInput = styled.div`
       padding-left: 20px;
     }
     .icon {
-      font-size: 60px;
+      font-size: 50px;
       button {
         font-size: 60px;
       }
@@ -111,7 +111,7 @@ const StyleInput = styled.div`
   @media only screen and (min-width: 3840px) and (max-width: 7679px) {
     width: 1075px;
     .input {
-      height: 160px;
+      height: 135px;
       border: 5px solid #113255;
       border-radius: 30px;
     }
@@ -120,7 +120,7 @@ const StyleInput = styled.div`
       padding-left: 25px;
     }
     .icon {
-      font-size: 85px;
+      font-size: 70px;
       button {
         font-size: 85px;
       }
@@ -129,7 +129,7 @@ const StyleInput = styled.div`
   @media only screen and (min-width: 7680px) {
     width: 2146px;
     .input {
-      height: 330px;
+      height: 270px;
       border: 10px solid #113255;
       border-radius: 80px;
     }
@@ -138,7 +138,7 @@ const StyleInput = styled.div`
       padding-left: 50px;
     }
     .icon {
-      font-size: 180px;
+      font-size: 150px;
       button {
         font-size: 180px;
       }
