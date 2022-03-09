@@ -4,12 +4,33 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Container } from './styles';
 import Card from '../Card';
+import imagenPlan from '../../images/plan-italia.png';
+import ImageModal from '../ImageModal';
 
 function TiposPlan(props) {
+  const [modalState, setModalState] = useState({
+    visible: false,
+    img: imagenPlan,
+  });
+
+  const showModal = img => {
+    setModalState({
+      visible: true,
+      img,
+    });
+  };
+
+  const hideModal = () => {
+    setModalState({
+      ...modalState,
+      visible: false,
+    });
+  };
+
   const getTipoPlan = tipo => {
     // eslint-disable-next-line react/prop-types
     props.getTipoPlan(tipo);
@@ -27,49 +48,19 @@ function TiposPlan(props) {
         titleCard={plan.name}
         text={plan.features.map(feature => feature.description)}
         onClick={() => getTipoPlan({ name: plan.name, amount: plan.cost })}
+        onClickDetail={() => showModal(imagenPlan)}
       />
     ));
   }
   return (
     <Container planesLength={dataPlan.length}>
+      <ImageModal
+        display={modalState.visible}
+        img={imagenPlan}
+        alt="Imagen del plan"
+        onClose={() => hideModal()}
+      />
       {dataPlan}
-      {/* <Card
-        color="Red"
-        title="$ 10,000 MNX"
-        subTitle="Planes"
-        titleCard="Cremación directa"
-        text={[
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        ]}
-        onClick={() =>
-          getTipoPlan({ name: 'Cremación directa', amount: '$ 10,000 MNX' })
-        }
-      />
-      <Card
-        color="Yellow"
-        title="$ 20,000 MNX"
-        subTitle="Planes"
-        titleCard="Estándar"
-        text={[
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        ]}
-        onClick={() =>
-          getTipoPlan({ name: 'Estándar', amount: '$ 20,000 MNX' })
-        }
-      />
-      <Card
-        color="Blue"
-        title="$ 30,000 MNX"
-        subTitle="Planes"
-        titleCard="Premium"
-        text={[
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        ]}
-        onClick={() => getTipoPlan({ name: 'Premium', amount: '$ 10,000 MNX' })}
-      /> */}
     </Container>
   );
 }
