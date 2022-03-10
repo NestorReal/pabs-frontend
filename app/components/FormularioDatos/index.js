@@ -66,7 +66,7 @@ function FormularioDatos(props) {
         <h2>Datos del responsable de pago</h2>
       </div>
       <form onSubmit={formik.handleSubmit}>
-        <div className="responsable">
+        <div className="responsable input-group-wrapper">
           <InputGroup className="left">
             <Input
               label="Nombre(s) del reponsable de pago:"
@@ -137,31 +137,6 @@ function FormularioDatos(props) {
             {formik.touched.city && formik.errors.city ? (
               <p className="error">{formik.errors.city}</p>
             ) : null}
-            {check && (
-              <div>
-                <Input
-                  className={
-                    formik.values.password !== '' ? 'fontFontello' : ''
-                  }
-                  label="Contraseña"
-                  placeholder="Contraseña"
-                  type={passShow.password ? 'text' : 'password'}
-                  name="password"
-                  onChange={formik.handleChange}
-                  value={formik.values.password}
-                >
-                  <button type="button" onClick={show}>
-                    {passShow.password ? <BsEye /> : <BsEyeSlash />}
-                  </button>
-                </Input>
-                {formik.touched.password && formik.errors.password ? (
-                  <p className="error">{formik.errors.password}</p>
-                ) : null}
-              </div>
-            )}
-            <div>
-              <Check label="Acepto los términos y condiciones" />
-            </div>
           </InputGroup>
           <InputGroup className="right">
             <Input
@@ -227,34 +202,74 @@ function FormularioDatos(props) {
             <div className="containerTerminos">
               <Check label="Crear cuenta" onChange={createUser} />
             </div>
-            {check && (
-              <div>
-                <Input
-                  className={
-                    formik.values.confirmPassword !== '' ? 'fontFontello' : ''
-                  }
-                  label="Confirmar contraseña"
-                  placeholder="Confirmar contraseña"
-                  type={passShow.confipassword ? 'text' : 'password'}
-                  name="confirmPassword"
-                  onChange={formik.handleChange}
-                  value={formik.values.confirmPassword}
-                >
-                  <button type="button" onClick={showConfi}>
-                    {passShow.confipassword ? <BsEye /> : <BsEyeSlash />}
-                  </button>
-                </Input>
-                {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-                  <p className="error">{formik.errors.confirmPassword}</p>
-                ) : null}
-              </div>
-            )}
           </InputGroup>
         </div>
+
+        <div className="password">
+          <div className="input-group-wrapper">
+            <InputGroup className="left">
+              {check && (
+                <>
+                  <div>
+                    <Input
+                      className={
+                        formik.values.password !== '' ? 'fontFontello' : ''
+                      }
+                      label="Contraseña"
+                      placeholder="Contraseña"
+                      type={passShow.password ? 'text' : 'password'}
+                      name="password"
+                      onChange={formik.handleChange}
+                      value={formik.values.password}
+                    >
+                      <button type="button" onClick={show}>
+                        {passShow.password ? <BsEye /> : <BsEyeSlash />}
+                      </button>
+                    </Input>
+                    {formik.touched.password && formik.errors.password ? (
+                      <p className="error">{formik.errors.password}</p>
+                    ) : null}
+                  </div>
+                </>
+              )}
+            </InputGroup>
+
+            <InputGroup className="right">
+              {check && (
+                <div>
+                  <Input
+                    className={
+                      formik.values.confirmPassword !== '' ? 'fontFontello' : ''
+                    }
+                    label="Confirmar contraseña"
+                    placeholder="Confirmar contraseña"
+                    type={passShow.confipassword ? 'text' : 'password'}
+                    name="confirmPassword"
+                    onChange={formik.handleChange}
+                    value={formik.values.confirmPassword}
+                  >
+                    <button type="button" onClick={showConfi}>
+                      {passShow.confipassword ? <BsEye /> : <BsEyeSlash />}
+                    </button>
+                  </Input>
+                  {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+                    <p className="error">{formik.errors.confirmPassword}</p>
+                  ) : null}
+                </div>
+              )}
+            </InputGroup>
+          </div>
+          {check && (
+            <div>
+              <Check label="Acepto los términos y condiciones" />
+            </div>
+          )}
+        </div>
+
         <div className="tituloDos" style={{ marginTop: '8.333%' }}>
           <h2>Datos del titular del contrato</h2>
         </div>
-        <div className="titular">
+        <div className="titular input-group-wrapper">
           <InputGroup className="left input-group">
             <Input
               label="Nombre(s) del reponsable de pago:"
