@@ -38,3 +38,10 @@ export function getPlan() {
     type: constants.GET_PLANS_INIT,
   };
 }
+
+export function createUserPayer(data) {
+  return {
+    type: constants.CREATE_USER_PAYERS_INIT,
+    data,
+  };
+}

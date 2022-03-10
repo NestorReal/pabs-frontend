@@ -2,7 +2,7 @@ import { takeLatest, call, put } from 'redux-saga/effects';
 import request from 'utils/request';
 import auth from 'utils/auth';
 import {
-  // addErrorMessage,
+  addErrorMessage,
   addSuccessMessage,
 } from 'containers/Notifications/actions';
 import * as constants from './constants';
@@ -12,6 +12,7 @@ import { stepAction } from './actions';
 export default function* planSaga() {
   yield takeLatest(constants.PAYERS_INIT, payersSaga);
   yield takeLatest(constants.GET_PLANS_INIT, getPlanSaga);
+  yield takeLatest(constants.CREATE_USER_PAYERS_INIT, createUserPayer);
 }
 
 export function* payersSaga(action) {
@@ -75,6 +76,43 @@ export function* getPlanSaga() {
     yield put({
       type: constants.GET_PLANS_FAILED,
       error,
+    });
+  }
+}
+
+export function* createUserPayer(action) {
+  // console.log(action);
+  const body = {
+    email: action.data.email,
+    full_name: action.data.full_name,
+    phone_number: action.data.phone_number,
+    password: action.data.password,
+    is_active: true,
+    is_superuser: false,
+    is_verified: false,
+    roles: [action.data.roles],
+  };
+  // console.log(body);
+  try {
+    const requestURL = `http://54.219.179.76/auth/register/`;
+    const response = yield call(request, requestURL, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json;',
+      },
+      body: JSON.stringify(body),
+    });
+    if (response) {
+      yield put(addSuccessMessage(`Usuario creado correctamente`));
+      yield put({
+        type: constants.CREATE_USER_PAYERS_SUCCEED,
+      });
+    }
+  } catch (error) {
+    yield put(addErrorMessage(`Error al crear usuario`));
+    yield put({
+      type: constants.CREATE_USER_PAYERS_FAILED,
     });
   }
 }
