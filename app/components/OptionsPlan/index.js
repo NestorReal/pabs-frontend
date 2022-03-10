@@ -18,6 +18,7 @@ function OptionsPlan({
   dataPaye,
   dataPlans,
   dataPlan,
+  createUser,
 }) {
   switch (menu) {
     case 1:
@@ -30,7 +31,12 @@ function OptionsPlan({
         />
       );
     case 2:
-      return <FormularioDatos getData={data => getDataPayer(data)} />;
+      return (
+        <FormularioDatos
+          getData={data => getDataPayer(data)}
+          createUser={valueUser => createUser(valueUser)}
+        />
+      );
     case 3:
       return <Pago dataPlan={dataPlan} dataPaye={dataPaye} />;
     default:
@@ -51,6 +57,7 @@ OptionsPlan.propTypes = {
   dataPaye: PropTypes.object,
   dataPlans: PropTypes.object,
   dataPlan: PropTypes.object,
+  createUser: PropTypes.func,
 };
 
 export default OptionsPlan;

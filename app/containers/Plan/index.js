@@ -21,7 +21,13 @@ import Portada from '../../components/Portada';
 import ContainerForm from '../../components/ContainerForm';
 import Steppers from '../../components/Steppers';
 import Modal from '../../components/Modal';
-import { payersAction, stepAction, planAction, getPlan } from './actions';
+import {
+  payersAction,
+  stepAction,
+  planAction,
+  getPlan,
+  createUserPayer,
+} from './actions';
 
 export function Plan(props) {
   useInjectReducer({ key: 'plan', reducer });
@@ -80,6 +86,7 @@ export function Plan(props) {
             dataPaye={props.plan.payers}
             dataPlans={props.plan.plans}
             dataPlan={props.plan.plan}
+            createUser={dataUser => props.dispatch(createUserPayer(dataUser))}
           />
         </div>
       </ContainerForm>

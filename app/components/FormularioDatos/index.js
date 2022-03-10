@@ -47,6 +47,16 @@ function FormularioDatos(props) {
     validationSchema: check ? validatePassword : validate,
     onSubmit: values => {
       props.getData(values);
+      if (check) {
+        const test = {
+          email: values.email,
+          full_name: values.name,
+          phone_number: values.phone_number,
+          password: values.password,
+          roles: 'user',
+        };
+        props.createUser(test);
+      }
     },
   });
 
@@ -322,6 +332,7 @@ function FormularioDatos(props) {
 
 FormularioDatos.propTypes = {
   getData: PropTypes.func,
+  createUser: PropTypes.func,
 };
 
 export default FormularioDatos;
