@@ -53,15 +53,15 @@ function TiposPlan(props) {
     ));
   }
   return (
-    <Container planesLength={dataPlan.length}>
+    <>
       <ImageModal
         display={modalState.visible}
         img={imagenPlan}
         alt="Imagen del plan"
         onClose={() => hideModal()}
       />
-      {dataPlan}
-    </Container>
+      <Container planesLength={dataPlan.length}>{dataPlan}</Container>
+    </>
   );
 }
 
