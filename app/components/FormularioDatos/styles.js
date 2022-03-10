@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   background: #fff;
-  padding: 9.028% 5.859% 6.111% 5.859%;
+  padding: 7% 6%;
   width: 100%;
   .tituloDos {
     color: #00539c;
