@@ -19,7 +19,7 @@ const StylePortada = styled.div`
   width: 31.641%;
   background-repeat: no-repeat;
   background-image: url(${portada});
-  background-size: 100% 100%;
+  background-size: cover;
   img {
     position: absolute;
     top: 3.333%;
