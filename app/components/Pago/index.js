@@ -56,7 +56,7 @@ function Pago({ dataPlan, dataPaye }, props) {
   }
   return (
     <Container>
-      <div className="spaceBetween res">
+      <div className="spaceAround res">
         <Notifications />
         <div className="referencia">
           <label>{titular}</label>

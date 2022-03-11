@@ -8,7 +8,7 @@ export const Container = styled.div`
     width: 100%;
     text-align: center;
     color: #00539c;
-    margin-bottom: 0.3em;
+    margin-bottom: 0;
   }
   .containerFormulario {
     width: 100%;

@@ -24,6 +24,12 @@ const GlobalStyle = createGlobalStyle`
     align-items: center;
   }
 
+  .spaceAround{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
   #app {
     background-color: #ffffff;
     min-height: 100%;
