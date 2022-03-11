@@ -88,11 +88,12 @@ const StyleCheck = styled.label`
     }
   }
   @media only screen and (min-width: 1920px) and (max-width: 2559px) {
+    padding-left: 30px;
+
     .checkmark {
       height: 22px;
       width: 22px;
       margin-top: -5px;
-      margin-left: -12px;
     }
     .checkmark:after {
       left: 6px;
@@ -103,11 +104,12 @@ const StyleCheck = styled.label`
     }
   }
   @media only screen and (min-width: 2560px) and (max-width: 3839px) {
+    padding-left: 55px;
+
     .checkmark {
       height: 40px;
       width: 40px;
       margin-top: -14px;
-      margin-left: -37px;
       border: 3px solid #005c9e;
     }
     .checkmark:after {
@@ -119,11 +121,12 @@ const StyleCheck = styled.label`
     }
   }
   @media only screen and (min-width: 3840px) and (max-width: 7679px) {
+    padding-left: 64px;
+
     .checkmark {
       height: 50px;
       width: 50px;
       margin-top: -20px;
-      margin-left: -46px;
       border: 5px solid #005c9e;
     }
     .checkmark:after {
@@ -135,11 +138,12 @@ const StyleCheck = styled.label`
     }
   }
   @media only screen and (min-width: 7680px) {
+    padding-left: 150px;
+
     .checkmark {
       height: 130px;
       width: 130px;
       margin-top: -50px;
-      margin-left: -135px;
       border: 10px solid #005c9e;
     }
     .checkmark:after {
