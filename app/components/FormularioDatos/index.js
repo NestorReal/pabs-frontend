@@ -68,54 +68,66 @@ function FormularioDatos(props) {
       <form onSubmit={formik.handleSubmit}>
         <div className="responsable input-group-wrapper">
           <InputGroup className="left">
-            <Input
-              label="Nombre(s) del reponsable de pago:"
-              placeholder="Nombre de ejemplo"
-              name="name"
-              onChange={formik.handleChange}
-              value={formik.values.name}
-            >
-              <AiOutlineUser />
-            </Input>
-            {formik.touched.name && formik.errors.name ? (
-              <p className="error">{formik.errors.name}</p>
-            ) : null}
-            <Input
-              label="Segundo apellido:"
-              placeholder="Apellido de ejemplo"
-              name="mothers_lastname"
-              onChange={formik.handleChange}
-              value={formik.values.mothers_lastname}
-            >
-              <AiOutlineUser />
-            </Input>
-            {formik.touched.mothers_lastname && formik.errors.mothers_lastname ? (
-              <p className="error">{formik.errors.mothers_lastname}</p>
-            ) : null}
-            <Input
-              label="Teléfono:"
-              placeholder="Ej. 1234567890"
-              name="phone_number"
-              onChange={formik.handleChange}
-              value={formik.values.phone_number}
-            >
-              <BsTelephone />
-            </Input>
-            {formik.touched.phone_number && formik.errors.phone_number ? (
-              <p className="error">{formik.errors.phone_number}</p>
-            ) : null}
-            <Input
-              label="Calle:"
-              placeholder="Calle de ejemplo"
-              name="street"
-              onChange={formik.handleChange}
-              value={formik.values.street}
-            >
-              <AiOutlineEnvironment />
-            </Input>
-            {formik.touched.street && formik.errors.street ? (
-              <p className="error">{formik.errors.street}</p>
-            ) : null}
+            <div>
+              <Input
+                label="Nombre(s) del reponsable de pago:"
+                placeholder="Nombre de ejemplo"
+                name="name"
+                onChange={formik.handleChange}
+                value={formik.values.name}
+              >
+                <AiOutlineUser />
+              </Input>
+              {formik.touched.name && formik.errors.name ? (
+                <p className="error">{formik.errors.name}</p>
+              ) : null}
+            </div>
+
+            <div>
+              <Input
+                label="Segundo apellido:"
+                placeholder="Apellido de ejemplo"
+                name="mothers_lastname"
+                onChange={formik.handleChange}
+                value={formik.values.mothers_lastname}
+              >
+                <AiOutlineUser />
+              </Input>
+              {formik.touched.mothers_lastname && formik.errors.mothers_lastname ? (
+                <p className="error">{formik.errors.mothers_lastname}</p>
+              ) : null}
+            </div>
+
+            <div>
+              <Input
+                label="Teléfono:"
+                placeholder="Ej. 1234567890"
+                name="phone_number"
+                onChange={formik.handleChange}
+                value={formik.values.phone_number}
+              >
+                <BsTelephone />
+              </Input>
+              {formik.touched.phone_number && formik.errors.phone_number ? (
+                <p className="error">{formik.errors.phone_number}</p>
+              ) : null}
+            </div>
+
+            <div>
+              <Input
+                label="Calle:"
+                placeholder="Calle de ejemplo"
+                name="street"
+                onChange={formik.handleChange}
+                value={formik.values.street}
+              >
+                <AiOutlineEnvironment />
+              </Input>
+              {formik.touched.street && formik.errors.street ? (
+                <p className="error">{formik.errors.street}</p>
+              ) : null}
+            </div>
+
             <Input
               label="No. interior:"
               placeholder="Ej. 1234567890"
@@ -125,80 +137,98 @@ function FormularioDatos(props) {
             >
               <AiOutlineEnvironment />
             </Input>
-            <Input
-              label="Municipio:"
-              placeholder="municipio"
-              name="city"
-              onChange={formik.handleChange}
-              value={formik.values.city}
-            >
-              <AiOutlineUser />
-            </Input>
-            {formik.touched.city && formik.errors.city ? (
-              <p className="error">{formik.errors.city}</p>
-            ) : null}
+
+            <div>
+              <Input
+                label="Municipio:"
+                placeholder="municipio"
+                name="city"
+                onChange={formik.handleChange}
+                value={formik.values.city}
+              >
+                <AiOutlineUser />
+              </Input>
+              {formik.touched.city && formik.errors.city ? (
+                <p className="error">{formik.errors.city}</p>
+              ) : null}
+            </div>
           </InputGroup>
+
           <InputGroup className="right">
-            <Input
-              label="Primer apellido:"
-              placeholder="Apellido de ejemplo"
-              name="father_lastname"
-              onChange={formik.handleChange}
-              value={formik.values.father_lastname}
-            >
-              <AiOutlineUser />
-            </Input>
-            {formik.touched.father_lastname && formik.errors.father_lastname ? (
-              <p className="error">{formik.errors.father_lastname}</p>
-            ) : null}
-            <Input
-              label="Fecha de nacimiento:"
-              placeholder="dd/mm/aaaa"
-              name="birthname"
-              onChange={formik.handleChange}
-              value={formik.values.birthname}
-            >
-              <AiOutlineUser />
-            </Input>
-            {formik.touched.birthname && formik.errors.birthname ? (
-              <p className="error">{formik.errors.birthname}</p>
-            ) : null}
-            <Input
-              label="Correo:"
-              placeholder="ejemplo@ejemplo.com"
-              name="email"
-              onChange={formik.handleChange}
-              value={formik.values.email}
-            >
-              <MdOutlineEmail />
-            </Input>
-            {formik.touched.email && formik.errors.email ? (
-              <p className="error">{formik.errors.email}</p>
-            ) : null}
-            <Input
-              label="No. exterior:"
-              placeholder="Ej. 1234567890"
-              name="ext_number"
-              onChange={formik.handleChange}
-              value={formik.values.ext_number}
-            >
-              <AiOutlineEnvironment />
-            </Input>
-            {formik.touched.ext_number && formik.errors.ext_number ? (
-              <p className="error">{formik.errors.ext_number}</p>
-            ) : null}
-            <Input
-              label="Colonia:"
-              placeholder="Colonia de ejemplo"
-              name="neighborhood"
-              onChange={formik.handleChange}
-              value={formik.values.neighborhood}
-            >
-              <AiOutlineEnvironment />
-            </Input>
-            {formik.touched.neighborhood && formik.errors.neighborhood ? (
-              <p className="error">{formik.errors.neighborhood}</p>
-            ) : null}
+            <div>
+              <Input
+                label="Primer apellido:"
+                placeholder="Apellido de ejemplo"
+                name="father_lastname"
+                onChange={formik.handleChange}
+                value={formik.values.father_lastname}
+              >
+                <AiOutlineUser />
+              </Input>
+              {formik.touched.father_lastname && formik.errors.father_lastname ? (
+                <p className="error">{formik.errors.father_lastname}</p>
+              ) : null}
+            </div>
+
+            <div>
+              <Input
+                label="Fecha de nacimiento:"
+                placeholder="dd/mm/aaaa"
+                name="birthname"
+                onChange={formik.handleChange}
+                value={formik.values.birthname}
+              >
+                <AiOutlineUser />
+              </Input>
+              {formik.touched.birthname && formik.errors.birthname ? (
+                <p className="error">{formik.errors.birthname}</p>
+              ) : null}
+            </div>
+
+            <div>
+              <Input
+                label="Correo:"
+                placeholder="ejemplo@ejemplo.com"
+                name="email"
+                onChange={formik.handleChange}
+                value={formik.values.email}
+              >
+                <MdOutlineEmail />
+              </Input>
+              {formik.touched.email && formik.errors.email ? (
+                <p className="error">{formik.errors.email}</p>
+              ) : null}
+            </div>
+
+            <div>
+              <Input
+                label="No. exterior:"
+                placeholder="Ej. 1234567890"
+                name="ext_number"
+                onChange={formik.handleChange}
+                value={formik.values.ext_number}
+              >
+                <AiOutlineEnvironment />
+              </Input>
+              {formik.touched.ext_number && formik.errors.ext_number ? (
+                <p className="error">{formik.errors.ext_number}</p>
+              ) : null}
+            </div>
+
+            <div>
+              <Input
+                label="Colonia:"
+                placeholder="Colonia de ejemplo"
+                name="neighborhood"
+                onChange={formik.handleChange}
+                value={formik.values.neighborhood}
+              >
+                <AiOutlineEnvironment />
+              </Input>
+              {formik.touched.neighborhood && formik.errors.neighborhood ? (
+                <p className="error">{formik.errors.neighborhood}</p>
+              ) : null}
+            </div>
             <div className="containerTerminos">
               <Check label="Crear cuenta" onChange={createUser} />
             </div>
@@ -271,68 +301,81 @@ function FormularioDatos(props) {
         </div>
         <div className="titular input-group-wrapper">
           <InputGroup className="left input-group">
-            <Input
-              label="Nombre(s) del reponsable de pago:"
-              placeholder="Nombre de ejemplo"
-              name="name"
-              onChange={formik.handleChange}
-              value={formik.values.name}
-            >
-              <AiOutlineUser />
-            </Input>
-            {formik.touched.name && formik.errors.name ? (
-              <p className="error">{formik.errors.name}</p>
-            ) : null}
-            <Input
-              label="Segundo apellido:"
-              placeholder="Apellido de ejemplo"
-              name="mothers_lastname"
-              onChange={formik.handleChange}
-              value={formik.values.mothers_lastname}
-            >
-              <AiOutlineUser />
-            </Input>
-            {formik.touched.mothers_lastname && formik.errors.mothers_lastname ? (
-              <p className="error">{formik.errors.mothers_lastname}</p>
-            ) : null}
-            <Input
-              label="Teléfono:"
-              placeholder="Ej. 1234567890"
-              name="phone_number"
-              onChange={formik.handleChange}
-              value={formik.values.phone_number}
-            >
-              <BsTelephone />
-            </Input>
-            {formik.touched.phone_number && formik.errors.phone_number ? (
-              <p className="error">{formik.errors.phone_number}</p>
-            ) : null}
+            <div>
+              <Input
+                label="Nombre(s) del reponsable de pago:"
+                placeholder="Nombre de ejemplo"
+                name="name"
+                onChange={formik.handleChange}
+                value={formik.values.name}
+              >
+                <AiOutlineUser />
+              </Input>
+              {formik.touched.name && formik.errors.name ? (
+                <p className="error">{formik.errors.name}</p>
+              ) : null}
+            </div>
+
+            <div>
+              <Input
+                label="Segundo apellido:"
+                placeholder="Apellido de ejemplo"
+                name="mothers_lastname"
+                onChange={formik.handleChange}
+                value={formik.values.mothers_lastname}
+              >
+                <AiOutlineUser />
+              </Input>
+              {formik.touched.mothers_lastname && formik.errors.mothers_lastname ? (
+                <p className="error">{formik.errors.mothers_lastname}</p>
+              ) : null}
+            </div>
+
+            <div>
+              <Input
+                label="Teléfono:"
+                placeholder="Ej. 1234567890"
+                name="phone_number"
+                onChange={formik.handleChange}
+                value={formik.values.phone_number}
+              >
+                <BsTelephone />
+              </Input>
+              {formik.touched.phone_number && formik.errors.phone_number ? (
+                <p className="error">{formik.errors.phone_number}</p>
+              ) : null}
+            </div>
           </InputGroup>
           <InputGroup className="right">
-            <Input
-              label="Primer apellido:"
-              placeholder="Apellido de ejemplo"
-              name="father_lastname"
-              onChange={formik.handleChange}
-              value={formik.values.father_lastname}
-            >
-              <AiOutlineUser />
-            </Input>
-            {formik.touched.father_lastname && formik.errors.father_lastname ? (
-              <p className="error">{formik.errors.father_lastname}</p>
-            ) : null}
-            <Input
-              label="Correo:"
-              placeholder="ejemplo@ejemplo.com"
-              name="email"
-              onChange={formik.handleChange}
-              value={formik.values.email}
-            >
-              <MdOutlineEmail />
-            </Input>
-            {formik.touched.email && formik.errors.email ? (
-              <p className="error">{formik.errors.email}</p>
-            ) : null}
+            <div>
+              <Input
+                label="Primer apellido:"
+                placeholder="Apellido de ejemplo"
+                name="father_lastname"
+                onChange={formik.handleChange}
+                value={formik.values.father_lastname}
+              >
+                <AiOutlineUser />
+              </Input>
+              {formik.touched.father_lastname && formik.errors.father_lastname ? (
+                <p className="error">{formik.errors.father_lastname}</p>
+              ) : null}
+            </div>
+
+            <div>
+              <Input
+                label="Correo:"
+                placeholder="ejemplo@ejemplo.com"
+                name="email"
+                onChange={formik.handleChange}
+                value={formik.values.email}
+              >
+                <MdOutlineEmail />
+              </Input>
+              {formik.touched.email && formik.errors.email ? (
+                <p className="error">{formik.errors.email}</p>
+              ) : null}
+            </div>
           </InputGroup>
         </div>
         <div className="center" style={{ marginTop: '6.389%' }}>
