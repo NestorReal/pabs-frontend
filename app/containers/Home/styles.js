@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  position: absolute;
+  top: 0px;
+  left: 0px;
   width: 100%;
   height: 100%;
-  position: absolute;
   background: #fff;
   overflow: hidden;
+
   .containerModal {
-    height: 690px;
-    width: 1360px;
+    height: 100%;
+    width: 100%;
     border-radius: 0px;
     position: relative;
     background: rgba(0, 92, 158, 0.8);
@@ -36,38 +39,38 @@ export const Container = styled.div`
       line-height: 55px;
       color: #317f43;
     }
+  }
 
-    .containerButtonModal {
-      width: 100%;
+  .containerButtonModal {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 83px;
+    button {
       height: 50px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 83px;
-      button {
-        height: 50px;
-        width: 220px;
-        left: 0px;
-        top: 0px;
-        border-radius: 15px;
-        border: 1px solid #00539c;
-        font-family: Arial;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 38px;
-        letter-spacing: 0.375px;
-        text-align: center;
-      }
-      .primary {
-        background: #00539c;
-        color: #fff;
-        margin-right: 14px !important;
-      }
-      .secondary {
-        background: transparent;
-        color: #00539c;
-      }
+      width: 220px;
+      left: 0px;
+      top: 0px;
+      border-radius: 15px;
+      border: 1px solid #00539c;
+      font-family: Arial;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 38px;
+      letter-spacing: 0.375px;
+      text-align: center;
+    }
+    .primary {
+      background: #00539c;
+      color: #fff;
+      margin-right: 14px !important;
+    }
+    .secondary {
+      background: transparent;
+      color: #00539c;
     }
   }
   .sesion {
@@ -94,7 +97,7 @@ export const Container = styled.div`
     border-radius: 0px;
     position: absolute;
   }
-  .title {
+  .main-title {
     height: 55px;
     width: 100%;
     top: 25px;
@@ -327,7 +330,7 @@ export const Container = styled.div`
       left: 24px;
       top: 20px;
     }
-    .title {
+    .main-title {
       height: 48px;
       width: 100%;
       top: 90px;

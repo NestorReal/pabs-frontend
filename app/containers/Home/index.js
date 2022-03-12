@@ -5,7 +5,7 @@
  *
  */
 
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -22,35 +22,39 @@ import logo2 from '../../images/logo2.svg';
 import paypal from '../../images/paypal.png';
 import zelle from '../../images/zelle.png';
 import { Container } from './styles';
+import Modal from '../../components/Modal';
 
 export function Home() {
   useInjectReducer({ key: 'home', reducer });
   useInjectSaga({ key: 'home', saga });
-  const modal = useRef(null);
-  const hidden = () => {
-    modal.current.style.display = 'none';
+  const [modal, setModal] = useState(false);
+  // const modal = useRef(null);
+  const hideModal = () => {
+    setModal(false);
   };
+  const showModal = () => {
+    setModal(true);
+  };
+
   return (
     <Container>
-      <div ref={modal} className="containerModal" style={{ display: 'none' }}>
-        <div className="modal">
-          <div className="texModal">MOVIMIENTO EXITOSO</div>
-          <div className="containerButtonModal">
-            <button
-              className="primary"
-              type="button"
-              style={{ marginRight: '6px' }}
-            >
-              Otra referencia
-            </button>
-            <button className="secondary" type="button" onClick={hidden}>
-              Salir
-            </button>
-          </div>
+      <Modal title="MOVIMIENTO EXITOSO" display={modal}>
+        <div className="containerButtonModal">
+          <button
+            className="primary"
+            type="button"
+            style={{ marginRight: '6px' }}
+          >
+            Otra referencia
+          </button>
+          <button className="secondary" type="button" onClick={hideModal}>
+            Salir
+          </button>
         </div>
-      </div>
+      </Modal>
+
       <img src={logo2} className="logo" alt="logo" />
-      <div className="title">
+      <div className="main-title">
         Bienvenido <b>Juan</b>
       </div>
       <button type="button" className="sesion" onClick={() => auth.logout()}>
@@ -134,7 +138,7 @@ export function Home() {
             type="button"
             className="paypal"
             onClick={() => {
-              modal.current.style.display = 'flex';
+              showModal();
             }}
           >
             <img src={paypal} width="128px" height="38.23px" alt="paypal" />
@@ -143,7 +147,7 @@ export function Home() {
             type="button"
             className="zelle"
             onClick={() => {
-              modal.current.style.display = 'flex';
+              showModal();
             }}
           >
             <img src={zelle} width="128px" height="38.23px" alt="zelle" />
