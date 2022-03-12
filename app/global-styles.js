@@ -112,7 +112,7 @@ const GlobalStyle = createGlobalStyle`
       font-size: 35px !important;
     }
   } */
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: 959px) {
     h1 {
       font-size: 30px;
     }
