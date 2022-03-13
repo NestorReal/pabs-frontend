@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import './style.css';
 const StyleInput = styled.div`
-  width: ${({ fullWidth }) => (fullWidth ? '100% !important' : '')};
+  width: ${({ fullWidth }) => (fullWidth ? '100% !important' : '360px')};
   .fontFontello {
     font-family: 'fontello' !important;
   }
