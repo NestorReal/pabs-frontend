@@ -45,7 +45,7 @@ const StyleButton = styled.button`
   @media only screen and (min-width: 1920px) and (max-width: 2559px) {
     width: ${props => (props.size === 'large' ? '330px' : '150px')};
     height: ${props => (props.size === 'large' ? '77px' : '50px')};
-    font-size: 36px;
+    font-size: 30px;
     border-width: 2px;
     ${props => (props.size === 'large' ? '15px' : '5px')}
   }

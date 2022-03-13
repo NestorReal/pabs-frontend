@@ -5,7 +5,6 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
   .logo {
-    height: 9.167%;
     width: 8.594%;
     left: 2.344%;
     top: 2.778%;
@@ -47,6 +46,10 @@ export const Container = styled.div`
       margin-bottom: 15%;
     }
   }
+  .paper-contacto {
+    height: 27%;
+    position: relative;
+  }
   .titulo1 {
     width: 100%;
     text-align: center;
@@ -63,10 +66,11 @@ export const Container = styled.div`
     background: #005c9e;
   }
   button {
-    float: right;
-    margin-top: -3%;
-    width: 110px;
-    height: 36px;
+    position: absolute;
+    bottom: 10%;
+    right: 3%;
+    /* width: 110px;
+    height: 36px; */
     border-radius: 5px;
   }
   @media only screen and (max-width: 499px) {
@@ -75,11 +79,16 @@ export const Container = styled.div`
       height: 7.167%;
       width: 15.597%;
     }
+    .title {
+      margin-right: auto;
+      margin-left: auto;
+      height: 10%;
+    }
     .title h1 {
       font-size: 18px;
     }
     h5 {
-      font-size: 16px;
+      font-size: 14px;
     }
     .titulo2 h2 {
       font-size: 17px;
@@ -89,6 +98,14 @@ export const Container = styled.div`
     }
     .paper {
       height: 30.5%;
+      padding: 2% 5% 5% 5%;
+    }
+    .footer {
+      position: fixed;
+      bottom: 0;
+    }
+    .logo {
+      display: none;
     }
   }
   @media only screen and (min-width: 500px) and (max-width: 959px) {
@@ -103,15 +120,22 @@ export const Container = styled.div`
       font-size: 10px;
     }
     .paper {
-      height: 45.5%;
+      /* height: 45.5%; */
+    }
+    .footer {
+      position: fixed;
+      bottom: 0;
+    }
+    .logo {
+      width: 13%;
     }
   }
   @media only screen and (min-width: 960px) and (max-width: 1279px) {
     min-width: 945px;
     min-height: 540px;
     button {
-      width: 90px;
-      height: 30px;
+      /* width: 90px;
+      height: 30px; */
       border-radius: 5px;
     }
   }
@@ -119,8 +143,8 @@ export const Container = styled.div`
     min-width: 1920px;
     min-height: 1080px;
     button {
-      width: 150px;
-      height: 50px;
+      /* width: 150px;
+      height: 50px; */
       border-radius: 5px;
       font-size: 30px;
     }
@@ -129,8 +153,8 @@ export const Container = styled.div`
     min-width: 2560px;
     min-height: 1440px;
     button {
-      width: 220px;
-      height: 65px;
+      /* width: 220px;
+      height: 65px; */
       border-radius: 10px;
     }
   }
@@ -138,8 +162,8 @@ export const Container = styled.div`
     min-width: 3840px;
     min-height: 2160px;
     button {
-      width: 330px;
-      height: 100px;
+      /* width: 330px;
+      height: 100px; */
       border-radius: 20px;
     }
   }
@@ -147,8 +171,8 @@ export const Container = styled.div`
     min-width: 7680px;
     min-height: 4320px;
     button {
-      width: 700px;
-      height: 200px;
+      /* width: 700px;
+      height: 200px; */
       border-radius: 40px;
     }
   }
