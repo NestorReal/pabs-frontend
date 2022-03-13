@@ -44,7 +44,7 @@ const StyleInput = styled.div`
     border: none;
     padding: 10px;
   }
-  @media only screen and (min-width: 700px) and (max-width: 959px) {
+  @media only screen and (max-width: 959px) {
     width: 300px;
     .input {
       height: 40px;
