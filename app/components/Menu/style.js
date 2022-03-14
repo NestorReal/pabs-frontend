@@ -2,11 +2,13 @@ import styled from 'styled-components';
 
 const MenuStyle = styled.div`
   position: absolute;
+  background: #fff;
   left: 0px;
   top: 0px;
   height: 100%;
   min-height: 720px;
   width: 12.813%;
+  z-index: 2;
   .bienvenida,
   .hidden {
     display: none;
@@ -35,6 +37,7 @@ const MenuStyle = styled.div`
       color: #767676;
       label {
         margin-left: 10%;
+        white-space: nowrap;
       }
       i {
         margin-right: 16px;
@@ -84,6 +87,7 @@ const MenuStyle = styled.div`
       display: block;
       position: absolute;
       left: 30%;
+      top: 47px;
       z-index: 100;
       button {
         float: right;

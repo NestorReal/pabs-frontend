@@ -91,6 +91,7 @@ const ChildrenStyle = styled.div`
     left: 0px;
     width: 100%;
     .header {
+      padding-left: 12%;
       .sesion {
         display: none;
       }
