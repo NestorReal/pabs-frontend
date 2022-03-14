@@ -21,11 +21,6 @@ export const Container = styled.div`
     }
     .form {
       width: 60%;
-      .input,
-      .select {
-        border-radius: 3px;
-        height: unset;
-      }
       input,
       select {
         padding-top: 2%;
@@ -60,60 +55,6 @@ export const Container = styled.div`
         .containerButton {
           margin-top: 20%;
           width: 110%;
-        }
-        .input,
-        .select {
-          border-radius: 2px;
-        }
-      }
-    }
-  }
-  @media only screen and (min-width: 960px) and (max-width: 1279px) {
-    .formulario {
-      .form {
-        .input,
-        .select {
-          border-radius: 2px;
-        }
-      }
-    }
-  }
-  @media only screen and (min-width: 1920px) and (max-width: 2559px) {
-    .formulario {
-      .form {
-        .input,
-        .select {
-          border-radius: 3px;
-        }
-      }
-    }
-  }
-  @media only screen and (min-width: 2560px) and (max-width: 3839px) {
-    .formulario {
-      .form {
-        .input,
-        .select {
-          border-radius: 5px;
-        }
-      }
-    }
-  }
-  @media only screen and (min-width: 3840px) and (max-width: 7679px) {
-    .formulario {
-      .form {
-        .input,
-        .select {
-          border-radius: 7px;
-        }
-      }
-    }
-  }
-  @media only screen and (min-width: 7680px) {
-    .formulario {
-      .form {
-        .input,
-        .select {
-          border-radius: 15px;
         }
       }
     }

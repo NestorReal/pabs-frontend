@@ -48,6 +48,8 @@ function GenerarRecompensa({ getCompanies, getFeatures, onClick, data }) {
                 name="companyId"
                 value={formik.values.companyId}
                 onChange={formik.handleChange}
+                autoHeight
+                Rounded={false}
               >
                 <option>Seleccionar</option>
                 {getCompanies.map(item => (
@@ -71,6 +73,8 @@ function GenerarRecompensa({ getCompanies, getFeatures, onClick, data }) {
                   onChange={formik.handleChange}
                   value={formik.values.name}
                   disabled={!!data}
+                  autoHeight
+                  Rounded={false}
                 />
                 {formik.touched.name && formik.errors.name ? (
                   <p className="error">{formik.errors.name}</p>
@@ -86,6 +90,8 @@ function GenerarRecompensa({ getCompanies, getFeatures, onClick, data }) {
                   name="cost"
                   onChange={formik.handleChange}
                   value={formik.values.cost}
+                  autoHeight
+                  Rounded={false}
                 />
                 {formik.touched.cost && formik.errors.cost ? (
                   <p className="error">{formik.errors.cost}</p>
@@ -98,6 +104,8 @@ function GenerarRecompensa({ getCompanies, getFeatures, onClick, data }) {
                 onChange={formik.handleChange}
                 value={formik.values.features}
                 label="Selecciona la descripcion"
+                autoHeight
+                Rounded={false}
               >
                 <option>Seleccionar</option>
                 {getFeatures.map(item => (
