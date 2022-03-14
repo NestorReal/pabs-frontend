@@ -6,22 +6,26 @@ const StyleInputGroup = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
+  row-gap: 25px;
+
+  .error {
+    position: absolute;
+  }
 
   @media only screen and (min-width: 700px) and (max-width: 1279px) {
-    row-gap: 15px;
+    row-gap: 17px;
   }
   @media only screen and (min-width: 1920px) and (max-width: 2559px) {
-    row-gap: 25px;
+    row-gap: 30px;
   }
   @media only screen and (min-width: 2560px) and (max-width: 3839px) {
-    row-gap: 40px;
+    row-gap: 45px;
   }
   @media only screen and (min-width: 3840px) and (max-width: 7679px) {
-    row-gap: 70px;
+    row-gap: 80px;
   }
   @media only screen and (min-width: 7680px) {
-    row-gap: 120px;
+    row-gap: 130px;
   }
 `;
 

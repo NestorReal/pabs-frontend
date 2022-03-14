@@ -5,7 +5,7 @@
  *
  */
 
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -21,135 +21,160 @@ import saga from './saga';
 import logo2 from '../../images/logo2.svg';
 import paypal from '../../images/paypal.png';
 import zelle from '../../images/zelle.png';
-import { Container } from './styles';
+import { Container, Header, ModalContainer, PagoContainer } from './styles';
+import Modal from '../../components/Modal';
+import Input from '../../components/components/Input';
+import { InputGroup } from '../../components/components/InputGroup';
+import Button from '../../components/components/Button';
 
 export function Home() {
   useInjectReducer({ key: 'home', reducer });
   useInjectSaga({ key: 'home', saga });
-  const modal = useRef(null);
-  const hidden = () => {
-    modal.current.style.display = 'none';
+  const [modal, setModal] = useState(false);
+  // const modal = useRef(null);
+  const hideModal = () => {
+    setModal(false);
   };
+  const showModal = () => {
+    setModal(true);
+  };
+
   return (
     <Container>
-      <div ref={modal} className="containerModal" style={{ display: 'none' }}>
-        <div className="modal">
-          <div className="texModal">MOVIMIENTO EXITOSO</div>
+      <ModalContainer>
+        <Modal title="MOVIMIENTO EXITOSO" display={modal}>
           <div className="containerButtonModal">
-            <button
-              className="primary"
-              type="button"
-              style={{ marginRight: '6px' }}
-            >
+            <Button variant="primary" style={{ marginRight: '6px' }}>
               Otra referencia
-            </button>
-            <button className="secondary" type="button" onClick={hidden}>
+            </Button>
+            <Button variant="secondary" type="button" onClick={hideModal}>
               Salir
-            </button>
+            </Button>
           </div>
-        </div>
-      </div>
-      <img src={logo2} className="logo" alt="logo" />
-      <div className="title">
-        Bienvenido <b>Juan</b>
-      </div>
-      <button type="button" className="sesion" onClick={() => auth.logout()}>
-        Cerrar sesión
-        <MdOutlineEmail
-          style={{ height: '15px', width: '15px', color: '#1E2B31' }}
-        />
-      </button>
-      <div className="referencia">
-        <div className="containerInput">
-          <label className="label">Número de referencia:</label>
-          <div className="input">
-            <input type="text" placeholder="Ej.1234567890" />
-            <div className="icon">
-              <MdOutlineEmail
-                style={{ height: '25px', width: '25px', color: '#113255' }}
-              />
+        </Modal>
+      </ModalContainer>
+
+      <Header>
+        <img src={logo2} className="logo" alt="logo" />
+        <h1 className="main-title">
+          Bienvenido <b>Juan</b>
+        </h1>
+        <button
+          type="button"
+          className="sesion label"
+          onClick={() => auth.logout()}
+        >
+          Cerrar sesión
+          {/* <MdOutlineEmail
+            style={{ height: '15px', width: '15px', color: '#1E2B31' }}
+          /> */}
+        </button>
+      </Header>
+
+      <PagoContainer>
+        <div className="res">
+          <div className="referencia">
+            <InputGroup>
+              <div className="containerInput">
+                <Input
+                  label="Número de referencia:"
+                  type="text"
+                  placeholder="Ej.1234567890"
+                >
+                  <MdOutlineEmail style={{ color: '#113255' }} />
+                </Input>
+              </div>
+              <div className="containerInput">
+                <Input label="Monto:" type="text" placeholder="$ USD" />
+              </div>
+            </InputGroup>
+            <div className="containerButton">
+              <Button
+                variant="primary"
+                className="label"
+                type="button"
+                style={{ marginRight: '6px' }}
+              >
+                Ingresar
+              </Button>
+              <Button
+                variant="secondary"
+                className="label"
+                type="button"
+                // style={{ height: '80px' }}
+              >
+                Ver estado de cuenta
+              </Button>
+            </div>
+          </div>
+          <div className="containerPlan">
+            <h2 className="titlePlan">Nombre del plan</h2>
+            <table>
+              <tr>
+                <td>
+                  Número de referencia
+                  <div style={{ height: '10px', width: '1px' }} />
+                </td>
+                <th>
+                  1234567890
+                  <div style={{ height: '10px', width: '1px' }} />
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  Movimiento
+                  <div style={{ height: '10px', width: '1px' }} />
+                </td>
+                <th>
+                  $ 0.00 USD
+                  <div style={{ height: '10px', width: '1px' }} />
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  Monto total
+                  <div style={{ height: '10px', width: '1px' }} />
+                </td>
+                <th>
+                  $ 0.00 USD
+                  <div style={{ height: '10px', width: '1px' }} />
+                </th>
+              </tr>
+            </table>
+            <div className="containerMetodo">
+              <div className="label">Elige método</div>
+              <div className="center buttons">
+                <Button
+                  // className="paypal"
+                  variant="secondary"
+                  onClick={() => showModal()}
+                >
+                  <img
+                    src={paypal}
+                    // width="128px"
+                    // height="38.23px"
+                    alt="paypal"
+                  />
+                </Button>
+                {/* <button
+                  type="button"
+                  className="paypal"
+                  onClick={() => {
+                    showModal();
+                  }}
+                /> */}
+                <Button
+                  // className="paypal"
+                  variant="secondary"
+                  onClick={() => showModal()}
+                >
+                  <img src={zelle} alt="zelle" />
+                </Button>
+              </div>
             </div>
           </div>
         </div>
-        <div className="monto">
-          <div className="text">Monto</div>
-          <div>
-            $<input type="number" /> USD
-          </div>
-        </div>
-        <div className="containerButton">
-          <button
-            className="primary"
-            type="button"
-            style={{ marginRight: '6px' }}
-          >
-            Ingresar
-          </button>
-          <button
-            className="secondary"
-            type="button"
-            style={{ height: '80px' }}
-          >
-            Ver estado de cuenta
-          </button>
-        </div>
-      </div>
-      <div className="containerPlan">
-        <div className="titlePlan">Nombre del plan</div>
-        <table>
-          <tr>
-            <td>
-              Número de referencia
-              <div style={{ height: '10px', width: '1px' }} />
-            </td>
-            <th>
-              1234567890
-              <div style={{ height: '10px', width: '1px' }} />
-            </th>
-          </tr>
-          <tr>
-            <td>
-              Movimiento
-              <div style={{ height: '10px', width: '1px' }} />
-            </td>
-            <th>
-              $ 0.00 USD
-              <div style={{ height: '10px', width: '1px' }} />
-            </th>
-          </tr>
-          <tr>
-            <td>
-              Monto total
-              <div style={{ height: '10px', width: '1px' }} />
-            </td>
-            <th>
-              $ 0.00 USD
-              <div style={{ height: '10px', width: '1px' }} />
-            </th>
-          </tr>
-        </table>
-        <div className="containerMetodo">
-          <div>Elige método</div>
-          <button
-            type="button"
-            className="paypal"
-            onClick={() => {
-              modal.current.style.display = 'flex';
-            }}
-          >
-            <img src={paypal} width="128px" height="38.23px" alt="paypal" />
-          </button>
-          <button
-            type="button"
-            className="zelle"
-            onClick={() => {
-              modal.current.style.display = 'flex';
-            }}
-          >
-            <img src={zelle} width="128px" height="38.23px" alt="zelle" />
-          </button>
-        </div>
-      </div>
+      </PagoContainer>
       <div className="footer" />
     </Container>
   );

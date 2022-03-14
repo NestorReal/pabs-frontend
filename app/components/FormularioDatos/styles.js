@@ -8,21 +8,22 @@ export const Container = styled.div`
     color: #00539c;
     margin-bottom: 1.111%;
   }
-  .responsable,
-  .titular {
+  .input-group-wrapper {
     column-gap: 5%;
     display: flex;
     justify-content: flex-start;
+    padding-bottom: 2%;
   }
   .containerTerminos {
-    height: 15.605%;
-    display: flex;
     align-items: center;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
   }
   @media only screen and (max-width: 700px) {
-    .responsable,
-    .titular {
+    .input-group-wrapper {
       flex-wrap: wrap;
+      row-gap: 20px;
     }
 
     .input-group {

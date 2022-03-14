@@ -30,7 +30,7 @@ const StyleButton = styled.button`
     props.variant !== 'secondary'
       ? backgroundColors[props.variant]
       : '#00539c'};
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 959px) {
     width: ${props => (props.size === 'large' ? '155px' : '85px')};
     height: ${props => (props.size === 'large' ? '40px' : '30px')};
     font-size: 16px;
@@ -45,7 +45,7 @@ const StyleButton = styled.button`
   @media only screen and (min-width: 1920px) and (max-width: 2559px) {
     width: ${props => (props.size === 'large' ? '330px' : '150px')};
     height: ${props => (props.size === 'large' ? '77px' : '50px')};
-    font-size: 36px;
+    font-size: 30px;
     border-width: 2px;
     ${props => (props.size === 'large' ? '15px' : '5px')}
   }
@@ -66,7 +66,7 @@ const StyleButton = styled.button`
   @media only screen and (min-width: 7680px) {
     width: ${props => (props.size === 'large' ? '1320px' : '700px')};
     height: ${props => (props.size === 'large' ? '300px' : '200px')};
-    font-size: 150px;
+    font-size: 125px;
     border-width: 10p;
     border-radius: ${props => (props.size === 'large' ? '80px' : '40px')};
   }

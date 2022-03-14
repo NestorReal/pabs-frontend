@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const ModaStyle = styled.div`
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   z-index: 10000;
@@ -18,6 +18,9 @@ const ModaStyle = styled.div`
   justify-content: center;
   align-items: center;
   .ContainerModal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 72.422%;
     height: 65.556%;
     background: #ffffff;
@@ -25,10 +28,10 @@ const ModaStyle = styled.div`
     border-radius: 10px;
     text-align: center;
     color: #00539c;
-    padding: 5.32% 0 6% 0;
+    padding: 6% 4%;
     .text {
       width: 60.937%;
-      margin: auto;
+      margin: 0 auto;
     }
     h2 {
       font-weight: normal;
@@ -37,6 +40,19 @@ const ModaStyle = styled.div`
       color: #317f43;
     }
   }
+
+  @media only screen and (max-width: 959px) {
+    padding: 10% 0;
+
+    .ContainerModal {
+      width: 85%;
+      height: unset;
+      .text {
+        width: 85%;
+      }
+    }
+  }
+
   @media only screen and (min-width: 960px) and (max-width: 1279px) {
     min-width: 945px;
     min-height: 540px;
@@ -79,15 +95,20 @@ const ModaStyle = styled.div`
   }
 `;
 
-function Modal({ display, title, text, subtitle }) {
+function Modal({ display, title, text, subtitle, children }) {
   return (
     <ModaStyle display={display}>
       <div className="ContainerModal">
         <h1 className="title">{title}</h1>
-        <div className="text">
-          <h2>{text}</h2>
-        </div>
-        <h1>{subtitle}</h1>
+        {text && (
+          <>
+            <div className="text">
+              <h2>{text}</h2>
+            </div>
+          </>
+        )}
+        {subtitle && <h1>{subtitle}</h1>}
+        {children}
       </div>
     </ModaStyle>
   );
@@ -98,6 +119,7 @@ Modal.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
   text: PropTypes.string,
+  children: PropTypes.element,
 };
 
 export default Modal;

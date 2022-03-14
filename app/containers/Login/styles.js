@@ -8,8 +8,8 @@ export const Container = styled.div`
     color: #00539c;
   }
   .formulario {
-    position: absolute;
-    top: 28%;
+    /* position: absolute;
+    top: 28%; */
   }
   .containerButton {
     position: absolute;
@@ -26,7 +26,7 @@ export const Container = styled.div`
       top: 20%;
     }
     .containerButton {
-      width: 65%;
+      /* width: 65%; */
     }
   }
   @media only screen and (min-width: 701px) and (max-width: 800px) {

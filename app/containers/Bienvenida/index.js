@@ -53,7 +53,7 @@ export function Bienvenida(props) {
           <label htmlFor="text">FECHA DE COMPRA:</label>
         </div>
       </div>
-      <div className="paper">
+      <div className="paper paper-contacto">
         <div className="titulo2">
           <h2>
             CUANDO NOS NECESITE… <br /> SIEMPRE ESTAREMOS PARA SERVIRLE.
@@ -65,13 +65,12 @@ export function Bienvenida(props) {
             DÍA.
           </label>
         </div>
-        <div className="center">
-          <div className="spaceBetween" style={{ width: '30%' }}>
-            <label htmlFor="text">800-47-22767</label>
-            <label htmlFor="text">www.pabsmr.org</label>
-          </div>
+        <div className="center contact-info" style={{ gap: '5%' }}>
+          <label htmlFor="text">800-47-22767</label>
+          <label htmlFor="text">www.pabsmr.org</label>
         </div>
         <Button
+          size="medium"
           type="button"
           variant="primary"
           // eslint-disable-next-line react/prop-types

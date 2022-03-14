@@ -38,6 +38,9 @@ const ModalStyle = styled.div`
   .ContainerModal::-webkit-scrollbar {
     display: block;
     width: 15px;
+    @media only screen and (max-width: 959px) {
+      width: 5px;
+    }
   }
 
   .ContainerModal::-webkit-scrollbar-button {
@@ -56,6 +59,17 @@ const ModalStyle = styled.div`
     background-color: rgb(138, 138, 138);
     /* border: 1px solid #ffffff40; */
     border-radius: 24px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    align-items: flex-start;
+    overflow: auto;
+    padding: 10% 0;
+
+    .ContainerModal {
+      height: unset;
+      width: 90%;
+    }
   }
 
   @media only screen and (min-width: 960px) and (max-width: 1279px) {

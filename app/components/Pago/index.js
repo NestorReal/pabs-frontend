@@ -56,19 +56,12 @@ function Pago({ dataPlan, dataPaye }, props) {
   }
   return (
     <Container>
-      <div className="spaceBetween res">
+      <div className="res">
         <Notifications />
         <div className="referencia">
-          <label>{titular}</label>
-          <br />
-          <br />
-          <br />
+          <label className="representante-pago">{titular}</label>
           <label>Titular {titular}</label>
-          <br />
-          <br />
           <label>Ciudad {dataPaye.city}</label>
-          <br />
-          <br />
           <label>
             Calle {dataPaye.street} #{dataPaye.ext_number}
             {' Col.'}

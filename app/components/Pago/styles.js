@@ -16,12 +16,20 @@ export const Container = styled.div`
     color: #113255;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
+    position: relative;
     label {
+      display: block;
       font-weight: bold;
+      margin-bottom: 5%;
     }
-    button {
-      float: right;
-      margin-top: 75px;
+    label.representante-pago {
+      margin-bottom: 12%;
+    }
+
+    .containerButton {
+      position: absolute;
+      right: 5%;
+      bottom: 5%;
     }
   }
   .containerPlans {
@@ -59,20 +67,34 @@ export const Container = styled.div`
   .buttons {
     margin-top: 14px;
   }
+  .res {
+    align-items: flex-start;
+    column-gap: 7%;
+    display: flex;
+    justify-content: center;
+  }
   @media only screen and (max-width: 959px) {
     min-width: 300px;
-    padding: 0px;
-    padding-left: 5%;
+    padding: 10% 7%;
     .referencia {
-      padding: 20px 10px 20px 10px;
+      height: unset;
+      padding: 40px 20px 60px 20px;
       margin-bottom: 50px;
     }
     .referencia,
     .containerPlans {
-      width: 90%;
+      width: 100%;
     }
     .res {
       display: block;
+    }
+    .containerCodigo {
+      input {
+        flex-grow: 1;
+      }
+      button {
+        white-space: nowrap;
+      }
     }
   }
   @media only screen and (min-width: 960px) and (max-width: 1279px) {
@@ -86,7 +108,7 @@ export const Container = styled.div`
       box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
       border-radius: 10px;
       button {
-        margin-top: 37px;
+        /* margin-top: 37px; */
       }
     }
     .containerPlans {
@@ -123,13 +145,13 @@ export const Container = styled.div`
     min-height: 680px;
     padding: 4.7% 6.7% 3.52% 6%;
     .referencia {
-      padding: 31px 19px 20px 24px;
+      padding: 40px 30px;
       width: 670px;
       height: 520px;
       box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
       border-radius: 25px;
       button {
-        margin-top: 175px;
+        /* margin-top: 175px; */
         font-size: 30px;
       }
     }
@@ -176,7 +198,7 @@ export const Container = styled.div`
       box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.25);
       border-radius: 35px;
       button {
-        margin-top: 233px;
+        /* margin-top: 233px; */
       }
     }
     .containerPlans {
@@ -218,7 +240,7 @@ export const Container = styled.div`
       box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.25);
       border-radius: 35px;
       button {
-        margin-top: 380px;
+        /* margin-top: 380px; */
       }
     }
     .containerPlans {
@@ -254,13 +276,13 @@ export const Container = styled.div`
     min-height: 2650px;
     padding: 4.7% 6.7% 3.52% 6%;
     .referencia {
-      padding: 110px;
+      padding: 160px 120px;
       width: 2870px;
       height: 2000px;
       box-shadow: 50px 50px 130px rgba(0, 0, 0, 0.25);
       border-radius: 120px;
       button {
-        margin-top: 920px;
+        /* margin-top: 920px; */
       }
     }
     .containerPlans {

@@ -26,6 +26,7 @@ import Portada from '../../components/Portada';
 import ContainerForm from '../../components/ContainerForm';
 import Input from '../../components/components/Input';
 import Button from '../../components/components/Button';
+import { InputGroup } from '../../components/components/InputGroup';
 
 export function Login(props) {
   useInjectReducer({ key: 'login', reducer });
@@ -63,38 +64,42 @@ export function Login(props) {
         <form onSubmit={formik.handleSubmit}>
           <div className="center">
             <div className="formulario">
-              <Input
-                label="Correo de usuario"
-                placeholder="ejemplo@ejemplo.com"
-                name="email"
-                onChange={formik.handleChange}
-                value={formik.values.email}
-              >
-                <MdOutlineEmail />
-              </Input>
-              {formik.touched.email && formik.errors.email ? (
-                <p className="error">{formik.errors.email}</p>
-              ) : null}
-              <Input
-                className={
-                  formik.values.password !== '' && !passShow
-                    ? 'fontFontello'
-                    : 'Arial'
-                }
-                label="Contraseña"
-                placeholder="Contraseña"
-                type={passShow ? 'text' : 'password'}
-                name="password"
-                onChange={formik.handleChange}
-                value={formik.values.password}
-              >
-                <button type="button" onClick={show}>
-                  {passShow ? <BsEye /> : <BsEyeSlash />}
-                </button>
-              </Input>
-              {formik.touched.password && formik.errors.password ? (
-                <p className="error">{formik.errors.password}</p>
-              ) : null}
+              <InputGroup>
+                <Input
+                  label="Correo de usuario"
+                  placeholder="ejemplo@ejemplo.com"
+                  name="email"
+                  onChange={formik.handleChange}
+                  value={formik.values.email}
+                  fullWidth={false}
+                >
+                  <MdOutlineEmail />
+                </Input>
+                {formik.touched.email && formik.errors.email ? (
+                  <p className="error">{formik.errors.email}</p>
+                ) : null}
+                <Input
+                  className={
+                    formik.values.password !== '' && !passShow
+                      ? 'fontFontello'
+                      : 'Arial'
+                  }
+                  label="Contraseña"
+                  placeholder="Contraseña"
+                  type={passShow ? 'text' : 'password'}
+                  name="password"
+                  onChange={formik.handleChange}
+                  value={formik.values.password}
+                  fullWidth={false}
+                >
+                  <button type="button" onClick={show}>
+                    {passShow ? <BsEye /> : <BsEyeSlash />}
+                  </button>
+                </Input>
+                {formik.touched.password && formik.errors.password ? (
+                  <p className="error">{formik.errors.password}</p>
+                ) : null}
+              </InputGroup>
             </div>
           </div>
           <div className="center">
