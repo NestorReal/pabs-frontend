@@ -19,7 +19,6 @@ import Home from 'containers/Home';
 import Login from 'containers/Login';
 import ValidatePayment from 'components/ValidatePayment';
 import Plan from 'containers/Plan';
-import Bienvenida from 'containers/Bienvenida';
 
 import GlobalStyle from '../../global-styles';
 
@@ -33,7 +32,6 @@ export default function App() {
         <Route exact path="/auth-admin" component={LoginAdmin} />
         <ProtectedRoute exact path="/HomeAdmin" component={HomeAdmin} />
         <Route exact path="/plan" component={Plan} />
-        <Route exact path="/bienvenida" component={Bienvenida} />
         <ProtectedRoute
           exact
           path="/paypal/return"
