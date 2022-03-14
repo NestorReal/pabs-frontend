@@ -44,6 +44,17 @@ const StyleInput = styled.div`
     border: none;
     padding: 10px;
   }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
   @media only screen and (max-width: 959px) {
     width: 300px;
     .input {

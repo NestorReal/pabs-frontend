@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 const Styleselect = styled.div`
-  width: ${props => props.width};
+  width: ${({ fullWidth }) => (fullWidth ? '100% !important' : '360px')};
   height: ${props => props.height};
   .fontFontello {
     font-family: 'fontello' !important;
@@ -48,12 +48,9 @@ const Styleselect = styled.div`
   select:focus {
     outline: none;
   }
-  @media only screen and (max-width: 700) {
-    height: 65px;
-  }
-  @media only screen and (min-width: 700px) and (max-width: 959px) {
+  @media only screen and (max-width: 959px) {
     width: 264px;
-    height: 75px;
+    /* height: 40px; */
     .select {
       height: 40px;
       border: 1px solid #113255;
@@ -71,7 +68,7 @@ const Styleselect = styled.div`
   }
   @media only screen and (min-width: 960px) and (max-width: 1279px) {
     width: 270px;
-    height: 73px;
+    /* height: 73px; */
     .select {
       height: 42px;
     }
@@ -84,9 +81,9 @@ const Styleselect = styled.div`
   }
   @media only screen and (min-width: 1920px) and (max-width: 2559px) {
     width: 545px;
-    height: 146px;
+    /* height: 146px; */
     .select {
-      height: 87px;
+      height: 70px;
       border: 2px solid #113255;
       border-radius: 15px;
     }
@@ -102,9 +99,9 @@ const Styleselect = styled.div`
   }
   @media only screen and (min-width: 2560px) and (max-width: 3839px) {
     width: 720px;
-    height: 183px;
+    /* height: 183px; */
     .select {
-      height: 110px;
+      height: 90px;
       border: 3px solid #113255;
       border-radius: 20px;
     }
@@ -121,9 +118,9 @@ const Styleselect = styled.div`
   }
   @media only screen and (min-width: 3840px) and (max-width: 7679px) {
     width: 1075px;
-    height: 278px;
+    /* height: 278px; */
     .select {
-      height: 160px;
+      height: 135px;
       border: 5px solid #113255;
       border-radius: 30px;
     }
@@ -140,9 +137,9 @@ const Styleselect = styled.div`
   }
   @media only screen and (min-width: 7680px) {
     width: 2146px;
-    height: 575px;
+    /* height: 575px; */
     .select {
-      height: 330px;
+      height: 270px;
       border: 10px solid #113255;
       border-radius: 80px;
     }
@@ -159,9 +156,9 @@ const Styleselect = styled.div`
   }
 `;
 
-function Select({ label, name, value, onChange, children }) {
+function Select({ label, name, value, onChange, children, fullWidth = true }) {
   return (
-    <Styleselect>
+    <Styleselect fullWidth={fullWidth}>
       <label>{label}</label>
       <div className="select">
         <select value={value} onChange={onChange} name={name} id={name}>
@@ -178,6 +175,7 @@ Select.propTypes = {
   onChange: PropTypes.func,
   name: PropTypes.string,
   children: PropTypes.element,
+  fullWidth: PropTypes.bool,
 };
 
 export default Select;
