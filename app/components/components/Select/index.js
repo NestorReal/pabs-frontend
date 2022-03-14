@@ -17,11 +17,12 @@ const Styleselect = styled.div`
     color: #113255;
   }
   .select {
+    height: ${({ autoHeight }) => (autoHeight ? 'auto !important' : '')};
     width: 100%;
     height: 55px;
     border: 1px solid #113255;
     box-sizing: border-box;
-    border-radius: 10px;
+    border-radius: ${({ Rounded }) => (Rounded ? '10px' : '3px')};
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -40,7 +41,7 @@ const Styleselect = styled.div`
   select {
     height: 95%;
     width: 95%;
-    border-radius: 10px;
+    border-radius: ${({ Rounded }) => (Rounded ? '10px' : '3px')};
     border: none;
     padding: 10px;
     background: transparent;
@@ -54,10 +55,10 @@ const Styleselect = styled.div`
     .select {
       height: 40px;
       border: 1px solid #113255;
-      border-radius: 5px;
+      border-radius: ${({ Rounded }) => (Rounded ? '5px' : '2px')};
     }
     select {
-      border-radius: 15px;
+      border-radius: ${({ Rounded }) => (Rounded ? '5px' : '2px')};
     }
     .icon {
       font-size: 25px;
@@ -71,6 +72,7 @@ const Styleselect = styled.div`
     /* height: 73px; */
     .select {
       height: 42px;
+      border-radius: ${({ Rounded }) => (Rounded ? '5px' : '2px')};
     }
     .icon {
       font-size: 23px;
@@ -85,10 +87,10 @@ const Styleselect = styled.div`
     .select {
       height: 70px;
       border: 2px solid #113255;
-      border-radius: 15px;
+      border-radius: ${({ Rounded }) => (Rounded ? '15px' : '3px')};
     }
     select {
-      border-radius: 15px;
+      border-radius: ${({ Rounded }) => (Rounded ? '15px' : '3px')};
     }
     .icon {
       font-size: 35px;
@@ -103,10 +105,10 @@ const Styleselect = styled.div`
     .select {
       height: 90px;
       border: 3px solid #113255;
-      border-radius: 20px;
+      border-radius: ${({ Rounded }) => (Rounded ? '20px' : '5px')};
     }
     select {
-      border-radius: 20px;
+      border-radius: ${({ Rounded }) => (Rounded ? '20px' : '5px')};
       padding-left: 20px;
     }
     .icon {
@@ -122,10 +124,10 @@ const Styleselect = styled.div`
     .select {
       height: 135px;
       border: 5px solid #113255;
-      border-radius: 30px;
+      border-radius: ${({ Rounded }) => (Rounded ? '30px' : '7px')};
     }
     select {
-      border-radius: 30px;
+      border-radius: ${({ Rounded }) => (Rounded ? '30px' : '7px')};
       padding-left: 25px;
     }
     .icon {
@@ -141,10 +143,10 @@ const Styleselect = styled.div`
     .select {
       height: 270px;
       border: 10px solid #113255;
-      border-radius: 80px;
+      border-radius: ${({ Rounded }) => (Rounded ? '80px' : '15px')};
     }
     select {
-      border-radius: 80px;
+      border-radius: ${({ Rounded }) => (Rounded ? '80px' : '15px')};
       padding-left: 50px;
     }
     .icon {
@@ -156,9 +158,22 @@ const Styleselect = styled.div`
   }
 `;
 
-function Select({ label, name, value, onChange, children, fullWidth = true }) {
+function Select({
+  label,
+  name,
+  value,
+  onChange,
+  children,
+  fullWidth = true,
+  Rounded = true,
+  autoHeight = false,
+}) {
   return (
-    <Styleselect fullWidth={fullWidth}>
+    <Styleselect
+      fullWidth={fullWidth}
+      Rounded={Rounded}
+      autoHeight={autoHeight}
+    >
       <label>{label}</label>
       <div className="select">
         <select value={value} onChange={onChange} name={name} id={name}>
@@ -176,6 +191,8 @@ Select.propTypes = {
   name: PropTypes.string,
   children: PropTypes.element,
   fullWidth: PropTypes.bool,
+  Rounded: PropTypes.bool,
+  autoHeight: PropTypes.bool,
 };
 
 export default Select;
