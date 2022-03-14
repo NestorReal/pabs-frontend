@@ -26,21 +26,6 @@ const Container = styled.div`
     left: 0px;
     width: 100%;
   }
-  @media only screen and (min-width: 960px) and (max-width: 1279px) {
-    min-height: 540px;
-  }
-  @media only screen and (min-width: 1920px) and (max-width: 2559px) {
-    min-height: 1080px;
-  }
-  @media only screen and (min-width: 2560px) and (max-width: 3839px) {
-    min-height: 1440px;
-  }
-  @media only screen and (min-width: 3840px) and (max-width: 7679px) {
-    min-height: 2160px;
-  }
-  @media only screen and (min-width: 7680px) {
-    min-height: 4320px;
-  }
 `;
 
 function ContainerForm({
