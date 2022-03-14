@@ -23,6 +23,8 @@ const MenuStyle = styled.div`
     height: 63%;
     width: 100%;
     button {
+      display: flex;
+      align-items: center;
       width: 92%;
       height: 31px;
       border-radius: 10px;
@@ -31,6 +33,9 @@ const MenuStyle = styled.div`
       border: none;
       text-align: center;
       color: #767676;
+      label {
+        margin-left: 10%;
+      }
       i {
         margin-right: 16px;
       }
@@ -45,6 +50,7 @@ const MenuStyle = styled.div`
     .containerOptions {
       width: 100%;
       margin-top: 10px;
+      margin-left: 3%;
       button {
         width: 100%;
         height: 38px;
@@ -59,6 +65,7 @@ const MenuStyle = styled.div`
         color: #113255;
         p {
           border-right: solid 2px #00539c;
+          width: 100%;
         }
       }
     }
