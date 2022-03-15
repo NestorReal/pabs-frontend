@@ -42,7 +42,6 @@ export const Container = styled.div`
     }
     label {
       color: #113255;
-      font-weight: bold;
     }
   }
   .paper-contacto {
@@ -52,7 +51,6 @@ export const Container = styled.div`
   }
   .titulo1 {
     width: 100%;
-    text-align: center;
     color: #00539c;
   }
   .titulo2 {

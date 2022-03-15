@@ -4,15 +4,24 @@
  *
  */
 import produce from 'immer';
-import { DEFAULT_ACTION } from './constants';
+import * as constants from './constants';
 
-export const initialState = {};
+export const initialState = {
+  user: {},
+  report: [],
+};
 
 /* eslint-disable default-case, no-param-reassign */
 const homeReducer = (state = initialState, action) =>
-  produce(state, (/* draft */) => {
+  produce(state, draft => {
     switch (action.type) {
-      case DEFAULT_ACTION:
+      case constants.DEFAULT_ACTION:
+        break;
+      case constants.GET_USER_SUCCED:
+        draft.user = action.response;
+        break;
+      case constants.GET_REPORTS_SUCCED:
+        draft.report = action.response;
         break;
     }
   });

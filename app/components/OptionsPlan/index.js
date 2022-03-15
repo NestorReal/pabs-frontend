@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import TiposPlan from '../TiposPlan';
 import FormularioDatos from '../FormularioDatos';
 import Pago from '../Pago';
-
+import Bienvenida from '../Bienvenida';
 function OptionsPlan({
   menu,
   getStep,
@@ -38,7 +38,15 @@ function OptionsPlan({
         />
       );
     case 3:
-      return <Pago dataPlan={dataPlan} dataPaye={dataPaye} />;
+      return (
+        <Pago
+          dataPlan={dataPlan}
+          dataPaye={dataPaye}
+          getStep={step => getStep(step)}
+        />
+      );
+    case 4:
+      return <Bienvenida dataPlan={dataPlan} dataPaye={dataPaye} />;
     default:
       return (
         <TiposPlan

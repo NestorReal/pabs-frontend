@@ -19,15 +19,15 @@ export function* payersSaga(action) {
   const body = { ...action.data };
   delete body.password;
   delete body.confirmPassword;
-  const response = body;
+  /* const response = body;
   yield put({
     type: constants.PAYERS_SUCCEED,
     response,
   });
   yield put(addSuccessMessage(`Usuario creado correctamente`));
-  yield put(stepAction(3));
+  yield put(stepAction(3)); */
   // console.log(`Bearer ${auth.getToken()}`);
-  /* try {
+  try {
     const requestURL = `http://54.219.179.76/payers/`;
     const response = yield call(request, requestURL, {
       method: 'POST',
@@ -53,7 +53,7 @@ export function* payersSaga(action) {
     });
     yield put(stepAction(2));
     yield put(addErrorMessage(`Error al crear usuario`));
-  } */
+  }
 }
 
 export function* getPlanSaga() {

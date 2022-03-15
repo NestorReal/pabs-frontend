@@ -42,7 +42,6 @@ export const Container = styled.div`
     }
     label {
       color: #113255;
-      font-weight: bold;
     }
   }
   .paper-contacto {

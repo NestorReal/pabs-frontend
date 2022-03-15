@@ -58,8 +58,8 @@ export function Plan(props) {
       {props.plan.step < 3 && <Portada />}
       <ContainerForm
         footer={false}
-        left={props.plan.step === 3 ? '0px' : '31.641%'}
-        width={props.plan.step === 3 ? '100%' : '68.359%'}
+        left={props.plan.step >= 3 ? '0px' : '31.641%'}
+        width={props.plan.step >= 3 ? '100%' : '68.359%'}
       >
         <h1>
           {/* eslint-disable-next-line no-nested-ternary */}

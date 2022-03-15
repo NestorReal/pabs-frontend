@@ -17,7 +17,7 @@ import paypal from '../../images/paypal.png';
 import { Container } from './styles';
 import Button from '../components/Button';
 
-function Pago({ dataPlan, dataPaye }, props) {
+function Pago({ dataPlan, dataPaye, getStep }, props) {
   const [dataUrl, setDataUrl] = useState({});
   const titular = `${dataPaye.name} ${dataPaye.father_lastname} ${
     dataPaye.mothers_lastname
@@ -38,6 +38,7 @@ function Pago({ dataPlan, dataPaye }, props) {
       .then(response => response.json())
       .then(success => {
         setDataUrl(success);
+        getStep(4);
       })
       .catch(error => console.log(error));
   };
@@ -120,6 +121,7 @@ Pago.propTypes = {
   // onClickPaypal: PropTypes.func,
   dataPlan: PropTypes.object,
   dataPaye: PropTypes.object,
+  getStep: PropTypes.func,
   dispatch: PropTypes.func,
 };
 
