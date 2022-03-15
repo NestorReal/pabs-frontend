@@ -44,6 +44,8 @@ const StyleInput = styled.div`
     border-radius: ${({ Rounded }) => (Rounded ? '10px' : '3px')};
     border: none;
     padding: 10px;
+    padding-top: ${({ autoHeight }) => (autoHeight ? '2%' : '0')};
+    padding-bottom: ${({ autoHeight }) => (autoHeight ? '2%' : '0')};
   }
 
   input::-webkit-outer-spin-button,
