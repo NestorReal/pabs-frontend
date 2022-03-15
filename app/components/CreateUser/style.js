@@ -6,37 +6,57 @@ export const Container = styled.div`
   height: 100%;
   padding: 32px 0 15px 24px;
   .subtext {
+    display: block;
     margin-left: 56px;
     margin-bottom: 26px;
     color: #000000;
   }
   .containerFormulario {
-    position: fixed;
-    width: 80.234%;
-    height: 53.444%;
+    width: 95%;
     background: #ffffff;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
-    padding: 19px 84px 63px 70px;
+    padding: 2%;
   }
   .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 8%;
     width: 30%;
   }
   .containerInput {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
+    margin-bottom: 5%;
+
+    .left,
+    .rigth {
+      width: 30%;
+    }
   }
   @media only screen and (max-width: 959px) {
-    height: 65px;
+    padding: 0;
+    .containerFormulario {
+      position: relative;
+      width: 80.234%;
+      margin: 0 auto;
+    }
+
+    .subtext {
+      margin-left: 0;
+      text-align: center;
+    }
+
     .containerInput {
       display: block;
+      .left,
+      .rigth {
+        width: 95%;
+        margin: 0 auto;
+      }
     }
-    .containerFormulario {
-      position: absolute;
-      height: 530px;
-      padding: 10px;
-    }
+
     .buttons {
       margin-top: 15px;
       width: 80%;

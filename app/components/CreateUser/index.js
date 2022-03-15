@@ -17,6 +17,7 @@ import { Container } from './style';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import Select from '../components/Select';
+import { InputGroup } from '../components/InputGroup';
 
 function CreateUser({ onClick, data }) {
   const [passShow, setPassShow] = useState(false);
@@ -52,86 +53,116 @@ function CreateUser({ onClick, data }) {
   });
   return (
     <Container>
-      <div className="subtext">
+      <div className="subtext label">
         Ingrese a información del usuario a continuación
       </div>
       <form onSubmit={formik.handleSubmit} className="containerFormulario">
         <div className="containerInput">
           <div className="left">
-            <Input
-              label="Nombre:"
-              placeholder="Nombre"
-              name="full_name"
-              onChange={formik.handleChange}
-              value={formik.values.full_name}
-            >
-              <AiOutlineUser />
-            </Input>
-            {formik.touched.full_name && formik.errors.full_name ? (
-              <p className="error">{formik.errors.full_name}</p>
-            ) : null}
-            <Input
-              label="Teléfono:"
-              placeholder="Ej. 1234567890"
-              name="phone_number"
-              onChange={formik.handleChange}
-              value={formik.values.phone_number}
-            >
-              <BsTelephone />
-            </Input>
-            {formik.touched.phone_number && formik.errors.phone_number ? (
-              <p className="error">{formik.errors.phone_number}</p>
-            ) : null}
+            <InputGroup>
+              <div>
+                <Input
+                  label="Nombre:"
+                  placeholder="Nombre"
+                  name="full_name"
+                  onChange={formik.handleChange}
+                  value={formik.values.full_name}
+                >
+                  <AiOutlineUser />
+                </Input>
+                {formik.touched.full_name && formik.errors.full_name ? (
+                  <p className="error">{formik.errors.full_name}</p>
+                ) : null}
+              </div>
+              <div>
+                <Input
+                  label="Apellidos:"
+                  placeholder="Apellidos"
+                  name="last_name"
+                  onChange={formik.handleChange}
+                  value={formik.values.full_name}
+                >
+                  <AiOutlineUser />
+                </Input>
+                {formik.touched.full_name && formik.errors.full_name ? (
+                  <p className="error">{formik.errors.full_name}</p>
+                ) : null}
+              </div>
+              <div>
+                <Input
+                  label="Teléfono:"
+                  placeholder="Ej. 1234567890"
+                  name="phone_number"
+                  onChange={formik.handleChange}
+                  value={formik.values.phone_number}
+                >
+                  <BsTelephone />
+                </Input>
+                {formik.touched.phone_number && formik.errors.phone_number ? (
+                  <p className="error">{formik.errors.phone_number}</p>
+                ) : null}
+              </div>
+            </InputGroup>
           </div>
           <div className="rigth">
-            <Select
-              name="roles"
-              id="roles"
-              onChange={formik.handleChange}
-              value={formik.values.roles}
-              label="Rol"
-            >
-              <option>Seleccionar</option>
-              <option value="finances">Finances</option>
-              <option value="Voluptate">Voluptate</option>
-              <option value="ventas">ventas</option>
-              <option value="administrador">Administrador</option>
-            </Select>
-            {formik.touched.roles && formik.errors.roles ? (
-              <p className="error">{formik.errors.roles}</p>
-            ) : null}
-            <Input
-              label="Correo:"
-              placeholder="ejemplo@ejemplo.com"
-              name="email"
-              onChange={formik.handleChange}
-              value={formik.values.email}
-            >
-              <MdOutlineEmail />
-            </Input>
-            {formik.touched.email && formik.errors.email ? (
-              <p className="error">{formik.errors.email}</p>
-            ) : null}
-            <Input
-              className={formik.values.password !== '' ? 'fontFontello' : ''}
-              label="Contraseña"
-              placeholder="Contraseña"
-              type={passShow ? 'text' : 'password'}
-              name="password"
-              onChange={formik.handleChange}
-              value={formik.values.password}
-            >
-              <button type="button" onClick={show}>
-                {passShow ? <BsEye /> : <BsEyeSlash />}
-              </button>
-            </Input>
-            {formik.touched.password && formik.errors.password ? (
-              <p className="error">{formik.errors.password}</p>
-            ) : null}
+            <InputGroup>
+              <div>
+                <Select
+                  name="roles"
+                  id="roles"
+                  onChange={formik.handleChange}
+                  value={formik.values.roles}
+                  label="Rol"
+                >
+                  <option>Seleccionar</option>
+                  <option value="finances">Finances</option>
+                  <option value="Voluptate">Voluptate</option>
+                  <option value="ventas">ventas</option>
+                  <option value="administrador">Administrador</option>
+                </Select>
+                {formik.touched.roles && formik.errors.roles ? (
+                  <p className="error">{formik.errors.roles}</p>
+                ) : null}
+              </div>
+              <div>
+                <Input
+                  label="Correo:"
+                  placeholder="ejemplo@ejemplo.com"
+                  name="email"
+                  onChange={formik.handleChange}
+                  value={formik.values.email}
+                >
+                  <MdOutlineEmail />
+                </Input>
+                {formik.touched.email && formik.errors.email ? (
+                  <p className="error">{formik.errors.email}</p>
+                ) : null}
+              </div>
+              <div>
+                <Input
+                  className={
+                    formik.values.password !== '' ? 'fontFontello' : ''
+                  }
+                  label="Contraseña"
+                  placeholder="Contraseña"
+                  type={passShow ? 'text' : 'password'}
+                  name="password"
+                  onChange={formik.handleChange}
+                  value={formik.values.password}
+                >
+                  <button type="button" onClick={show}>
+                    {passShow ? <BsEye /> : <BsEyeSlash />}
+                  </button>
+                </Input>
+                {formik.touched.password && formik.errors.password ? (
+                  <p className="error">{formik.errors.password}</p>
+                ) : null}
+              </div>
+            </InputGroup>
           </div>
         </div>
         <div className="center">
-          <div className="spaceBetween buttons">
+          <div className="buttons">
             <Button size="medium" variant="succes" type="submit">
               Crear
             </Button>
