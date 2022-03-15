@@ -17,7 +17,7 @@ function ValidatePayment() {
   }, []);
 
   const setToken = token => {
-    fetch(`http://54.219.179.76/payments/paypal/?order_id=${token}`, {
+    fetch(`https://api.hispanocash.com/payments/paypal/?order_id=${token}`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${auth.getToken()}`,
@@ -33,7 +33,7 @@ function ValidatePayment() {
 
   const captureOrder = token => {
     fetch(
-      `http://54.219.179.76/payments/paypal/capture-order/?authorization_id=${token}`,
+      `https://api.hispanocash.com/payments/paypal/capture-order/?authorization_id=${token}`,
       {
         headers: {
           'Content-Type': 'application/json',

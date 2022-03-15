@@ -14,7 +14,7 @@ export function* loginSaga(action) {
   formData.append(`username`, action.user);
   formData.append(`password`, action.password);
   try {
-    const requestURL = `http://54.219.179.76/auth/jwt/login`;
+    const requestURL = `https://api.hispanocash.com/auth/jwt/login`;
     const response = yield call(request, requestURL, {
       method: 'POST',
       headers: {

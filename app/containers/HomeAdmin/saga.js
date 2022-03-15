@@ -35,7 +35,7 @@ export default function* defaultSaga() {
 
 export function* getCompaniesSaga() {
   try {
-    const requestURL = `http://54.219.179.76/companies`;
+    const requestURL = `https://api.hispanocash.com/companies`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -67,7 +67,7 @@ export function* createPlanSaga(action) {
   };
   // console.log(body);
   try {
-    const requestURL = `http://54.219.179.76/plans/`;
+    const requestURL = `https://api.hispanocash.com/plans/`;
     yield call(request, requestURL, {
       method: 'POST',
       headers: {
@@ -91,7 +91,7 @@ export function* createPlanSaga(action) {
 
 export function* getPlanSaga() {
   try {
-    const requestURL = `http://54.219.179.76/plans`;
+    const requestURL = `https://api.hispanocash.com/plans`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -115,7 +115,7 @@ export function* getPlanSaga() {
 
 export function* getEditPlanSaga(action) {
   try {
-    const requestURL = `http://54.219.179.76/plans/${action.id}`;
+    const requestURL = `https://api.hispanocash.com/plans/${action.id}`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -144,7 +144,7 @@ export function* EditPlanSaga(action) {
     companyId: action.data.companyId,
   };
   try {
-    const requestURL = `http://54.219.179.76/plans/${action.data.id}`;
+    const requestURL = `https://api.hispanocash.com/plans/${action.data.id}`;
     yield call(request, requestURL, {
       method: 'PUT',
       headers: {
@@ -169,7 +169,7 @@ export function* EditPlanSaga(action) {
 
 export function* getContractSaga() {
   try {
-    const requestURL = `http://54.219.179.76/reports`;
+    const requestURL = `https://api.hispanocash.com/reports`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -193,7 +193,7 @@ export function* getContractSaga() {
 
 export function* getLeafletsSaga() {
   try {
-    const requestURL = `http://54.219.179.76/reports`;
+    const requestURL = `https://api.hispanocash.com/reports`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -217,7 +217,7 @@ export function* getLeafletsSaga() {
 
 export function* getUsersSaga() {
   try {
-    const requestURL = `http://54.219.179.76/users/all-users`;
+    const requestURL = `https://api.hispanocash.com/users/all-users`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -241,7 +241,7 @@ export function* getUsersSaga() {
 
 export function* getUserSaga() {
   try {
-    const requestURL = `http://54.219.179.76/users/me`;
+    const requestURL = `https://api.hispanocash.com/users/me`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -268,7 +268,7 @@ export function* getUserSaga() {
 
 export function* deleteUserSaga(action) {
   try {
-    const requestURL = `http://54.219.179.76/users/${action.id}`;
+    const requestURL = `https://api.hispanocash.com/users/${action.id}`;
     const response = yield call(request, requestURL, {
       method: 'DELETE',
       headers: {
@@ -308,7 +308,7 @@ export function* createUserSaga(action) {
   };
   // console.log(body);
   try {
-    const requestURL = `http://54.219.179.76/auth/register/`;
+    const requestURL = `https://api.hispanocash.com/auth/register/`;
     const response = yield call(request, requestURL, {
       method: 'POST',
       headers: {
@@ -331,7 +331,7 @@ export function* createUserSaga(action) {
 
 export function* getEditUserSaga(action) {
   try {
-    const requestURL = `http://54.219.179.76/users/${action.id}`;
+    const requestURL = `https://api.hispanocash.com/users/${action.id}`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -367,7 +367,7 @@ export function* editUserSaga(action) {
   };
   // console.log(body);
   try {
-    const requestURL = `http://54.219.179.76/users/${action.data.id}`;
+    const requestURL = `https://api.hispanocash.com/users/${action.data.id}`;
     const response = yield call(request, requestURL, {
       method: 'PATCH',
       headers: {
@@ -394,7 +394,7 @@ export function* editUserSaga(action) {
 
 export function* getFeaturesSaga() {
   try {
-    const requestURL = `http://54.219.179.76/features/`;
+    const requestURL = `https://api.hispanocash.com/features/`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -420,7 +420,7 @@ export function* createFeaturesSaga(action) {
   const body = { description: action.value };
   if (action.id === undefined) {
     try {
-      const requestURL = `http://54.219.179.76/features/`;
+      const requestURL = `https://api.hispanocash.com/features/`;
       const response = yield call(request, requestURL, {
         method: 'POST',
         headers: {
@@ -445,7 +445,7 @@ export function* createFeaturesSaga(action) {
     }
   } else {
     try {
-      const requestURL = `http://54.219.179.76/features/${action.id}`;
+      const requestURL = `https://api.hispanocash.com/features/${action.id}`;
       const response = yield call(request, requestURL, {
         method: 'PUT',
         headers: {
@@ -473,7 +473,7 @@ export function* createFeaturesSaga(action) {
 
 export function* getEditFeaturesSaga(action) {
   try {
-    const requestURL = `http://54.219.179.76/features/${action.id}`;
+    const requestURL = `https://api.hispanocash.com/features/${action.id}`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -497,7 +497,7 @@ export function* getEditFeaturesSaga(action) {
 
 export function* deleteFeaturesSaga(action) {
   try {
-    const requestURL = `http://54.219.179.76/features/${action.id}`;
+    const requestURL = `https://api.hispanocash.com/features/${action.id}`;
     yield call(request, requestURL, {
       method: 'DELETE',
       headers: {
@@ -523,7 +523,7 @@ export function* createContractSaga(action) {
   const body = { name: action.value };
   if (action.id === undefined) {
     try {
-      const requestURL = `http://54.219.179.76/companies/`;
+      const requestURL = `https://api.hispanocash.com/companies/`;
       const response = yield call(request, requestURL, {
         method: 'POST',
         headers: {
@@ -548,7 +548,7 @@ export function* createContractSaga(action) {
     }
   } else {
     try {
-      const requestURL = `http://54.219.179.76/companies/${action.id}`;
+      const requestURL = `https://api.hispanocash.com/companies/${action.id}`;
       const response = yield call(request, requestURL, {
         method: 'PUT',
         headers: {
@@ -576,7 +576,7 @@ export function* createContractSaga(action) {
 
 export function* getEditContractSaga(action) {
   try {
-    const requestURL = `http://54.219.179.76/companies/${action.id}`;
+    const requestURL = `https://api.hispanocash.com/companies/${action.id}`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -600,7 +600,7 @@ export function* getEditContractSaga(action) {
 
 export function* deleteContractSaga(action) {
   try {
-    const requestURL = `http://54.219.179.76/companies/${action.id}`;
+    const requestURL = `https://api.hispanocash.com/companies/${action.id}`;
     yield call(request, requestURL, {
       method: 'DELETE',
       headers: {
@@ -624,7 +624,7 @@ export function* deleteContractSaga(action) {
 
 export function* getTransactionsSaga() {
   try {
-    const requestURL = `http://54.219.179.76/payers/`;
+    const requestURL = `https://api.hispanocash.com/payers/`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
