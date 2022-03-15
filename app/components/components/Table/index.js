@@ -237,7 +237,12 @@ function Table({
   disable,
 }) {
   return (
-    <TableStyle isLargeTable={data.length >= 10} height={height} width={width}>
+    <TableStyle
+      className="table-container"
+      isLargeTable={data.length >= 10}
+      height={height}
+      width={width}
+    >
       <table>
         <tr className="headerTable">
           {tHeader.map(item => (
