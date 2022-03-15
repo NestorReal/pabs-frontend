@@ -17,14 +17,16 @@ const TableStyle = styled.div`
   background: #ffffff;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  padding: 1% 26px;
+  padding: ${({ isLargeTable }) => (isLargeTable ? '1% 5px' : '1% 26px')};
   overflow: auto;
   table {
     width: 100%;
     th,
-    td,
-    label {
-      /* font-size: 11px; */
+    td {
+      font-size: ${({ isLargeTable }) => (isLargeTable ? '11px' : '')};
+    }
+    tr td:first-child {
+      white-space: nowrap;
     }
     th {
       border-bottom: 0.5px solid #00539c;
@@ -125,6 +127,7 @@ const TableStyle = styled.div`
       th,
       td {
         line-height: 20px;
+        font-size: ${({ isLargeTable }) => (isLargeTable ? '11px' : '')};
       }
       td {
         padding: 8px 0px;
@@ -140,6 +143,7 @@ const TableStyle = styled.div`
       th,
       td {
         line-height: 40px;
+        font-size: ${({ isLargeTable }) => (isLargeTable ? '14px' : '')};
       }
       td {
         padding: 15px 0px;
@@ -159,6 +163,7 @@ const TableStyle = styled.div`
       th,
       td {
         line-height: 60px;
+        font-size: ${({ isLargeTable }) => (isLargeTable ? '19px' : '')};
       }
       th {
         border-bottom: 3px solid #00539c;
@@ -178,6 +183,7 @@ const TableStyle = styled.div`
       th,
       td {
         line-height: 90px;
+        font-size: ${({ isLargeTable }) => (isLargeTable ? '28px' : '')};
       }
       th {
         border-bottom: 5px solid #00539c;
@@ -185,6 +191,15 @@ const TableStyle = styled.div`
       }
       td {
         padding: 45px 0px;
+      }
+    }
+  }
+  @media only screen and (min-width: 5760px) and (max-width: 7679px) {
+    table {
+      th,
+      td {
+        line-height: 90px;
+        font-size: ${({ isLargeTable }) => (isLargeTable ? '40px' : '')};
       }
     }
   }
@@ -197,6 +212,7 @@ const TableStyle = styled.div`
       th,
       td {
         line-height: 170px;
+        font-size: ${({ isLargeTable }) => (isLargeTable ? '57px' : '')};
       }
       th {
         border-bottom: 10px solid #00539c;
@@ -221,7 +237,7 @@ function Table({
   disable,
 }) {
   return (
-    <TableStyle height={height} width={width}>
+    <TableStyle isLargeTable={data.length >= 10} height={height} width={width}>
       <table>
         <tr className="headerTable">
           {tHeader.map(item => (
@@ -233,12 +249,6 @@ function Table({
           {data.map(item => (
             <>
               <tr className="tableRow" key={uuidv4()}>
-                <tr className="headerTable-mobile">
-                  {tHeader.map(thead => (
-                    <th key={uuidv4()}>{thead}</th>
-                  ))}
-                  {actions ? <th>Acción</th> : null}
-                </tr>
                 {keyData.map(itemKey => (
                   <td key={uuidv4()}>{item[itemKey] || <br />}</td>
                 ))}
@@ -274,6 +284,12 @@ function Table({
                     ) : null}
                   </td>
                 ) : null}
+                <tr className="headerTable-mobile">
+                  {tHeader.map(thead => (
+                    <th key={uuidv4()}>{thead}</th>
+                  ))}
+                  {actions ? <th>Acción</th> : null}
+                </tr>
               </tr>
             </>
           ))}
