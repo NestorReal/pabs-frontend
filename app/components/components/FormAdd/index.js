@@ -28,7 +28,7 @@ const FormAddStyle = styled.div`
     transform: scale(0.8);
   }
   @media only screen and (max-width: 700px) {
-    width: 95%;
+    width: 100%;
     .buscar {
       width: 100%;
     }
