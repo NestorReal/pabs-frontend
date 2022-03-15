@@ -55,7 +55,7 @@ const MenuStyle = styled.div`
       margin-top: 10px;
       margin-left: 3%;
       button {
-        width: 100%;
+        width: 99%;
         height: 38px;
         color: #c0c0c0;
         text-align: left;

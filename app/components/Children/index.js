@@ -22,6 +22,7 @@ const ChildrenStyle = styled.div`
     width: 100%;
     min-height: 83.5%;
     height: auto;
+    padding: 2% 3%;
   }
   .header {
     align-items: center;
