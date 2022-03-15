@@ -24,7 +24,7 @@ function Pago({ dataPlan, dataPaye, getStep }, props) {
   }`;
   const getUrl = () => {
     fetch(
-      `http://54.219.179.76/payments/paypal/?currency_code=${'MXN'}&value=${
+      `https://api.hispanocash.com/payments/paypal/?currency_code=${'MXN'}&value=${
         dataPlan.amount
       }&reference_id=${dataPlan.name}&soft_descriptor=${'payment PABS'}`,
       {

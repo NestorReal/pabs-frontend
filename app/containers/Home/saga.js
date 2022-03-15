@@ -11,7 +11,7 @@ export default function* homeSaga() {
 
 export function* getUserSagas() {
   try {
-    const requestURL = `http://54.219.179.76/users/me`;
+    const requestURL = `https://api.hispanocash.com/users/me`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -35,7 +35,7 @@ export function* getUserSagas() {
 
 export function* getReportSagas() {
   try {
-    const requestURL = `http://54.219.179.76/reports/`;
+    const requestURL = `https://api.hispanocash.com/reports/`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {

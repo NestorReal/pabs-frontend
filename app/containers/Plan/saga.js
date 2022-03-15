@@ -28,7 +28,7 @@ export function* payersSaga(action) {
   yield put(stepAction(3)); */
   // console.log(`Bearer ${auth.getToken()}`);
   try {
-    const requestURL = `http://54.219.179.76/payers/`;
+    const requestURL = `https://api.hispanocash.com/payers/`;
     const response = yield call(request, requestURL, {
       method: 'POST',
       headers: {
@@ -58,7 +58,7 @@ export function* payersSaga(action) {
 
 export function* getPlanSaga() {
   try {
-    const requestURL = `http://54.219.179.76/plans`;
+    const requestURL = `https://api.hispanocash.com/plans`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -94,7 +94,7 @@ export function* createUserPayer(action) {
   };
   // console.log(body);
   try {
-    const requestURL = `http://54.219.179.76/auth/register/`;
+    const requestURL = `https://api.hispanocash.com/auth/register/`;
     const response = yield call(request, requestURL, {
       method: 'POST',
       headers: {

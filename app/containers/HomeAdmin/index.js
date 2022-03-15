@@ -77,7 +77,7 @@ export function HomeAdmin(props) {
   }, []);
 
   const deletePlan = idPlan => {
-    fetch(`http://54.219.179.76/plans/${idPlan}`, {
+    fetch(`https://api.hispanocash.com/plans/${idPlan}`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${auth.getToken()}`,

@@ -26,7 +26,7 @@ export default function App() {
   return (
     <div>
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={Plan} />
         <Route exact path="/auth" component={Login} />
         <Route exact path="/crear-cuenta" component={CreateUser} />
         <Route exact path="/auth-admin" component={LoginAdmin} />
