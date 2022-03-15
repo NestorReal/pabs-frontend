@@ -17,11 +17,12 @@ const StyleInput = styled.div`
     color: #113255;
   }
   .input {
+    height: ${({ autoHeight }) => (autoHeight ? 'auto !important' : '')};
     width: 100%;
     height: 55px;
     border: 1px solid #113255;
     box-sizing: border-box;
-    border-radius: 10px;
+    border-radius: ${({ Rounded }) => (Rounded ? '10px' : '3px')};
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -40,19 +41,32 @@ const StyleInput = styled.div`
   input {
     height: 95%;
     width: 90%;
-    border-radius: 10px;
+    border-radius: ${({ Rounded }) => (Rounded ? '10px' : '3px')};
     border: none;
     padding: 10px;
+    padding-top: ${({ autoHeight }) => (autoHeight ? '2%' : '0')};
+    padding-bottom: ${({ autoHeight }) => (autoHeight ? '2%' : '0')};
   }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
   @media only screen and (max-width: 959px) {
     width: 300px;
     .input {
       height: 40px;
       border: 1px solid #113255;
-      border-radius: 5px;
+      border-radius: ${({ Rounded }) => (Rounded ? '5px' : '2px')};
     }
     input {
-      border-radius: 15px;
+      border-radius: ${({ Rounded }) => (Rounded ? '5px' : '2px')};
     }
     .icon {
       font-size: 25px;
@@ -65,6 +79,7 @@ const StyleInput = styled.div`
     width: 270px;
     .input {
       height: 42px;
+      border-radius: ${({ Rounded }) => (Rounded ? '5px' : '2px')};
     }
     .icon {
       font-size: 23px;
@@ -78,10 +93,10 @@ const StyleInput = styled.div`
     .input {
       height: 70px;
       border: 2px solid #113255;
-      border-radius: 15px;
+      border-radius: ${({ Rounded }) => (Rounded ? '15px' : '3px')};
     }
     input {
-      border-radius: 15px;
+      border-radius: ${({ Rounded }) => (Rounded ? '15px' : '3px')};
     }
     .icon {
       font-size: 35px;
@@ -95,10 +110,10 @@ const StyleInput = styled.div`
     .input {
       height: 90px;
       border: 3px solid #113255;
-      border-radius: 20px;
+      border-radius: ${({ Rounded }) => (Rounded ? '20px' : '5px')};
     }
     input {
-      border-radius: 20px;
+      border-radius: ${({ Rounded }) => (Rounded ? '20px' : '5px')};
       padding-left: 20px;
     }
     .icon {
@@ -113,10 +128,10 @@ const StyleInput = styled.div`
     .input {
       height: 135px;
       border: 5px solid #113255;
-      border-radius: 30px;
+      border-radius: ${({ Rounded }) => (Rounded ? '30px' : '7px')};
     }
     input {
-      border-radius: 30px;
+      border-radius: ${({ Rounded }) => (Rounded ? '30px' : '7px')};
       padding-left: 25px;
     }
     .icon {
@@ -131,10 +146,10 @@ const StyleInput = styled.div`
     .input {
       height: 270px;
       border: 10px solid #113255;
-      border-radius: 80px;
+      border-radius: ${({ Rounded }) => (Rounded ? '80px' : '15px')};
     }
     input {
-      border-radius: 80px;
+      border-radius: ${({ Rounded }) => (Rounded ? '80px' : '15px')};
       padding-left: 50px;
     }
     .icon {
@@ -156,9 +171,11 @@ function Input({
   type = 'text',
   className,
   fullWidth = true,
+  Rounded = true,
+  autoHeight = false,
 }) {
   return (
-    <StyleInput fullWidth={fullWidth}>
+    <StyleInput fullWidth={fullWidth} Rounded={Rounded} autoHeight={autoHeight}>
       <label>{label}</label>
       <div className="input">
         <input
@@ -186,6 +203,8 @@ Input.propTypes = {
   className: PropTypes.string,
   name: PropTypes.string,
   fullWidth: PropTypes.bool,
+  Rounded: PropTypes.bool,
+  autoHeight: PropTypes.bool,
 };
 
 export default Input;

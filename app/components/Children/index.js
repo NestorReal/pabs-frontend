@@ -22,37 +22,38 @@ const ChildrenStyle = styled.div`
     width: 100%;
     min-height: 83.5%;
     height: auto;
+    padding: 2% 3%;
   }
   .header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2%;
     width: 100%;
     height: 16.5%;
     position: absolute;
     top: 0px;
     .title {
-      position: absolute;
-      top: 14%;
-      left: 4%;
       color: #005c9e;
       h1 {
         margin: 0px;
       }
     }
     .sesion {
-      width: 41%;
-      position: absolute;
-      right: 0px;
-      top: 0px;
+      width: 35%;
+      height: 100%;
       display: flex;
-      justify-content: space-between;
-      padding-top: 20px;
-      padding-right: 30px;
+      justify-content: space-around;
+      padding-top: 3%;
       .text {
-        font-weight: bold;
         letter-spacing: 0.375px;
         color: #113255;
-        margin-top: 3%;
         p {
+          font-weight: bold;
           margin: 0px;
+        }
+        .subtext p {
+          font-weight: 400;
         }
       }
       .subtext {
@@ -66,8 +67,9 @@ const ChildrenStyle = styled.div`
       }
       .sesionButton {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
+        align-items: flex-start;
+        justify-content: center;
+        column-gap: 5%;
         height: auto;
         width: 30%;
         background: transparent;
@@ -79,6 +81,10 @@ const ChildrenStyle = styled.div`
         line-height: 38px;
         letter-spacing: 0.375px;
         color: #000000;
+        p {
+          white-space: nowrap;
+          margin: 0;
+        }
       }
     }
   }
@@ -86,6 +92,7 @@ const ChildrenStyle = styled.div`
     left: 0px;
     width: 100%;
     .header {
+      padding-left: 12%;
       .sesion {
         display: none;
       }

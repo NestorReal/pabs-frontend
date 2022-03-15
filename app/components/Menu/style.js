@@ -2,11 +2,13 @@ import styled from 'styled-components';
 
 const MenuStyle = styled.div`
   position: absolute;
+  background: #fff;
   left: 0px;
   top: 0px;
   height: 100%;
   min-height: 720px;
   width: 12.813%;
+  z-index: 2;
   .bienvenida,
   .hidden {
     display: none;
@@ -23,6 +25,8 @@ const MenuStyle = styled.div`
     height: 63%;
     width: 100%;
     button {
+      display: flex;
+      align-items: center;
       width: 92%;
       height: 31px;
       border-radius: 10px;
@@ -31,6 +35,10 @@ const MenuStyle = styled.div`
       border: none;
       text-align: center;
       color: #767676;
+      label {
+        margin-left: 10%;
+        white-space: nowrap;
+      }
       i {
         margin-right: 16px;
       }
@@ -45,8 +53,9 @@ const MenuStyle = styled.div`
     .containerOptions {
       width: 100%;
       margin-top: 10px;
+      margin-left: 3%;
       button {
-        width: 100%;
+        width: 99%;
         height: 38px;
         color: #c0c0c0;
         text-align: left;
@@ -59,6 +68,7 @@ const MenuStyle = styled.div`
         color: #113255;
         p {
           border-right: solid 2px #00539c;
+          width: 100%;
         }
       }
     }
@@ -77,6 +87,7 @@ const MenuStyle = styled.div`
       display: block;
       position: absolute;
       left: 30%;
+      top: 47px;
       z-index: 100;
       button {
         float: right;

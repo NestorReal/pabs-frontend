@@ -62,7 +62,6 @@ function ReferenciaGenerada({
         textButton={textButton}
         value={value}
       />
-      <div style={{ marginTop: '14%' }} />
       {historical && (
         <Historico value={historicalValue} text={historicalText} />
       )}

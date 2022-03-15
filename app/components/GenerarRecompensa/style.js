@@ -4,55 +4,34 @@ export const Container = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 32px 0 15px 24px;
+  padding: 20px 0 15px 24px;
 
   .formulario {
     position: fixed;
-    width: 47.188%;
-    height: 66.667%;
+    width: 40%;
     margin-left: 13.594%;
     background: #ffffff;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     display: flex;
     justify-content: center;
-    padding-top: 4px;
+    padding: 3%;
     label {
       color: #113255;
     }
     .form {
-      width: 52.413%;
-      .input {
-        margin-top: 17%;
-        input {
-          position: fixed;
-          height: 4.167%;
-          width: 24.609%;
-          border-radius: 10px;
-          border: 1px solid #113255;
-          box-sizing: border-box;
-          padding-left: 1%;
-        }
-      }
-      .select {
-        margin-top: 17%;
-        select {
-          position: fixed;
-          height: 4.167%;
-          width: 24.609%;
-          background: #ffffff;
-          border: 1px solid #113255;
-          box-sizing: border-box;
-          border-radius: 10px;
-          color: #113255;
-          padding-left: 1%;
-        }
+      width: 60%;
+      input,
+      select {
+        padding-top: 2%;
+        padding-bottom: 2%;
       }
       .containerButton {
+        gap: 5%;
+        justify-content: center;
         margin-top: 15%;
         width: 80%;
         display: flex;
-        justify-content: space-between;
       }
     }
   }
@@ -62,133 +41,20 @@ export const Container = styled.div`
       width: 90%;
       display: block;
       .form {
-        .input {
-          width: 85%;
-          input {
-            width: 85%;
-          }
-        }
-        .select {
-          width: 85%;
-          select {
-            width: 85%;
-          }
-        }
-        .containerButton {
-          margin-top: 30%;
-          width: 106%;
-        }
+        width: 100%;
       }
     }
   }
-  @media only screen and (max-width: 959px) {
+  @media only screen and (min-width: 601px) and (max-width: 959px) {
     .formulario {
+      left: 50%;
+      margin: 0;
+      transform: translateX(-50%);
+      width: 70%;
       .form {
         .containerButton {
           margin-top: 20%;
           width: 110%;
-        }
-        .input {
-          input {
-            border-radius: 5px;
-            border: 1px solid #113255;
-          }
-        }
-        .select {
-          select {
-            border: 1px solid #113255;
-            border-radius: 5px;
-          }
-        }
-      }
-    }
-  }
-  @media only screen and (min-width: 960px) and (max-width: 1279px) {
-    .formulario {
-      .form {
-        .input {
-          input {
-            border-radius: 5px;
-            border: 1px solid #113255;
-          }
-        }
-        .select {
-          select {
-            border: 1px solid #113255;
-            border-radius: 5px;
-          }
-        }
-      }
-    }
-  }
-  @media only screen and (min-width: 1920px) and (max-width: 2559px) {
-    .formulario {
-      .form {
-        .input {
-          input {
-            border-radius: 10px;
-            border: 2px solid #113255;
-          }
-        }
-        .select {
-          select {
-            border: 2px solid #113255;
-            border-radius: 10px;
-          }
-        }
-      }
-    }
-  }
-  @media only screen and (min-width: 2560px) and (max-width: 3839px) {
-    .formulario {
-      .form {
-        .input {
-          input {
-            border-radius: 15px;
-            border: 3px solid #113255;
-          }
-        }
-        .select {
-          select {
-            border: 3px solid #113255;
-            border-radius: 15px;
-          }
-        }
-      }
-    }
-  }
-  @media only screen and (min-width: 3840px) and (max-width: 7679px) {
-    .formulario {
-      .form {
-        .input {
-          input {
-            border-radius: 25px;
-            border: 5px solid #113255;
-          }
-        }
-        .select {
-          select {
-            border: 5px solid #113255;
-            border-radius: 25px;
-          }
-        }
-      }
-    }
-  }
-  @media only screen and (min-width: 7680px) {
-    .formulario {
-      .form {
-        .input {
-          input {
-            border-radius: 45px;
-            border: 10px solid #113255;
-          }
-        }
-        .select {
-          select {
-            border: 10px solid #113255;
-            border-radius: 45px;
-          }
         }
       }
     }
