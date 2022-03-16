@@ -58,11 +58,11 @@ export function* payersSaga(action) {
 
 export function* getPlanSaga() {
   try {
-    const requestURL = `https://api.hispanocash.com/plans`;
+    const requestURL = `https://api.hispanocash.com/plans/`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${auth.getToken()}`,
+        // Authorization: `Bearer ${auth.getToken()}`,
         Accept: 'application/json',
       },
     });

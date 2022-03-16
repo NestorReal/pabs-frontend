@@ -8,13 +8,15 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Container } from './styles';
 import Card from '../Card';
-import imagenPlan from '../../images/plan-italia.png';
-import ImageModal from '../ImageModal';
+import imagenPlan1 from '../../images/paquete1.png';
+import imagenPlan2 from '../../images/paquete2.png';
+import imagenPlan3 from '../../images/paquete3.png';
 
+import ImageModal from '../ImageModal';
 function TiposPlan(props) {
   const [modalState, setModalState] = useState({
     visible: false,
-    img: imagenPlan,
+    img: imagenPlan3,
   });
 
   const showModal = img => {
@@ -37,7 +39,15 @@ function TiposPlan(props) {
     // eslint-disable-next-line react/prop-types
     props.getStep(2);
   };
-  const colors = ['Red', 'Yellow', 'Blue'];
+  const colors = ['Red', 'Yellow', 'Blue', 'Red', 'Yellow', 'Blue'];
+  const imagesPlan = [
+    imagenPlan3,
+    imagenPlan2,
+    imagenPlan1,
+    imagenPlan3,
+    imagenPlan2,
+    imagenPlan1,
+  ];
   let dataPlan = [];
   if (Object.keys(props.dataPlans).length !== 0) {
     dataPlan = props.dataPlans.map((plan, id) => (
@@ -48,7 +58,7 @@ function TiposPlan(props) {
         titleCard={plan.name}
         text={plan.features.map(feature => feature.description)}
         onClick={() => getTipoPlan({ name: plan.name, amount: plan.cost })}
-        onClickDetail={() => showModal(imagenPlan)}
+        onClickDetail={() => showModal(imagesPlan[id])}
       />
     ));
   }
@@ -56,7 +66,7 @@ function TiposPlan(props) {
     <>
       <ImageModal
         display={modalState.visible}
-        img={imagenPlan}
+        img={modalState.img}
         alt="Imagen del plan"
         onClose={() => hideModal()}
       />

@@ -5,7 +5,13 @@ import {
   addErrorMessage,
   addSuccessMessage,
 } from 'containers/Notifications/actions';
-import { getUsers, getPlan, getFeatures, getContract } from './actions';
+import {
+  getUsers,
+  getPlan,
+  getFeatures,
+  getContract,
+  getCompanies,
+} from './actions';
 import * as constants from './constants';
 
 // Individual exports for testing
@@ -35,7 +41,7 @@ export default function* defaultSaga() {
 
 export function* getCompaniesSaga() {
   try {
-    const requestURL = `https://api.hispanocash.com/companies`;
+    const requestURL = `https://api.hispanocash.com/companies/`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -91,7 +97,7 @@ export function* createPlanSaga(action) {
 
 export function* getPlanSaga() {
   try {
-    const requestURL = `https://api.hispanocash.com/plans`;
+    const requestURL = `https://api.hispanocash.com/plans/`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -169,7 +175,7 @@ export function* EditPlanSaga(action) {
 
 export function* getContractSaga() {
   try {
-    const requestURL = `https://api.hispanocash.com/reports`;
+    const requestURL = `https://api.hispanocash.com/reports/`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -193,7 +199,7 @@ export function* getContractSaga() {
 
 export function* getLeafletsSaga() {
   try {
-    const requestURL = `https://api.hispanocash.com/reports`;
+    const requestURL = `https://api.hispanocash.com/reports/`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -217,7 +223,7 @@ export function* getLeafletsSaga() {
 
 export function* getUsersSaga() {
   try {
-    const requestURL = `https://api.hispanocash.com/users/all-users`;
+    const requestURL = `https://api.hispanocash.com/users/all-users/`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -268,7 +274,7 @@ export function* getUserSaga() {
 
 export function* deleteUserSaga(action) {
   try {
-    const requestURL = `https://api.hispanocash.com/users/${action.id}`;
+    const requestURL = `https://api.hispanocash.com/users/${action.id}/`;
     const response = yield call(request, requestURL, {
       method: 'DELETE',
       headers: {
@@ -331,7 +337,7 @@ export function* createUserSaga(action) {
 
 export function* getEditUserSaga(action) {
   try {
-    const requestURL = `https://api.hispanocash.com/users/${action.id}`;
+    const requestURL = `https://api.hispanocash.com/users/${action.id}/`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -367,7 +373,7 @@ export function* editUserSaga(action) {
   };
   // console.log(body);
   try {
-    const requestURL = `https://api.hispanocash.com/users/${action.data.id}`;
+    const requestURL = `https://api.hispanocash.com/users/${action.data.id}/`;
     const response = yield call(request, requestURL, {
       method: 'PATCH',
       headers: {
@@ -538,7 +544,7 @@ export function* createContractSaga(action) {
           type: constants.CREATE_COMPANIES_SUCCESS,
         });
         yield put(addSuccessMessage('Empresa creada correctamente'));
-        yield put(getContract());
+        yield put(getCompanies());
       }
     } catch (error) {
       yield put(addErrorMessage('Error al crear la empresa'));
@@ -563,7 +569,7 @@ export function* createContractSaga(action) {
           type: constants.CREATE_COMPANIES_SUCCESS,
         });
         yield put(addSuccessMessage('Empresa editada correctamente'));
-        yield put(getContract());
+        yield put(getCompanies());
       }
     } catch (error) {
       yield put(addErrorMessage('Error al editar la empresa'));
@@ -612,7 +618,7 @@ export function* deleteContractSaga(action) {
       type: constants.DELETE_COMPANIES_SUCCESS,
     });
     yield put(addSuccessMessage('Empresa eliminada'));
-    yield put(getFeatures());
+    yield put(getCompanies());
   } catch (error) {
     yield put(addErrorMessage(`Error al borrar`));
     yield put({
