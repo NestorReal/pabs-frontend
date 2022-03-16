@@ -37,7 +37,9 @@ export const Container = styled.div`
   }
   @media only screen and (max-width: 600px) {
     .formulario {
-      margin-left: 0px;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
       width: 90%;
       display: block;
       .form {

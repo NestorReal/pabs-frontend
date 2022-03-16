@@ -17,23 +17,27 @@ const TableStyle = styled.div`
   background: #ffffff;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  padding: 1% 26px;
+  padding: ${({ isLargeTable }) => (isLargeTable ? '1% 5px' : '1% 26px')};
   overflow: auto;
   table {
     width: 100%;
     th,
-    td,
-    label {
-      /* font-size: 11px; */
+    td {
+      font-size: ${({ isLargeTable }) => (isLargeTable ? '11px' : '')};
+    }
+    tr td:first-child {
+      white-space: nowrap;
     }
     th {
       border-bottom: 0.5px solid #00539c;
       font-weight: bold;
-      line-height: 30px;
+      line-height: 25px;
       color: #113255;
+      padding: 7px 0px;
     }
     td {
-      line-height: 31px;
+      line-height: 25px;
+      padding: 12px 0px;
     }
     tbody {
       color: #113255;
@@ -59,6 +63,8 @@ const TableStyle = styled.div`
   }
 
   @media screen and (max-width: 959px) {
+    width: 100%;
+    padding: 0;
     tbody {
       display: flex;
       flex-direction: column;
@@ -81,9 +87,8 @@ const TableStyle = styled.div`
       flex-direction: column;
       left: 0;
       position: absolute;
-      width: 30%;
+      width: 35%;
       th {
-        line-height: 31px;
         border: none;
         padding: 0;
       }
@@ -95,20 +100,39 @@ const TableStyle = styled.div`
       flex-direction: column;
       float: right;
       position: relative;
+      padding: 15px 5px;
       width: 100%;
       td {
         padding: 0;
-        width: 70%;
+        width: 65%;
       }
       .actions {
         max-height: 32px;
       }
     }
+
+    table {
+      th,
+      td {
+        align-items: center;
+        display: flex;
+        line-height: 25px;
+        justify-content: center;
+        height: 50px;
+      }
+    }
   }
   @media only screen and (min-width: 960px) and (max-width: 1279px) {
-    /* table {
-      min-width: 1000px;
-    } */
+    table {
+      th,
+      td {
+        line-height: 20px;
+        font-size: ${({ isLargeTable }) => (isLargeTable ? '11px' : '')};
+      }
+      td {
+        padding: 8px 0px;
+      }
+    }
   }
   @media only screen and (min-width: 1920px) and (max-width: 2559px) {
     /* height: 400px; */
@@ -116,12 +140,17 @@ const TableStyle = styled.div`
     border-radius: 30px;
     padding: 7px 26px;
     table {
-      th {
-        border-bottom: 2px solid #00539c;
-        line-height: 50px;
+      th,
+      td {
+        line-height: 40px;
+        font-size: ${({ isLargeTable }) => (isLargeTable ? '14px' : '')};
       }
       td {
-        line-height: 50px;
+        padding: 15px 0px;
+      }
+      th {
+        border-bottom: 2px solid #00539c;
+        padding: 7px 0px;
       }
     }
   }
@@ -131,12 +160,17 @@ const TableStyle = styled.div`
     border-radius: 50px;
     padding: 7px 26px;
     table {
+      th,
+      td {
+        line-height: 60px;
+        font-size: ${({ isLargeTable }) => (isLargeTable ? '19px' : '')};
+      }
       th {
         border-bottom: 3px solid #00539c;
-        line-height: 80px;
+        padding: 10px 0px;
       }
       td {
-        line-height: 80px;
+        padding: 25px 0px;
       }
     }
   }
@@ -146,12 +180,26 @@ const TableStyle = styled.div`
     border-radius: 50px;
     padding: 7px 26px;
     table {
+      th,
+      td {
+        line-height: 90px;
+        font-size: ${({ isLargeTable }) => (isLargeTable ? '28px' : '')};
+      }
       th {
         border-bottom: 5px solid #00539c;
-        line-height: 130px;
+        padding: 20px 0px;
       }
       td {
-        line-height: 130px;
+        padding: 45px 0px;
+      }
+    }
+  }
+  @media only screen and (min-width: 5760px) and (max-width: 7679px) {
+    table {
+      th,
+      td {
+        line-height: 90px;
+        font-size: ${({ isLargeTable }) => (isLargeTable ? '40px' : '')};
       }
     }
   }
@@ -161,12 +209,17 @@ const TableStyle = styled.div`
     border-radius: 50px;
     padding: 7px 26px;
     table {
+      th,
+      td {
+        line-height: 170px;
+        font-size: ${({ isLargeTable }) => (isLargeTable ? '57px' : '')};
+      }
       th {
         border-bottom: 10px solid #00539c;
-        line-height: 230px;
+        padding: 50px 0px;
       }
       td {
-        line-height: 230px;
+        padding: 70px 0px;
       }
     }
   }
@@ -184,7 +237,12 @@ function Table({
   disable,
 }) {
   return (
-    <TableStyle height={height} width={width}>
+    <TableStyle
+      className="table-container"
+      isLargeTable={data.length >= 10}
+      height={height}
+      width={width}
+    >
       <table>
         <tr className="headerTable">
           {tHeader.map(item => (
@@ -196,12 +254,6 @@ function Table({
           {data.map(item => (
             <>
               <tr className="tableRow" key={uuidv4()}>
-                <tr className="headerTable-mobile">
-                  {tHeader.map(thead => (
-                    <th key={uuidv4()}>{thead}</th>
-                  ))}
-                  {actions ? <th>Acción</th> : null}
-                </tr>
                 {keyData.map(itemKey => (
                   <td key={uuidv4()}>{item[itemKey] || <br />}</td>
                 ))}
@@ -237,6 +289,12 @@ function Table({
                     ) : null}
                   </td>
                 ) : null}
+                <tr className="headerTable-mobile">
+                  {tHeader.map(thead => (
+                    <th key={uuidv4()}>{thead}</th>
+                  ))}
+                  {actions ? <th>Acción</th> : null}
+                </tr>
               </tr>
             </>
           ))}

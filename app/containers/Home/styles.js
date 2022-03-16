@@ -28,9 +28,15 @@ export const Container = styled.div`
     background: #ffffff;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
+    overflow: auto;
     .text {
       height: 15%;
       margin-bottom: 0.3%;
+    }
+    .table-container {
+      padding-bottom: 9%;
+      width: 100%;
+      box-shadow: none;
     }
     h5 {
       margin: 0px;
@@ -69,6 +75,33 @@ export const Container = styled.div`
     right: 3%;
     border-radius: 5px;
   }
+
+  .paper::-webkit-scrollbar {
+    display: block;
+    width: 15px;
+    @media only screen and (max-width: 959px) {
+      width: 5px;
+    }
+  }
+
+  .paper::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  .paper::-webkit-scrollbar-track {
+    background-color: #00000000;
+  }
+
+  .paper::-webkit-scrollbar-track-piece {
+    background-color: #00000000;
+  }
+
+  .paper::-webkit-scrollbar-thumb {
+    background-color: rgb(138, 138, 138);
+    /* border: 1px solid #ffffff40; */
+    border-radius: 24px;
+  }
+
   @media only screen and (max-width: 499px) {
     min-width: 300px;
     .logo {
@@ -93,7 +126,7 @@ export const Container = styled.div`
       font-size: 10px;
     }
     .paper {
-      height: 30.5%;
+      height: 34%;
       padding: 2% 5% 5% 5%;
       margin-bottom: 3.5%;
     }
@@ -106,6 +139,8 @@ export const Container = styled.div`
     }
   }
   @media only screen and (min-width: 500px) and (max-width: 959px) {
+    padding-bottom: 12.5%;
+
     min-width: 300px;
     .title h1 {
       font-size: 23px;
