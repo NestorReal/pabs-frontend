@@ -9,7 +9,7 @@ import {
   getUsers,
   getPlan,
   getFeatures,
-  getContract,
+  // getContract,
   getCompanies,
 } from './actions';
 import * as constants from './constants';

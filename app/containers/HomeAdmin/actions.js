@@ -6,6 +6,13 @@
 
 import * as constants from './constants';
 
+export function setOption(option) {
+  return {
+    type: constants.OPTION,
+    option,
+  };
+}
+
 export function defaultAction() {
   return {
     type: constants.DEFAULT_ACTION,

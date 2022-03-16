@@ -19,6 +19,7 @@ export const initialState = {
   editFeatures: {},
   editCompanies: {},
   transactions: {},
+  option: 'Crear_plan',
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -27,11 +28,15 @@ const HomeAdminReducer = (state = initialState, action) =>
     switch (action.type) {
       case constants.DEFAULT_ACTION:
         break;
+      case constants.OPTION:
+        draft.option = action.option;
+        break;
       case constants.GET_PLANS_SUCCED:
         draft.plans = action.response;
         break;
       case constants.GET_EDIT_PLANS_SUCCED:
         draft.editPlan = action.response;
+        draft.option = 'Editar_plan';
         break;
       case constants.GET_CONTRACT_SUCCESS:
         draft.contract = action.response;
@@ -47,6 +52,7 @@ const HomeAdminReducer = (state = initialState, action) =>
         break;
       case constants.GET_EDIT_USER_SUCCED:
         draft.editUser = action.response;
+        draft.option = 'Editar_usuarios';
         break;
       case constants.GET_FEATURES_SUCCESS:
         draft.features = action.response;
