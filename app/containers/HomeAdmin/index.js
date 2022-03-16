@@ -58,6 +58,7 @@ import {
   getEditContract,
   deleteContract,
   getTransactions,
+  setOption,
 } from './actions';
 
 export function HomeAdmin(props) {
@@ -84,7 +85,7 @@ export function HomeAdmin(props) {
       },
       method: 'DELETE',
     })
-      .then(response => props.dispatch(getPlan()))
+      .then(() => props.dispatch(getPlan()))
       .then(() => props.dispatch(getPlan()))
       .catch(error => console.log(error));
   };
@@ -229,7 +230,6 @@ export function HomeAdmin(props) {
   };
 
   const [state, setState] = useState('Planes');
-  const [option, setOption] = useState('Crear_plan');
   const [edit, setEdit] = useState({
     plan: false,
     user: false,
@@ -237,14 +237,14 @@ export function HomeAdmin(props) {
 
   const funcEditPlan = id => {
     setEdit({ ...edit, plan: true });
-    setOption('Editar_plan');
+    // props.dispatch(setOption('Editar_plan'));
     props.dispatch(getEditPlan(id));
   };
 
   const funcEditUser = id => {
     // console.log(id);
     setEdit({ ...edit, user: true });
-    setOption('Editar_usuarios');
+    // props.dispatch(setOption('Editar_usuarios'));
     props.dispatch(getEditUser(id));
   };
 
@@ -255,23 +255,25 @@ export function HomeAdmin(props) {
       activate: state === 'Planes',
       onClick: () => {
         setState('Planes');
-        setOption('Crear_plan');
+        props.dispatch(setOption('Crear_plan'));
       },
       optionActivate: state === 'Planes',
       options: [
         {
           text: edit.plan ? 'Editar plan' : 'Crear plan',
-          activate: option === 'Crear_plan' || option === 'Editar_plan',
+          activate:
+            props.HomeAdmin.option === 'Crear_plan' ||
+            props.HomeAdmin.option === 'Editar_plan',
           onClick: () => {
-            setOption('Crear_plan');
+            props.dispatch(setOption('Crear_plan'));
             setEdit({ ...edit, plan: false });
           },
         },
         {
           text: 'Consultar plan',
-          activate: option === 'Consultar_plan',
+          activate: props.HomeAdmin.option === 'Consultar_plan',
           onClick: () => {
-            setOption('Consultar_plan');
+            props.dispatch(setOption('Consultar_plan'));
           },
         },
       ],
@@ -282,22 +284,22 @@ export function HomeAdmin(props) {
       activate: state === 'Reportes',
       onClick: () => {
         setState('Reportes');
-        setOption('Consultar_contratos');
+        props.dispatch(setOption('Consultar_contratos'));
       },
       optionActivate: state === 'Reportes',
       options: [
         {
           text: 'Consulta de contratos',
-          activate: option === 'Consultar_contratos',
+          activate: props.HomeAdmin.option === 'Consultar_contratos',
           onClick: () => {
-            setOption('Consultar_contratos');
+            props.dispatch(setOption('Consultar_contratos'));
           },
         },
         {
           text: 'Prospectos',
-          activate: option === 'Prospectos',
+          activate: props.HomeAdmin.option === 'Prospectos',
           onClick: () => {
-            setOption('Prospectos');
+            props.dispatch(setOption('Prospectos'));
           },
         },
       ],
@@ -308,22 +310,24 @@ export function HomeAdmin(props) {
       activate: state === 'Usuarios',
       onClick: () => {
         setState('Usuarios');
-        setOption('Administrar_usuarios');
+        props.dispatch(setOption('Administrar_usuarios'));
       },
       optionActivate: state === 'Usuarios',
       options: [
         {
           text: 'Administrar usuarios',
-          activate: option === 'Administrar_usuarios',
+          activate: props.HomeAdmin.option === 'Administrar_usuarios',
           onClick: () => {
-            setOption('Administrar_usuarios');
+            props.dispatch(setOption('Administrar_usuarios'));
           },
         },
         {
           text: edit.user ? 'Editar usuario' : 'Crear usuarios',
-          activate: option === 'Crear_usuarios' || option === 'Editar_usuarios',
+          activate:
+            props.HomeAdmin.option === 'Crear_usuarios' ||
+            props.HomeAdmin.option === 'Editar_usuarios',
           onClick: () => {
-            setOption('Crear_usuarios');
+            props.dispatch(setOption('Crear_usuarios'));
             setEdit({ ...edit, user: false });
           },
         },
@@ -335,7 +339,7 @@ export function HomeAdmin(props) {
       activate: state === 'Empresa',
       onClick: () => {
         setState('Empresa');
-        setOption('Empresa');
+        props.dispatch(setOption('Empresa'));
       },
     },
     {
@@ -344,7 +348,7 @@ export function HomeAdmin(props) {
       activate: state === 'Descripcion',
       onClick: () => {
         setState('Descripcion');
-        setOption('Descripcion');
+        props.dispatch(setOption('Descripcion'));
       },
     },
   ];
@@ -361,7 +365,7 @@ export function HomeAdmin(props) {
       />
       <Children
         style={show ? { left: '150px' } : null}
-        title={option.replace('_', ' ')}
+        title={props.HomeAdmin.option.replace('_', ' ')}
         userName={
           Object.keys(props.HomeAdmin.user).length !== 0 &&
           props.HomeAdmin.user.full_name
@@ -372,7 +376,7 @@ export function HomeAdmin(props) {
         }
         sesion={() => props.history.push('/auth-admin')}
       >
-        {ContainerChildren[option]}
+        {ContainerChildren[props.HomeAdmin.option]}
       </Children>
     </Container>
   );

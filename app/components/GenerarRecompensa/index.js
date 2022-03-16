@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import { useFormik } from 'formik';
@@ -25,15 +25,16 @@ const validate = Yup.object({
 });
 
 function GenerarRecompensa({ getCompanies, getFeatures, onClick, data }) {
+  const [dataPlan] = useState({
+    name: data ? data.name : '',
+    cost: data ? data.cost : 0,
+    features: data ? data.features : '',
+    companyId: data ? data.company : '',
+    // eslint-disable-next-line no-underscore-dangle
+    id: data ? data._id : '',
+  });
   const formik = useFormik({
-    initialValues: {
-      name: data ? data.name : '',
-      cost: data ? data.cost : 0,
-      features: data ? data.features : '',
-      companyId: data ? data.company : '',
-      // eslint-disable-next-line no-underscore-dangle
-      id: data ? data._id : '',
-    },
+    initialValues: dataPlan,
     validationSchema: validate,
     onSubmit: values => onClick(values),
   });

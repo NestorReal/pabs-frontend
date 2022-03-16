@@ -6,6 +6,8 @@
 
 export const DEFAULT_ACTION = 'app/HomeAdmin/DEFAULT_ACTION';
 
+export const OPTION = 'app/HomeAdmin/OPTION';
+
 export const GET_COMPANIES_INIT = 'app/HomeAdmin/GET_COMPANIES_INIT';
 export const GET_COMPANIES_SUCCED = 'app/HomeAdmin/GET_COMPANIES_SUCCED';
 export const GET_COMPANIES_FAILED = 'app/HomeAdmin/GET_COMPANIES_FAILED';
