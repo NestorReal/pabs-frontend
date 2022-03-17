@@ -38,7 +38,6 @@ function Pago({ dataPlan, dataPaye, getStep }, props) {
       .then(response => response.json())
       .then(success => {
         setDataUrl(success);
-        getStep(4);
       })
       .catch(error => console.log(error));
   };
@@ -48,15 +47,14 @@ function Pago({ dataPlan, dataPaye, getStep }, props) {
     component = (
       <NewWindow
         url={dataUrl.approve_link.href}
-        onUnload={() => {
-          props.dispatch(addSuccessMessage('Se hizo correctamente el pago'));
-        }}
+        onUnload={() => getStep(4)}
         closeOnUnmount
       />
     );
   }
   return (
     <Container>
+      <Notifications />
       <div className="res">
         <Notifications />
         <div className="referencia">

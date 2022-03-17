@@ -223,7 +223,7 @@ export function* getLeafletsSaga() {
 
 export function* getUsersSaga() {
   try {
-    const requestURL = `https://api.hispanocash.com/users/all-users/`;
+    const requestURL = `https://api.hispanocash.com/users/all-users`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -274,7 +274,7 @@ export function* getUserSaga() {
 
 export function* deleteUserSaga(action) {
   try {
-    const requestURL = `https://api.hispanocash.com/users/${action.id}/`;
+    const requestURL = `https://api.hispanocash.com/users/${action.id}`;
     const response = yield call(request, requestURL, {
       method: 'DELETE',
       headers: {
@@ -311,10 +311,11 @@ export function* createUserSaga(action) {
     is_superuser: false,
     is_verified: false,
     roles: [action.data.roles],
+    origin: 'MEXICO',
   };
   // console.log(body);
   try {
-    const requestURL = `https://api.hispanocash.com/auth/register/`;
+    const requestURL = `https://api.hispanocash.com/auth/register`;
     const response = yield call(request, requestURL, {
       method: 'POST',
       headers: {
@@ -337,7 +338,7 @@ export function* createUserSaga(action) {
 
 export function* getEditUserSaga(action) {
   try {
-    const requestURL = `https://api.hispanocash.com/users/${action.id}/`;
+    const requestURL = `https://api.hispanocash.com/users/${action.id}`;
     const response = yield call(request, requestURL, {
       method: 'GET',
       headers: {
@@ -373,7 +374,7 @@ export function* editUserSaga(action) {
   };
   // console.log(body);
   try {
-    const requestURL = `https://api.hispanocash.com/users/${action.data.id}/`;
+    const requestURL = `https://api.hispanocash.com/users/${action.data.id}`;
     const response = yield call(request, requestURL, {
       method: 'PATCH',
       headers: {
