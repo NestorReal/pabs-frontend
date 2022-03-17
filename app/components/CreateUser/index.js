@@ -76,20 +76,6 @@ function CreateUser({ onClick, data }) {
               </div>
               <div>
                 <Input
-                  label="Apellidos:"
-                  placeholder="Apellidos"
-                  name="last_name"
-                  onChange={formik.handleChange}
-                  value={formik.values.full_name}
-                >
-                  <AiOutlineUser />
-                </Input>
-                {formik.touched.full_name && formik.errors.full_name ? (
-                  <p className="error">{formik.errors.full_name}</p>
-                ) : null}
-              </div>
-              <div>
-                <Input
                   label="Teléfono:"
                   placeholder="Ej. 1234567890"
                   name="phone_number"

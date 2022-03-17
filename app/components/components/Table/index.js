@@ -255,7 +255,11 @@ function Table({
             <>
               <tr className="tableRow" key={uuidv4()}>
                 {keyData.map(itemKey => (
-                  <td key={uuidv4()}>{item[itemKey] || <br />}</td>
+                  <td key={uuidv4()}>
+                    {/* eslint-disable-next-line no-bitwise */}
+                    {(itemKey === 'cost') | (itemKey === 'amount') ? '$' : ''}
+                    {item[itemKey] || <br />}
+                  </td>
                 ))}
                 {actions ? (
                   <td className="actions">
