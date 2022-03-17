@@ -20,24 +20,24 @@ function ValidatePayment() {
     fetch(`https://api.hispanocash.com/payments/paypal/?order_id=${token}`, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${auth.getToken()}`,
       },
       method: 'POST',
     })
       .then(response => response.json())
       .then(success => {
-        captureOrder(success.purchase_units[0].payments.authorizations[0].id);
+        window.close(success);
+        // captureOrder(success.purchase_units[0].payments.authorizations[0].id);
       })
       .catch(error => console.log(error));
   };
 
   const captureOrder = token => {
+    console.log(token);
     fetch(
-      `https://api.hispanocash.com/payments/paypal/capture-order/?authorization_id=${token}`,
+      `https://api.hispanocash.com/payments/paypal/capture-order/?authorization_id=${token}&user_email=nestor@everst.mx`,
       {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${auth.getToken()}`,
         },
         method: 'POST',
       },

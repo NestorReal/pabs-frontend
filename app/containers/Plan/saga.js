@@ -32,7 +32,6 @@ export function* payersSaga(action) {
     const response = yield call(request, requestURL, {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${auth.getToken()}`,
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },

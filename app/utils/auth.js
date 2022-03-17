@@ -38,7 +38,7 @@ const auth = {
 
   logout() {
     this.clearAppStorage();
-    window.location.href = '/auth';
+    window.location.href = '/';
   },
 
   clearToken(tokenKey = TOKEN_KEY) {
