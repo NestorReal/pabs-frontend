@@ -39,14 +39,14 @@ function FormularioDatos(props) {
   };
   const [check, setCheck] = useState({
     createUser: false,
-    termsConditions: false
+    termsConditions: false,
   });
   const createUser = event => {
-    setCheck({...check, createUser: event.target.checked});
+    setCheck({ ...check, createUser: event.target.checked });
   };
 
   const termsConditions = event => {
-    setCheck({...check, termsConditions: event.target.checked});
+    setCheck({ ...check, termsConditions: event.target.checked });
   };
 
   const formik = useFormik({
@@ -100,9 +100,10 @@ function FormularioDatos(props) {
               >
                 <AiOutlineUser />
               </Input>
-              {formik.touched.mothers_lastname && formik.errors.mothers_lastname ? (
-                <p className="error">{formik.errors.mothers_lastname}</p>
-              ) : null}
+              {formik.touched.mothers_lastname &&
+              formik.errors.mothers_lastname ? (
+                  <p className="error">{formik.errors.mothers_lastname}</p>
+                ) : null}
             </div>
 
             <div>
@@ -172,9 +173,10 @@ function FormularioDatos(props) {
               >
                 <AiOutlineUser />
               </Input>
-              {formik.touched.father_lastname && formik.errors.father_lastname ? (
-                <p className="error">{formik.errors.father_lastname}</p>
-              ) : null}
+              {formik.touched.father_lastname &&
+              formik.errors.father_lastname ? (
+                  <p className="error">{formik.errors.father_lastname}</p>
+                ) : null}
             </div>
 
             <div>
@@ -289,9 +291,10 @@ function FormularioDatos(props) {
                       {passShow.confipassword ? <BsEye /> : <BsEyeSlash />}
                     </button>
                   </Input>
-                  {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-                    <p className="error">{formik.errors.confirmPassword}</p>
-                  ) : null}
+                  {formik.touched.confirmPassword &&
+                  formik.errors.confirmPassword ? (
+                      <p className="error">{formik.errors.confirmPassword}</p>
+                    ) : null}
                 </div>
               )}
             </InputGroup>
@@ -336,9 +339,10 @@ function FormularioDatos(props) {
               >
                 <AiOutlineUser />
               </Input>
-              {formik.touched.mothers_lastname && formik.errors.mothers_lastname ? (
-                <p className="error">{formik.errors.mothers_lastname}</p>
-              ) : null}
+              {formik.touched.mothers_lastname &&
+              formik.errors.mothers_lastname ? (
+                  <p className="error">{formik.errors.mothers_lastname}</p>
+                ) : null}
             </div>
 
             <div>
@@ -367,9 +371,10 @@ function FormularioDatos(props) {
               >
                 <AiOutlineUser />
               </Input>
-              {formik.touched.father_lastname && formik.errors.father_lastname ? (
-                <p className="error">{formik.errors.father_lastname}</p>
-              ) : null}
+              {formik.touched.father_lastname &&
+              formik.errors.father_lastname ? (
+                  <p className="error">{formik.errors.father_lastname}</p>
+                ) : null}
             </div>
 
             <div>
@@ -389,6 +394,10 @@ function FormularioDatos(props) {
           </InputGroup>
         </div>
         <div className="center" style={{ marginTop: '6.389%' }}>
+          <Button variant="primary" onClick={() => props.back(1)}>
+            Atrás
+          </Button>
+          &nbsp;&nbsp;&nbsp;
           <Button
             variant="primary"
             type="submit"
@@ -409,6 +418,7 @@ function FormularioDatos(props) {
 FormularioDatos.propTypes = {
   getData: PropTypes.func,
   createUser: PropTypes.func,
+  back: PropTypes.func,
 };
 
 export default FormularioDatos;

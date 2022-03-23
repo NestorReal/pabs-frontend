@@ -10,7 +10,7 @@ import { Container } from './styles';
 import Button from '../components/Button';
 import logo from '../../images/logo.jpg';
 
-function Bienvenida({ dataPlan, dataPaye }) {
+function Bienvenida({ dataPlan, dataPaye, toReturns }) {
   const titular = `${dataPaye.name} ${dataPaye.father_lastname} ${
     dataPaye.mothers_lastname
   }`;
@@ -74,7 +74,7 @@ function Bienvenida({ dataPlan, dataPaye }) {
           type="button"
           variant="primary"
           // eslint-disable-next-line react/prop-types
-          // onClick={() => props.history.push('/auth')}
+          onClick={() => toReturns('/auth')}
         >
           Ir a inicio
         </Button>
@@ -87,6 +87,7 @@ function Bienvenida({ dataPlan, dataPaye }) {
 Bienvenida.propTypes = {
   dataPlan: PropTypes.object,
   dataPaye: PropTypes.object,
+  toReturns: PropTypes.func,
 };
 
 export default Bienvenida;
