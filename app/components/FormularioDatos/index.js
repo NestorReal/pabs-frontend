@@ -389,6 +389,10 @@ function FormularioDatos(props) {
           </InputGroup>
         </div>
         <div className="center" style={{ marginTop: '6.389%' }}>
+          <Button variant="primary" onClick={() => props.back(1)}>
+            Atrás
+          </Button>
+          &nbsp;&nbsp;&nbsp;
           <Button
             variant="primary"
             type="submit"
@@ -409,6 +413,7 @@ function FormularioDatos(props) {
 FormularioDatos.propTypes = {
   getData: PropTypes.func,
   createUser: PropTypes.func,
+  back: PropTypes.func,
 };
 
 export default FormularioDatos;

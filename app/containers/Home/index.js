@@ -38,6 +38,8 @@ export function Home(props) {
   ];
 
   const key = ['_id', 'payment_method', 'payment_date', 'amount'];
+
+  console.log(props.home);
   return (
     <Container>
       <img className="logo" src={logo} alt="logo" />
@@ -63,7 +65,7 @@ export function Home(props) {
           <label htmlFor="text">
             <b>SU NÚMERO DE CONTRATO ES: </b>
             {/* eslint-disable-next-line no-underscore-dangle */}
-            {props.home.report[0]._id}
+            {props.home.user._id}
           </label>
         </div>
         <div className="text">
