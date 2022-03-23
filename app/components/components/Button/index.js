@@ -16,6 +16,7 @@ const backgroundColors = {
 };
 
 const StyleButton = styled.button`
+  opacity: ${props => (props.disabled === true ? '0.5' : '1')};
   width: ${props => (props.size === 'large' ? '220px' : '110px')};
   height: ${props => (props.size === 'large' ? '50px' : '36px')};
   background: ${props => backgroundColors[props.variant]};
@@ -78,9 +79,16 @@ function Button({
   size = 'large',
   variant,
   type = 'button',
+  disabled,
 }) {
   return (
-    <StyleButton variant={variant} onClick={onClick} size={size} type={type}>
+    <StyleButton
+      variant={variant}
+      onClick={onClick}
+      size={size}
+      type={type}
+      disabled={disabled}
+    >
       {children}
     </StyleButton>
   );
@@ -92,6 +100,7 @@ Button.propTypes = {
   variant: PropTypes.string,
   size: PropTypes.string,
   type: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 export default Button;

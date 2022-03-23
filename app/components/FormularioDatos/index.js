@@ -37,17 +37,24 @@ function FormularioDatos(props) {
       setPassShow({ ...passShow, confipassword: false });
     }
   };
-  const [check, setCheck] = useState(false);
+  const [check, setCheck] = useState({
+    createUser: false,
+    termsConditions: false
+  });
   const createUser = event => {
-    setCheck(event.target.checked);
+    setCheck({...check, createUser: event.target.checked});
+  };
+
+  const termsConditions = event => {
+    setCheck({...check, termsConditions: event.target.checked});
   };
 
   const formik = useFormik({
     initialValues: formData,
-    validationSchema: check ? validatePassword : validate,
+    validationSchema: check.createUser ? validatePassword : validate,
     onSubmit: values => {
       props.getData(values);
-      if (check) {
+      if (check.createUser) {
         const test = {
           email: values.email,
           full_name: values.name,
@@ -238,7 +245,7 @@ function FormularioDatos(props) {
         <div className="password">
           <div className="input-group-wrapper">
             <InputGroup className="left">
-              {check && (
+              {check.createUser && (
                 <>
                   <div>
                     <Input
@@ -265,7 +272,7 @@ function FormularioDatos(props) {
             </InputGroup>
 
             <InputGroup className="right">
-              {check && (
+              {check.createUser && (
                 <div>
                   <Input
                     className={
@@ -289,9 +296,12 @@ function FormularioDatos(props) {
               )}
             </InputGroup>
           </div>
-          {check && (
+          {check.createUser && (
             <div>
-              <Check label="Acepto los términos y condiciones" />
+              <Check
+                label="Acepto los términos y condiciones"
+                onChange={termsConditions}
+              />
             </div>
           )}
         </div>
@@ -379,7 +389,15 @@ function FormularioDatos(props) {
           </InputGroup>
         </div>
         <div className="center" style={{ marginTop: '6.389%' }}>
-          <Button variant="primary" type="submit">
+          <Button
+            variant="primary"
+            type="submit"
+            disabled={
+              check.createUser && check.termsConditions
+                ? false
+                : check.createUser !== false
+            }
+          >
             Ir a pagar
           </Button>
         </div>
