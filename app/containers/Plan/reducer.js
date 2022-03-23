@@ -7,7 +7,7 @@ import produce from 'immer';
 import * as constants from './constants';
 
 export const initialState = {
-  step: 4,
+  step: 1,
   plan: {},
   payers: {},
   plans: [],
