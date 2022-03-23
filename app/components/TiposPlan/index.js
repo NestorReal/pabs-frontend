@@ -59,6 +59,7 @@ function TiposPlan(props) {
         text={plan.features.map(feature => feature.description)}
         onClick={() => getTipoPlan({ name: plan.name, amount: plan.cost })}
         onClickDetail={() => showModal(imagesPlan[id])}
+        fullWidth
       />
     ));
   }
