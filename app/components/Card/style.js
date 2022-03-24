@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const CardStyle = styled.div`
+  ${props => props.fullWidth && 'width: 100% !important;'};
   width: calc(239px + 5%);
   .triangulo {
     width: 0;

@@ -28,11 +28,22 @@ const ModalStyle = styled.div`
     border-radius: 10px;
     text-align: center;
     color: #00539c;
+    position: relative;
     overflow-y: scroll;
     overflow: overlay;
     img {
       width: 100%;
     }
+  }
+
+  .close-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-weight: 900;
+    position: absolute;
+    top: 1.5%;
+    right: 2%;
   }
 
   .ContainerModal::-webkit-scrollbar {
@@ -69,6 +80,11 @@ const ModalStyle = styled.div`
     .ContainerModal {
       height: unset;
       width: 90%;
+    }
+
+    .close-btn {
+      top: 0;
+      right: 0;
     }
   }
 
@@ -116,18 +132,18 @@ const ModalStyle = styled.div`
 
 function ImageModal({ display, img, alt, onClose }) {
   return (
-    <ModalStyle display={display} onClick={onClose}>
+    <ModalStyle display={display}>
       <div className="ContainerModal">
         <img src={img} alt={alt} />
-        {/* <button
-          className="close-btn"
+        <button
+          className="close-btn label"
           type="button"
           onClick={() => {
             onClose();
           }}
         >
           X
-        </button> */}
+        </button>
       </div>
     </ModalStyle>
   );

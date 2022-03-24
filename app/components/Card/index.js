@@ -18,9 +18,10 @@ function Card({
   onClickDetail,
   onClick,
   color,
+  fullWidth = false,
 }) {
   return (
-    <CardStyle>
+    <CardStyle fullWidth={fullWidth}>
       <div className={`tag tag${color}`}>
         <div className="title">
           <label>{title}</label>
@@ -71,6 +72,7 @@ Card.propTypes = {
   onClickDetail: PropTypes.func,
   onClick: PropTypes.func,
   color: PropTypes.string,
+  fullWidth: PropTypes.bool,
 };
 
 export default Card;
