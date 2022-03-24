@@ -17,7 +17,7 @@ import paypal from '../../images/paypal.png';
 import { Container } from './styles';
 import Button from '../components/Button';
 
-function Pago({ dataPlan, dataPaye, getStep, back }, props) {
+function Pago({ dataPlan, dataPaye, getStep, back, dataUser }, props) {
   const [dataUrl, setDataUrl] = useState({});
   const titular = `${dataPaye.name} ${dataPaye.father_lastname} ${
     dataPaye.mothers_lastname
@@ -26,7 +26,9 @@ function Pago({ dataPlan, dataPaye, getStep, back }, props) {
     fetch(
       `https://api.hispanocash.com/payments/paypal/?currency_code=${'MXN'}&value=${
         dataPlan.amount
-      }&reference_id=${dataPlan.name}&soft_descriptor=${'payment PABS'}`,
+      }&reference_id=${dataUser.phone_number}&soft_descriptor=${
+        dataPlan.name
+      }&user_email=${dataUser.email}`,
       {
         headers: {
           'Content-Type': 'application/json',

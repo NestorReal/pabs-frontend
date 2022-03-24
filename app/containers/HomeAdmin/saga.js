@@ -67,7 +67,7 @@ export function* createPlanSaga(action) {
   // console.log(action);
   const body = {
     name: action.data.name,
-    cost: action.data.cost,
+    cost: parseInt(action.data.cost.replace(/,/g, '')),
     featureIds: [action.data.features],
     companyId: action.data.companyId,
   };
@@ -148,6 +148,7 @@ export function* EditPlanSaga(action) {
     cost: action.data.cost,
     featureIds: [action.data.features],
     companyId: action.data.companyId,
+    name: action.data.name,
   };
   try {
     const requestURL = `https://api.hispanocash.com/plans/${action.data.id}`;

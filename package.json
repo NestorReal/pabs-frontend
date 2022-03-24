@@ -73,6 +73,7 @@
     "classnames": "^2.3.1",
     "compression": "1.7.4",
     "connected-react-router": "6.4.0",
+    "country-iso-2-to-3": "^1.1.0",
     "cross-env": "5.2.0",
     "express": "4.16.4",
     "fontfaceobserver": "2.1.0",

@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import TiposPlan from '../TiposPlan';
 import FormularioDatos from '../FormularioDatos';
@@ -22,6 +22,7 @@ function OptionsPlan({
   createUser,
   toReturn,
 }) {
+  const [dataUser, setDataUser] = useState({});
   switch (menu) {
     case 1:
       return (
@@ -36,7 +37,10 @@ function OptionsPlan({
       return (
         <FormularioDatos
           getData={data => getDataPayer(data)}
-          createUser={valueUser => createUser(valueUser)}
+          createUser={valueUser => {
+            createUser(valueUser);
+            setDataUser(valueUser);
+          }}
           back={step => back(step)}
         />
       );
@@ -45,6 +49,7 @@ function OptionsPlan({
         <Pago
           dataPlan={dataPlan}
           dataPaye={dataPaye}
+          dataUser={dataUser}
           getStep={step => getStep(step)}
           back={step => back(step)}
         />
