@@ -33,7 +33,7 @@ export function* loginSaga(action) {
 function* login(token, history) {
   // TODO: Implement remember me
   yield all([call(auth.setToken, token, true)]);
-  yield call(history.push, '/plan');
+  yield call(history.push, '/user');
 }
 
 export function* passreset(action) {

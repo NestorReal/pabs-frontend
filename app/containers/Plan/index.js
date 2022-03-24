@@ -81,12 +81,15 @@ export function Plan(props) {
           <OptionsPlan
             menu={props.plan.step}
             getStep={step => props.dispatch(stepAction(step))}
+            back={step => props.dispatch(stepAction(step))}
             getTipoPlan={value => props.dispatch(planAction(value))}
             getDataPayer={data => props.dispatch(payersAction(data))}
             dataPaye={props.plan.payers}
             dataPlans={props.plan.plans}
             dataPlan={props.plan.plan}
             createUser={dataUser => props.dispatch(createUserPayer(dataUser))}
+            // eslint-disable-next-line react/prop-types
+            toReturn={toReturn => props.history.push(toReturn)}
           />
         </div>
       </ContainerForm>

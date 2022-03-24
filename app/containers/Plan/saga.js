@@ -1,6 +1,6 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 import request from 'utils/request';
-import auth from 'utils/auth';
+// import auth from 'utils/auth';
 import {
   addErrorMessage,
   addSuccessMessage,
@@ -90,10 +90,11 @@ export function* createUserPayer(action) {
     is_superuser: false,
     is_verified: false,
     roles: [action.data.roles],
+    origin: 'MEXICO',
   };
   // console.log(body);
   try {
-    const requestURL = `https://api.hispanocash.com/auth/register/`;
+    const requestURL = `https://api.hispanocash.com/auth/register`;
     const response = yield call(request, requestURL, {
       method: 'POST',
       headers: {

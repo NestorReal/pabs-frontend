@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import auth from 'utils/auth';
-import { addSuccessMessage } from 'containers/Notifications/actions';
+// import { addSuccessMessage } from 'containers/Notifications/actions';
 import Notifications from 'containers/Notifications';
 import NewWindow from 'react-new-window';
 import paypal from '../../images/paypal.png';
@@ -17,7 +17,7 @@ import paypal from '../../images/paypal.png';
 import { Container } from './styles';
 import Button from '../components/Button';
 
-function Pago({ dataPlan, dataPaye, getStep }, props) {
+function Pago({ dataPlan, dataPaye, getStep, back, dataUser }, props) {
   const [dataUrl, setDataUrl] = useState({});
   const titular = `${dataPaye.name} ${dataPaye.father_lastname} ${
     dataPaye.mothers_lastname
@@ -26,7 +26,9 @@ function Pago({ dataPlan, dataPaye, getStep }, props) {
     fetch(
       `https://api.hispanocash.com/payments/paypal/?currency_code=${'MXN'}&value=${
         dataPlan.amount
-      }&reference_id=${dataPlan.name}&soft_descriptor=${'payment PABS'}`,
+      }&reference_id=${dataUser.phone_number}&soft_descriptor=${
+        dataPlan.name
+      }&user_email=${dataUser.email}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -67,8 +69,8 @@ function Pago({ dataPlan, dataPaye, getStep }, props) {
             {dataPaye.neighborhood}
           </label>
           <div className="containerButton">
-            <Button variant="primary" size="medium">
-              Ingresar
+            <Button variant="primary" size="medium" onClick={() => back(2)}>
+              Atrás
             </Button>
           </div>
         </div>
@@ -91,7 +93,12 @@ function Pago({ dataPlan, dataPaye, getStep }, props) {
             </div>
             <div>
               <th>
-                <b>{dataPlan.amount}</b>
+                <b>
+                  $
+                  {new Intl.NumberFormat('es-MX', {
+                    maximumSignificantDigits: 9,
+                  }).format(dataPlan.amount)}
+                </b>
               </th>
             </div>
           </div>
@@ -120,6 +127,7 @@ Pago.propTypes = {
   dataPlan: PropTypes.object,
   dataPaye: PropTypes.object,
   getStep: PropTypes.func,
+  back: PropTypes.func,
   dispatch: PropTypes.func,
 };
 

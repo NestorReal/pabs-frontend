@@ -16,7 +16,7 @@ import Check from '../components/Check';
 import Button from '../components/Button';
 import { InputGroup } from '../components/InputGroup';
 
-import { formData, validate, validatePassword } from './validation';
+import { formData, validatePassword } from './validation';
 
 function FormularioDatos(props) {
   const [passShow, setPassShow] = useState({
@@ -37,33 +37,25 @@ function FormularioDatos(props) {
       setPassShow({ ...passShow, confipassword: false });
     }
   };
-  const [check, setCheck] = useState({
-    createUser: false,
-    termsConditions: false
-  });
-  const createUser = event => {
-    setCheck({...check, createUser: event.target.checked});
-  };
+  const [check, setCheck] = useState(false);
 
   const termsConditions = event => {
-    setCheck({...check, termsConditions: event.target.checked});
+    setCheck(event.target.checked);
   };
 
   const formik = useFormik({
     initialValues: formData,
-    validationSchema: check.createUser ? validatePassword : validate,
+    validationSchema: validatePassword,
     onSubmit: values => {
       props.getData(values);
-      if (check.createUser) {
-        const test = {
-          email: values.email,
-          full_name: values.name,
-          phone_number: values.phone_number,
-          password: values.password,
-          roles: 'user',
-        };
-        props.createUser(test);
-      }
+      const test = {
+        email: values.email,
+        full_name: values.name,
+        phone_number: values.phone_number,
+        password: values.password,
+        roles: 'user',
+      };
+      props.createUser(test);
     },
   });
 
@@ -100,7 +92,8 @@ function FormularioDatos(props) {
               >
                 <AiOutlineUser />
               </Input>
-              {formik.touched.mothers_lastname && formik.errors.mothers_lastname ? (
+              {formik.touched.mothers_lastname &&
+              formik.errors.mothers_lastname ? (
                 <p className="error">{formik.errors.mothers_lastname}</p>
               ) : null}
             </div>
@@ -172,9 +165,10 @@ function FormularioDatos(props) {
               >
                 <AiOutlineUser />
               </Input>
-              {formik.touched.father_lastname && formik.errors.father_lastname ? (
-                <p className="error">{formik.errors.father_lastname}</p>
-              ) : null}
+              {formik.touched.father_lastname &&
+              formik.errors.father_lastname ? (
+                  <p className="error">{formik.errors.father_lastname}</p>
+                ) : null}
             </div>
 
             <div>
@@ -236,74 +230,64 @@ function FormularioDatos(props) {
                 <p className="error">{formik.errors.neighborhood}</p>
               ) : null}
             </div>
-            <div className="containerTerminos">
-              <Check label="Crear cuenta" onChange={createUser} />
-            </div>
           </InputGroup>
         </div>
 
         <div className="password">
           <div className="input-group-wrapper">
             <InputGroup className="left">
-              {check.createUser && (
-                <>
-                  <div>
-                    <Input
-                      className={
-                        formik.values.password !== '' ? 'fontFontello' : ''
-                      }
-                      label="Contraseña"
-                      placeholder="Contraseña"
-                      type={passShow.password ? 'text' : 'password'}
-                      name="password"
-                      onChange={formik.handleChange}
-                      value={formik.values.password}
-                    >
-                      <button type="button" onClick={show}>
-                        {passShow.password ? <BsEye /> : <BsEyeSlash />}
-                      </button>
-                    </Input>
-                    {formik.touched.password && formik.errors.password ? (
-                      <p className="error">{formik.errors.password}</p>
-                    ) : null}
-                  </div>
-                </>
-              )}
+              <div>
+                <Input
+                  className={
+                    formik.values.password !== '' ? 'fontFontello' : ''
+                  }
+                  label="Contraseña"
+                  placeholder="Contraseña"
+                  type={passShow.password ? 'text' : 'password'}
+                  name="password"
+                  onChange={formik.handleChange}
+                  value={formik.values.password}
+                >
+                  <button type="button" onClick={show}>
+                    {passShow.password ? <BsEye /> : <BsEyeSlash />}
+                  </button>
+                </Input>
+                {formik.touched.password && formik.errors.password ? (
+                  <p className="error">{formik.errors.password}</p>
+                ) : null}
+              </div>
             </InputGroup>
 
             <InputGroup className="right">
-              {check.createUser && (
-                <div>
-                  <Input
-                    className={
-                      formik.values.confirmPassword !== '' ? 'fontFontello' : ''
-                    }
-                    label="Confirmar contraseña"
-                    placeholder="Confirmar contraseña"
-                    type={passShow.confipassword ? 'text' : 'password'}
-                    name="confirmPassword"
-                    onChange={formik.handleChange}
-                    value={formik.values.confirmPassword}
-                  >
-                    <button type="button" onClick={showConfi}>
-                      {passShow.confipassword ? <BsEye /> : <BsEyeSlash />}
-                    </button>
-                  </Input>
-                  {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+              <div>
+                <Input
+                  className={
+                    formik.values.confirmPassword !== '' ? 'fontFontello' : ''
+                  }
+                  label="Confirmar contraseña"
+                  placeholder="Confirmar contraseña"
+                  type={passShow.confipassword ? 'text' : 'password'}
+                  name="confirmPassword"
+                  onChange={formik.handleChange}
+                  value={formik.values.confirmPassword}
+                >
+                  <button type="button" onClick={showConfi}>
+                    {passShow.confipassword ? <BsEye /> : <BsEyeSlash />}
+                  </button>
+                </Input>
+                {formik.touched.confirmPassword &&
+                formik.errors.confirmPassword ? (
                     <p className="error">{formik.errors.confirmPassword}</p>
-                  ) : null}
-                </div>
-              )}
+                ) : null}
+              </div>
             </InputGroup>
           </div>
-          {check.createUser && (
-            <div>
-              <Check
-                label="Acepto los términos y condiciones"
-                onChange={termsConditions}
-              />
-            </div>
-          )}
+          <div>
+            <Check
+              label="Acepto los términos y condiciones"
+              onChange={termsConditions}
+            />
+          </div>
         </div>
 
         <div className="tituloDos" style={{ marginTop: '8.333%' }}>
@@ -336,9 +320,10 @@ function FormularioDatos(props) {
               >
                 <AiOutlineUser />
               </Input>
-              {formik.touched.mothers_lastname && formik.errors.mothers_lastname ? (
-                <p className="error">{formik.errors.mothers_lastname}</p>
-              ) : null}
+              {formik.touched.mothers_lastname &&
+              formik.errors.mothers_lastname ? (
+                  <p className="error">{formik.errors.mothers_lastname}</p>
+                ) : null}
             </div>
 
             <div>
@@ -367,9 +352,10 @@ function FormularioDatos(props) {
               >
                 <AiOutlineUser />
               </Input>
-              {formik.touched.father_lastname && formik.errors.father_lastname ? (
-                <p className="error">{formik.errors.father_lastname}</p>
-              ) : null}
+              {formik.touched.father_lastname &&
+              formik.errors.father_lastname ? (
+                  <p className="error">{formik.errors.father_lastname}</p>
+                ) : null}
             </div>
 
             <div>
@@ -389,15 +375,11 @@ function FormularioDatos(props) {
           </InputGroup>
         </div>
         <div className="center" style={{ marginTop: '6.389%' }}>
-          <Button
-            variant="primary"
-            type="submit"
-            disabled={
-              check.createUser && check.termsConditions
-                ? false
-                : check.createUser !== false
-            }
-          >
+          <Button variant="primary" onClick={() => props.back(1)}>
+            Atrás
+          </Button>
+          &nbsp;&nbsp;&nbsp;
+          <Button variant="primary" type="submit" disabled={!check}>
             Ir a pagar
           </Button>
         </div>
@@ -409,6 +391,7 @@ function FormularioDatos(props) {
 FormularioDatos.propTypes = {
   getData: PropTypes.func,
   createUser: PropTypes.func,
+  back: PropTypes.func,
 };
 
 export default FormularioDatos;

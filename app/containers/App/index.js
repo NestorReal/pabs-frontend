@@ -15,7 +15,7 @@ import CreateUser from 'containers/CreateUser/';
 import ProtectedRoute from 'components/ProtectedRoute';
 import LoginAdmin from 'containers/LoginAdmin';
 import HomeAdmin from 'containers/HomeAdmin';
-// import Home from 'containers/Home';
+import Home from 'containers/Home';
 import Login from 'containers/Login';
 import ValidatePayment from 'components/ValidatePayment';
 import Plan from 'containers/Plan';
@@ -27,6 +27,7 @@ export default function App() {
     <div>
       <Switch>
         <Route exact path="/" component={Plan} />
+        <ProtectedRoute exact path="/user" component={Home} />
         <Route exact path="/auth" component={Login} />
         <Route exact path="/crear-cuenta" component={CreateUser} />
         <Route exact path="/auth-admin" component={LoginAdmin} />

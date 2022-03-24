@@ -173,6 +173,7 @@ function Input({
   fullWidth = true,
   Rounded = true,
   autoHeight = false,
+  disabled,
 }) {
   return (
     <StyleInput fullWidth={fullWidth} Rounded={Rounded} autoHeight={autoHeight}>
@@ -186,6 +187,7 @@ function Input({
           className={className}
           name={name}
           id={name}
+          disabled={disabled}
         />
         <div className="icon">{children}</div>
       </div>
@@ -205,6 +207,7 @@ Input.propTypes = {
   fullWidth: PropTypes.bool,
   Rounded: PropTypes.bool,
   autoHeight: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 export default Input;

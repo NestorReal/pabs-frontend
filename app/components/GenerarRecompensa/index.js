@@ -23,24 +23,48 @@ const validate = Yup.object({
 });
 
 function GenerarRecompensa({ getCompanies, getFeatures, onClick, data }) {
-  const [dataPlan] = useState({
+  const [dataPlan, setDataPlan] = useState({
     name: data ? data.name : '',
     cost: data ? data.cost : 0,
-    features: data ? data.features : '',
-    companyId: data ? data.company : '',
+    // eslint-disable-next-line no-underscore-dangle
+    features: data ? data.features[0]._id : '',
+    // eslint-disable-next-line no-underscore-dangle
+    companyId: data ? getCompanies[0]._id : '',
     // eslint-disable-next-line no-underscore-dangle
     id: data ? data._id : '',
   });
+
   const formik = useFormik({
     initialValues: dataPlan,
     validationSchema: validate,
     onSubmit: values => onClick(values),
   });
+
+  console.log(data);
+
   return (
     <Container>
       <div className="formulario">
-        <form onSubmit={formik.handleSubmit} className="form">
+        <form id="form" onSubmit={formik.handleSubmit} className="form">
           <InputGroup>
+            <div className="input">
+              <div>
+                <Input
+                  label="Nombre del plan"
+                  type="text"
+                  placeholder="Nombre"
+                  name="name"
+                  onChange={formik.handleChange}
+                  value={formik.values.name}
+                  disabled={dataPlan.name}
+                  autoHeight
+                  Rounded={false}
+                />
+                {formik.touched.name && formik.errors.name ? (
+                  <p className="error">{formik.errors.name}</p>
+                ) : null}
+              </div>
+            </div>
             <div className="select">
               <Select
                 label="Selecciona empresa"
@@ -61,24 +85,6 @@ function GenerarRecompensa({ getCompanies, getFeatures, onClick, data }) {
               {formik.touched.companyId && formik.errors.companyId ? (
                 <p className="error">{formik.errors.companyId}</p>
               ) : null}
-            </div>
-            <div className="input">
-              <div>
-                <Input
-                  label="Nombre del plan"
-                  type="text"
-                  placeholder="Nombre"
-                  name="name"
-                  onChange={formik.handleChange}
-                  value={formik.values.name}
-                  disabled={!!data}
-                  autoHeight
-                  Rounded={false}
-                />
-                {formik.touched.name && formik.errors.name ? (
-                  <p className="error">{formik.errors.name}</p>
-                ) : null}
-              </div>
             </div>
             <div className="input">
               <div>
