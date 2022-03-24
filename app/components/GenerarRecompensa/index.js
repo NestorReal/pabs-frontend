@@ -19,9 +19,7 @@ const validate = Yup.object({
   name: Yup.string().required('Este campo es requerido'),
   features: Yup.string().required('Este campo es requerido'),
   companyId: Yup.string().required('Este campo es requerido'),
-  cost: Yup.number('Porfavor ingrese un valor numerico')
-    .required('Este campo es requerido')
-    .positive('Ingrese un número positivo'),
+  cost: Yup.string().required('Este campo es requerido'),
 });
 
 function GenerarRecompensa({ getCompanies, getFeatures, onClick, data }) {
@@ -86,7 +84,7 @@ function GenerarRecompensa({ getCompanies, getFeatures, onClick, data }) {
               <div>
                 <Input
                   label="Precio en pesos"
-                  type="number"
+                  type="text"
                   placeholder="$"
                   name="cost"
                   onChange={formik.handleChange}

@@ -53,7 +53,7 @@ function TiposPlan(props) {
     dataPlan = props.dataPlans.map((plan, id) => (
       <Card
         color={colors[id]}
-        title={`$ ${plan.cost} MNX`}
+        title={`$ ${Intl.NumberFormat('en-IN').format(plan.cost)} MNX`}
         subTitle="Planes"
         titleCard={plan.name}
         text={plan.features.map(feature => feature.description)}
